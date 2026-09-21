@@ -1,0 +1,364 @@
+//-----------People Tables--------------
+
+Table "tblCountries" {
+  CountryID SMALLINT [not null, increment]
+  CountryName NCHAR(255) [not null, unique]
+
+  Indexes {
+    CountryID [pk]
+  }
+}
+
+Table "tblPeople" {
+  "PersonID" INTEGER [not null, increment]
+  "NationalNO" NCHAR(255) [not null, unique]
+  FirstName NVARCHAR(50) [not null]
+  SecondName NVARCHAR(50) [not null]
+  ThirdName NVARCHAR(50) [not null]
+  LastName NVARCHAR(50) [not null]
+  Gendor CHAR(1) [NOT NULL]// M/F
+  DateOfBirth DATE [not null]
+  "Address" NVARCHAR(500) [not null]
+  PhoneNumber VARCHAR(20) [not null]
+  Email VARCHAR(100)
+  CountryID SMALLINT [not null] // FOREIGN KEY
+  Notes NVARCHAR(500)  
+  ImagePath NVARCHAR(500)
+
+  Indexes {
+    PersonID [pk]
+    NationalNO 
+  }
+}
+
+Table "tblUsers" {
+  "UserID" INTEGER [not null, increment]
+  "PersonID" INTEGER [unique, not null]
+  UserName VARCHAR(50) [unique, not null]
+  Password VARCHAR(255) [not null]
+  Permissions INTEGER [not null] 
+  IsActive BIT [not null]
+
+  Indexes {
+    UserID [pk]
+  }
+}
+
+Table "tblUserAuthLogs" {
+  "AuthLogID" INTEGER [not null, increment]
+  "UserID" INTEGER [not null]
+  AuthType bit [not null] // 0 = Login, 1 = Logout.
+  DateTime DateTime [default: 'SYSDATETIME()']
+
+  Indexes {
+    AuthLogID [pk]
+  }
+}
+
+Table "tblDrivers" {
+  "DriverID" INTEGER [not null, increment]
+  "PersonID" INTEGER [unique, not null]
+  CreatedAt DATETIME [default: 'SYSDATETIME()']
+  CreatedByUserID INTEGER [not null]
+
+  Indexes {
+    DriverID [pk]
+  }
+}
+
+Table "tblCertificates" {
+  CertificateID INTEGER [not null, increment]
+  CertificateNumber INTEGER [NOT NULL, UNIQUE]
+  "PersonID" INTEGER [not null]
+  Issuer NVARCHAR(250) [not null]
+  Title NVARCHAR(250) [not null]
+  Description nvarchar(500)
+  IssueDate Date [not null]
+  ExpiryDate Date [null]
+  Grade NVARCHAR(20)
+  Score DECIMAL(3,2)
+  FileURL nvarchar(500)
+  Notes NVARCHAR(500)  
+  CreatedAt DATETIME [default: 'SYSDATETIME()']
+  CreatedByUserID INTEGER [not null]
+
+  Indexes {
+    CertificateID [pk]
+  }
+}
+
+// -------------------------- Applications -----------------------------------
+
+Table "tblFees" {
+  "FeesID" TINYINT [not null, increment]
+  Title NVARCHAR(255) [not null]
+  FeesAmount MONEY [NOT NULL]
+
+  Indexes {
+    FeesID [pk]
+  }
+}
+
+Table "tblApplicationTypes" {
+  "ApplicationTypeID" TINYINT [not null, increment]
+  ApplicationTypeTitle NVARCHAR(100) [not null]
+  ApplicationFees TINYINT [not null] 
+
+  Indexes {
+    ApplicationTypeID [pk]
+  }
+}
+
+Table "tblApplications" {
+  "ApplicationID" INTEGER [not null, increment]
+  PersonID INTEGER [not null] // FOREIGN Key
+  "ApplicationTypeID" TINYINT [not null] // FOREIGN Key
+  "ApplicationStatus" TINYINT [not null] // 1= new, 2= canceled, 3= completed.
+  "PaidFees" MONEY [NOT NULL]
+  "PaymentID" INTEGER [not null] // FOREIGN Key
+  Notes NVARCHAR(500)  
+  ApplicationReference INTEGER [null, unique] // SELF FOREIGN Key
+  CreatedAt DATETIME [default: 'SYSDATETIME()']
+  CreatedByUserID INTEGER [not null] // FOREIGN Key
+  
+  Indexes {
+    ApplicationID [pk]
+  }
+}
+
+Table tblLocalDrivingLicenseApps{
+  LocalDrivingLicenseAppID INTEGER [NOT NULL, INCREMENT]
+  ApplicationID integer [not null] // FOREIGN Key
+  LicenseClassID TINYINT [not null]  // FOREIGN Key
+  
+  Indexes {
+    LocalDrivingLicenseAppID [pk]
+  }
+}
+
+//----------------------------Tests--------------
+
+Table tblTestAppointments {
+  TestAppointmentID INTEGER [NOT NULL, INCREMENT]
+  ApplicationID INTEGER [NOT NULL] // FOREIGN Key
+  Title NVARCHAR(100) [not null]
+  AppointmentDate DATETIME [NOT NULL]
+  AppointmentLocation NVARCHAR(500) [NOT NULL]
+  Notes NVARCHAR(500)  
+  CreatedAt DATETIME [default: 'SYSDATETIME()']
+  CreatedByUserID INTEGER [not null] // FOREIGN Key
+  
+  Indexes {
+    TestAppointmentID [pk]
+  }
+}
+
+Table "tblTestTypes" {
+  TestTypeID TINYINT [not null, INCREMENT]
+  Title NVARCHAR(255) [NOT NULL]
+  Description NVARCHAR(500)
+  FeesID TINYINT [NOT NULL] // FOREIGN KEY
+
+  Indexes {
+    TestTypeID [pk]
+  }
+}
+
+Table "tblTests"{
+  TestID INTEGER [not null, increment]
+  TestTypeID TINYINT [not null] // FOREIGN KEY
+  AppointmentID INTEGER [NOT NULL]
+  IsPassed BIT [NOT NULL]
+  Score TINYINT
+  Notes NVARCHAR(500)  
+  CreatedAt DATETIME [default: 'SYSDATETIME()']
+  CreatedByUserID INTEGER [not null]
+
+  Indexes {
+    TestID [pk]
+  }
+}
+
+
+//----------------------------Licenses-------------------
+
+Table "tblLicenseClasses" {
+  "LicenseClassID" TINYINT [not null, increment]
+  ClassName NVARCHAR(100) [not null, unique]
+  ClassDescription NVARCHAR(500) [null]
+  MinimumAllowedAge TINYINT [not null]
+  ValidityLength TINYINT [not null] // how many years this license will be valid
+  "FeesID" TINYINT [not null]
+
+  Indexes {
+    LicenseClassID [pk]
+  }
+}
+
+Table "tblLicenses" {
+  "LicenseID" INTEGER [not null, increment]
+  DriverID INTEGER [not null] // FOREIGN Key
+  ApplicationID INTEGER [not null, unique] // FOREIGN Key
+  LicenseClassID TINYINT [not null]  // FOREIGN Key
+  LicenseStatus TINYINT [not null, default: 1] // 1- New 2- 3- 4- RENEW
+  IsActive BIT [not null]
+  ReleaseDate DATE [not null]
+  ExpiryDate DATE [not null]
+  Notes NVARCHAR(500)  
+  CreatedAt DATETIME [default: 'SYSDATETIME()']
+  CreatedByUserID INTEGER [not null]  // FOREIGN Key
+
+  Indexes {
+    LicenseID [pk]
+  }
+
+  UQ_tblLicenses_DriverID_LicenseClassID UNIQUE (DriverID, LicenseClassID)
+}
+
+Table "tblInternationalLicenses" {
+  "InternationalLicenseID" INTEGER [not null, increment]
+  ApplicationID integer [not null] // FOREIGN Key
+  "LicenseID" INTEGER [not null] // FOREIGN Key
+  IsActive BIT [not null]
+  ReleaseDate DATE [not null]
+  FeesID TINYINT [NOT NULL] // FOREIGN Key
+  Notes NVARCHAR(500)  
+  CreatedAt DATETIME [default: 'SYSDATETIME()']
+  CreatedByUserID INTEGER [not null] // FOREIGN Key
+
+
+  Indexes {
+    InternationalLicenseID [pk]
+  } 
+}
+
+Table "tblDetainedLicenses" {
+  "DetainLicenseID" INTEGER [not null, increment] // FOREIGN Key
+  "LicenseID" INTEGER [not null] // FOREIGN Key
+  DetainDate SMALLDATETIME [not null]
+  ReleaseDate SMALLDATETIME [null]
+  FineFees TINYINT [not null] // FOREIGN Key
+  IsReleased BIT [not null]
+  Notes NVARCHAR(500)  
+  ReleaseApplicationID INTEGER [null]
+  ReleaseByUserID INTEGER [null]
+  CreatedByUserID INTEGER [not null]
+
+
+  Indexes {
+    DetainLicenseID [pk]
+  }
+}
+
+Table tblRenewLicenses {
+  LicenseID INTEGER [not null]
+  RenewLicenseApplicationID INTEGER [not null, unique] // FOREIGN Key
+  VisionTestID INTEGER [not null, unique] // FOREIGN Key
+  RenewLicenseDate DATE [NOT NULL]
+  Notes NVARCHAR(500)  
+  CreatedAt DATETIME [default: 'SYSDATETIME()']
+  CreatedByUserID INTEGER [not null]
+
+  Indexes {
+    (LicenseID, RenewLicenseApplicationID) [pk] 
+  }
+}
+
+Table "tblPayments" {
+  "PaymentID" INTEGER [not null, increment]
+  FeesID TINYINT [not null] // FOREIGN Key
+  PaymentMethod NVARCHAR(500) [not null]
+  Amount MONEY [not null]
+  PaymentStatus NVARCHAR(100) [not null]
+  Notes NVARCHAR(500) 
+
+  Indexes {
+    PaymentID [pk]
+  }
+}
+
+// ========== Pepole =====================
+
+Ref FK_tblCountries_tblPeople { tblCountries.CountryID <? tblPeople.CountryID}
+
+Ref FK_tblPeople_tblUsers { tblPeople.PersonID <? tblUsers.PersonID [update: no action, delete: no action]}
+
+Ref FK_tblPeople_tblDrivers { tblPeople.PersonID <? tblDrivers.PersonID [update: no action, delete: no action]}
+
+Ref FK_tblPeople_tblApplications { tblPeople.PersonID <? tblApplications.PersonID}
+
+Ref FK_tblPeople_tblCertificates { tblPeople.PersonID <?  tblCertificates.PersonID}
+
+Ref FK_tblUsers_tblDrivers { tblUsers.UserID <? tblDrivers.CreatedByUserID [update: no action, delete: no action]}
+
+Ref FK_tblUsers_tblUserAuthLogs { tblUsers.UserID <? tblUserAuthLogs.UserID [update: no action, delete: no action]}
+
+Ref FK_tblUsers_tblLicenses { tblUsers.UserID <? tblLicenses.CreatedByUserID}
+
+Ref FK_tblUsers_tblApplications { tblUsers.UserID <? tblApplications.CreatedByUserID}
+
+Ref FK_tblUsers_tblDetainedLicenses { tblUsers.UserID <? tblDetainedLicenses.ReleaseByUserID}
+
+Ref FK_tblUsers_tblDetainedLicenses { tblUsers.UserID <? tblDetainedLicenses.CreatedByUserID}
+
+Ref FK_tblUsers_tblRenewLicenses { tblUsers.UserID <? tblRenewLicenses.CreatedByUserID}
+
+Ref FK_tblUsers_tblInternationalLicenses { tblUsers.UserID <? tblInternationalLicenses.CreatedByUserID}
+
+Ref FK_tblUsers_tblCertificates { tblUsers.UserID <? tblCertificates.CreatedByUserID}
+
+Ref FK_tblUsers_tblAppointments { tblUsers.UserID <? tblTestAppointments.CreatedByUserID}
+
+Ref FK_tblDrivers_tblLicenses { tblDrivers.DriverID <? tblLicenses.DriverID}
+
+//----------------------------Tests--------------
+
+Ref FK_tblTestTypes_tblTests {tblTestTypes.TestTypeID <? tblTests.TestTypeID  }
+
+Ref FK_tblTests_tblRenewLicenses {tblTests.TestID <? tblRenewLicenses.VisionTestID}
+
+
+// ---------------------------- Applications-------------------------------------
+
+Ref FK_tblApplicationTypes_tblApplications { tblApplicationTypes.ApplicationTypeID <? tblApplications.ApplicationTypeID [update: no action, delete: no action] }
+
+Ref FK_tblApplications_tblLicenses { tblApplications.ApplicationID <? tblLicenses.ApplicationID}
+
+Ref FK_tblApplications_tblApplications { tblApplications.ApplicationID <? tblApplications.ApplicationReference}
+
+Ref FK_tblApplications_tblRenewLicenses { tblApplications.ApplicationID <? tblRenewLicenses.RenewLicenseApplicationID}
+
+Ref FK_tblApplications_tblDetainedLicenses {tblApplications.ApplicationID <? tblDetainedLicenses.ReleaseApplicationID}
+
+Ref FK_tblApplications_tblInternationalLicenses {tblApplications.ApplicationID <? tblInternationalLicenses.ApplicationID}
+
+Ref FK_tblApplications_tblLocalDrivingLicenseApps {tblApplications.ApplicationID <? tblLocalDrivingLicenseApps.ApplicationID}
+
+Ref FK_tblApplications_tblTestAppointments {tblApplications.ApplicationID <? tblTestAppointments.ApplicationID}
+
+Ref FK_tblFees_tblPayments {tblFees.FeesID <? tblPayments.FeesID}
+
+Ref FK_tblFees_tblLicenseClasses { tblFees.FeesID <? tblLicenseClasses.FeesID}
+
+Ref FK_tblFees_tblDetainedLicenses { tblFees.FeesID <? tblDetainedLicenses.FineFees}
+
+Ref FK_tblFees_tblApplicationTypes { tblFees.FeesID <? tblApplicationTypes.ApplicationFees}
+
+Ref FK_tblFees_tblInternationalLicenses { tblFees.FeesID <? tblInternationalLicenses.FeesID}
+
+Ref FK_tblFees_tblTestTypes { tblFees.FeesID <? tblTestTypes.FeesID}
+
+Ref FK_tblLicenseClasses_tblLicenses  {tblLicenseClasses.LicenseClassID <? tblLicenses.LicenseClassID} 
+
+Ref FK_tblLicenseClasses_tblLocalDrivingLicenseApps  {tblLicenseClasses.LicenseClassID <? tblLocalDrivingLicenseApps.LicenseClassID} 
+
+Ref FK_tblLicenses_tblInternationalLicenses  {tblLicenses.LicenseID <? tblInternationalLicenses.LicenseID}
+
+Ref FK_tblLicenses_tblDetainedLicenses  {tblLicenses.LicenseID <? tblDetainedLicenses.LicenseID}
+
+Ref FK_tblLicenses_tblRenewLicenses  {tblLicenses.LicenseID <? tblRenewLicenses.LicenseID}
+
+Ref FK_tblPayments_tblApplications  {tblPayments.PaymentID - tblApplications.PaymentID}
+
+Ref FK_tblAppointments_tblTests { tblTestAppointments.TestAppointmentID <? tblTests.AppointmentID }
+

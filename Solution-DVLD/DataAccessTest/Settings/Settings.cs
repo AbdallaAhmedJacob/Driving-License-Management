@@ -4,7 +4,7 @@ using System.Data.SqlClient;
 using DVLD_DataAccess.Settings;
 
 
-namespace DataAccessTest
+namespace DataAccessTest.Settings
 {
     internal class Settings
     {

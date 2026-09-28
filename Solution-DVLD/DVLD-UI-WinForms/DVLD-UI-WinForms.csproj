@@ -7,7 +7,7 @@
     <ProjectGuid>{02020951-F955-4B69-8CF3-BF7D59BE8D19}</ProjectGuid>
     <OutputType>WinExe</OutputType>
     <RootNamespace>DVLD_UI_WinForms</RootNamespace>
-    <AssemblyName>DVLD_UI_WinForms</AssemblyName>
+    <AssemblyName>DVLD-UI-WinForms</AssemblyName>
     <TargetFrameworkVersion>v4.8</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
@@ -46,12 +46,6 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Form1.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="Form1.Designer.cs">
-      <DependentUpon>Form1.cs</DependentUpon>
-    </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <EmbeddedResource Include="Properties\Resources.resx">
@@ -75,6 +69,12 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\DVLD-Business\DVLD-Business.csproj">
+      <Project>{863485ea-4975-405f-ac2f-9c2fd37ab562}</Project>
+      <Name>DVLD-Business</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

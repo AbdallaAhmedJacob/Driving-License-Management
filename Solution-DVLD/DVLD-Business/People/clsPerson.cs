@@ -1,8 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+using System.Data;
+using DVLD_DataAccess.PeopleDataAccess;
 
 namespace DVLD_Business.People
 {
@@ -69,7 +68,10 @@ namespace DVLD_Business.People
             Mode = enMode.Update;
         }
 
-        
+        public static DataTable GetAllPeople()
+        {
+            return clsPersonData.GetAllPeople();
+        }
 
     }
 }

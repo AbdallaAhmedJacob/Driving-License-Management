@@ -7,7 +7,7 @@
     <ProjectGuid>{AAEFA9E0-26E0-4C8F-A56D-3A1ECB1E08A5}</ProjectGuid>
     <OutputType>Exe</OutputType>
     <RootNamespace>DVLD_Business.Test</RootNamespace>
-    <AssemblyName>DVLD_Business.Test</AssemblyName>
+    <AssemblyName>DVLD-Business.Test</AssemblyName>
     <TargetFrameworkVersion>v4.8</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
@@ -43,11 +43,18 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="PeopleTest\clsPersonTest.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\DVLD-Business\DVLD-Business.csproj">
+      <Project>{863485ea-4975-405f-ac2f-9c2fd37ab562}</Project>
+      <Name>DVLD-Business</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

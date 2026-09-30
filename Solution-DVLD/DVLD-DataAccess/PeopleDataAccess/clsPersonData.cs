@@ -34,5 +34,81 @@ namespace DVLD_DataAccess.PeopleDataAccess
 
             return dtPeople;
         }
+        public static int AddNewPerson(ref string nationalNo, ref string firstName, ref string secondName, ref string thirdName,
+        ref string lastName, ref string gendor, ref DateTime dateOfBirth, ref string address, ref string phoneNumber, 
+        ref string email, ref short countryID, ref string notes, ref string imagePath)
+        {
+            int ID = -1;
+            SqlConnection connection = new SqlConnection(DataAccessSettings.ConnectionString);
+            string sql = @"INSERT INTO tblPeople(
+                                NationalNo, 
+                                FirstName, 
+                                SecondName, 
+                                ThirdName,
+                                LastName, 
+                                Gendor, 
+                                DateOfBirth,
+                                Address, 
+                                PhoneNumber, 
+                                Email, 
+                                CountryID,
+                                Notes, 
+                                ImagePath
+                          )
+                          VALUES (
+                                @NationalNo, 
+                                @FirstName, 
+                                @SecondName, 
+                                @ThirdName,
+                                @LastName, 
+                                @Gendor, 
+                                @DateOfBirth,
+                                @Address, 
+                                @PhoneNumber, 
+                                @Email, 
+                                @CountryID,
+                                @Notes, 
+                                @ImagePath
+                           )
+                           SELECT SCOPE_IDENTITY()";
+            SqlCommand command = new SqlCommand(sql, connection);
+
+            command.Parameters.AddWithValue("@NationalNo", nationalNo);
+            command.Parameters.AddWithValue("@FirstName", firstName);
+            command.Parameters.AddWithValue("@SecondName", secondName);
+            command.Parameters.AddWithValue("@ThirdName", thirdName);
+            command.Parameters.AddWithValue("@LastName", lastName);
+            command.Parameters.AddWithValue("@Gendor", gendor);
+            command.Parameters.AddWithValue("@DateOfBirth", dateOfBirth);
+            command.Parameters.AddWithValue("@Address", string.IsNullOrEmpty(address) ? (object)DBNull.Value : address);
+            command.Parameters.AddWithValue("@PhoneNumber", phoneNumber);
+            command.Parameters.AddWithValue("@Email", string.IsNullOrEmpty(email) ? (object)DBNull.Value : email);
+            command.Parameters.AddWithValue("@CountryID", countryID);
+            command.Parameters.AddWithValue("@Notes", string.IsNullOrEmpty(notes) ? (object)DBNull.Value : notes);
+            if (string.IsNullOrEmpty(imagePath))
+                command.Parameters.AddWithValue("@imagePath", (object)DBNull.Value);
+            else
+                command.Parameters.AddWithValue("@imagePath", imagePath);               
+
+            try
+            {
+                connection.Open();
+                object result = command.ExecuteScalar();
+                if (result != null && int.TryParse(result.ToString(), out int insertedID))
+                {
+                    ID = insertedID;
+                }
+            }
+            catch (Exception ex)
+            {
+
+            }
+            finally
+            {
+                connection.Close();
+            }
+
+            return ID;
+        }
     }
 }

@@ -7,7 +7,8 @@ namespace DataAccessTest
         static void Main(string[] args)
         {
             //Settings.TestConnection();
-            clsPersonDataTest.GetAllPeopleTest();  
+            //clsPersonDataTest.GetAllPeopleTest();  
+            clsPersonDataTest.AddNewPerson_PersonData_PersonID();
 
         }
     }

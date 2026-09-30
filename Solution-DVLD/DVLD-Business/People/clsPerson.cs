@@ -72,6 +72,10 @@ namespace DVLD_Business.People
         {
             return clsPersonData.GetAllPeople();
         }
+        private int _AddNewPerson()
+        {
+
+        }
 
     }
 }

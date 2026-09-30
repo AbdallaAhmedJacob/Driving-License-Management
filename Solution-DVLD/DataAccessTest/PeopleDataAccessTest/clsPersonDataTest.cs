@@ -19,5 +19,29 @@ namespace DataAccessTest
                 Console.Write("\n");
             }
         }
+
+        internal static void AddNewPerson_PersonData_PersonID()
+        {
+            int personID = -1;
+            string nationalNo = "N011";
+            string firstName = "Slah";
+            string secondName = "Ali";
+            string thirdName = "Ahmed";
+            string lastName = "Sood";
+            string gendor = "M";
+            DateTime dateOfBirth = DateTime.Now.AddYears(-20);
+            string address = "X, Y, Z";
+            string phoneNumber = "987654321";
+            string email = "Sood@e.c";
+            short countryID = 5;
+            string notes = "";
+            string imagePath = "";
+
+            personID = clsPersonData.AddNewPerson(ref nationalNo, ref firstName, ref secondName, ref thirdName,
+            ref lastName, ref gendor, ref dateOfBirth, ref address, ref phoneNumber, ref email,
+            ref countryID, ref notes, ref imagePath);
+
+            Console.WriteLine(personID);
+        }
     }
 }

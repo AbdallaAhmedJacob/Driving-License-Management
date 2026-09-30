@@ -37,9 +37,9 @@ namespace DataAccessTest
             string notes = "";
             string imagePath = "";
 
-            personID = clsPersonData.AddNewPerson(ref nationalNo, ref firstName, ref secondName, ref thirdName,
-            ref lastName, ref gendor, ref dateOfBirth, ref address, ref phoneNumber, ref email,
-            ref countryID, ref notes, ref imagePath);
+            personID = clsPersonData.AddNewPerson(nationalNo, firstName, secondName, thirdName,
+            lastName, gendor, dateOfBirth, address, phoneNumber, email,
+            countryID, notes, imagePath);
 
             Console.WriteLine(personID);
         }

@@ -34,10 +34,12 @@ namespace DVLD_DataAccess.PeopleDataAccess
 
             return dtPeople;
         }
-        public static int AddNewPerson(ref string nationalNo, ref string firstName, ref string secondName, ref string thirdName,
-        ref string lastName, ref string gendor, ref DateTime dateOfBirth, ref string address, ref string phoneNumber, 
-        ref string email, ref short countryID, ref string notes, ref string imagePath)
+        public static int AddNewPerson(string nationalNo, string firstName, string secondName, string thirdName,
+        string lastName, string gendor, DateTime dateOfBirth, string address, string phoneNumber, 
+        string email, short countryID, string notes, string imagePath)
         {
+            // Validation
+
             int ID = -1;
             SqlConnection connection = new SqlConnection(DataAccessSettings.ConnectionString);
             string sql = @"INSERT INTO tblPeople(

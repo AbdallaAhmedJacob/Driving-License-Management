@@ -7,7 +7,8 @@ namespace DVLD_Business.Test
     {
         static void Main(string[] args)
         {
-            clsPersonTest.GetAllPeopleTest();
+            //clsPersonTest.GetAllPeopleTest();
+            clsPersonTest.AddNewPerson_AddPersonData_ReturnPersonID();
         }
     }
 }

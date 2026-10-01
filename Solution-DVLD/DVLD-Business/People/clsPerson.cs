@@ -1,7 +1,9 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Data;
+using DVLD_Business.Helpers;
 using DVLD_DataAccess.PeopleDataAccess;
+using DVLD.Shared.Validation.People;
 
 namespace DVLD_Business.People
 {
@@ -10,7 +12,7 @@ namespace DVLD_Business.People
         public enum enMode { AddNew = 0, Update = 1 }
         public enMode Mode = enMode.AddNew;
 
-        public int PersonID { get; set; }
+        private int PersonID { get; set; }
         public string NationalNo { get; set; }
         public string FirstName { get; set; }
         public string SecondName { get; set; }
@@ -74,8 +76,29 @@ namespace DVLD_Business.People
         }
         private int _AddNewPerson()
         {
+            if (this.ImagePath != "")
+                clsImageHelper.SavePersonImage(this.ImagePath);
 
+            this.PersonID = clsPersonData.AddNewPerson(this.NationalNo, this.FirstName, this.SecondName, this.ThirdName,
+                this.LastName, this.Gendor, this.DateOfBirth, this.Address,this.PhoneNumber, this.Email,
+                this.CountryID, this.Notes, this.ImagePath);
+            if(this.PersonID != -1) 
+                this.Mode = enMode.Update;
+
+            return this.PersonID;
         }
+        public bool Save()
+        {
+            if(!clsPersonValidation.ValidatePersonInfo(this.NationalNo, this.FirstName, this.SecondName, this.ThirdName,
+                this.LastName, this.Gendor, this.DateOfBirth, this.Address, this.PhoneNumber, this.Email,
+                this.CountryID, this.Notes, this.ImagePath, out string errorMassage)) return false;
 
+            switch (this.Mode)
+            {
+                case enMode.AddNew:
+                    return (this._AddNewPerson() != -1);
+                default: return false;
+            }
+        }
     }
 }

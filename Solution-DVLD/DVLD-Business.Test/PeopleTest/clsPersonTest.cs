@@ -19,5 +19,25 @@ namespace DVLD_Business.Test
                 Console.Write("\n");
             }
         }
+
+        internal static void AddNewPerson_AddPersonData_ReturnPersonID()
+        {
+            clsPerson person = new clsPerson();
+            person.NationalNo = "N014";
+            person.FirstName = "Ali";
+            person.SecondName = "Slah";
+            person.ThirdName = "Ahmed";
+            person.LastName = "Qasm";
+            person.Gendor = "M";
+            person.DateOfBirth = DateTime.Now.AddYears(-20);
+            person.Address = "A, Y, N";
+            person.PhoneNumber = "987654321";
+            person.Email = "lml@e.c";
+            person.CountryID = 100;
+            person.Notes = "";
+            person.ImagePath = "";
+
+            Console.WriteLine(person.Save());
+        }
     }
 }

@@ -6,7 +6,7 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\DVLD-DataAccess\DVLD-DataAccess.csproj" />
+    <ProjectReference Include="..\DVLD-DataAccess\DVLD.DataAccess.csproj" />
     <ProjectReference Include="..\DVLD.Shared\DVLD.Shared.csproj" />
   </ItemGroup>
 

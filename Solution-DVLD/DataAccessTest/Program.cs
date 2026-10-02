@@ -8,7 +8,8 @@ namespace DataAccessTest
         {
             //Settings.TestConnection();
             //clsPersonDataTest.GetAllPeopleTest();  
-            clsPersonDataTest.AddNewPerson_PersonData_PersonID();
+            //clsPersonDataTest.AddNewPerson_PersonData_PersonID();
+            clsPersonDataTest.UpdatePerson_EditPersonData_Return1();
 
         }
     }

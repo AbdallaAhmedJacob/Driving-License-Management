@@ -3,7 +3,7 @@ using System.Data;
 using System.Data.SqlClient;
 using DVLD_DataAccess.Settings;
 
-namespace DVLD_DataAccess.PeopleDataAccess
+namespace DVLD.DataAccess.PeopleDataAccess
 {
     public class clsPersonData
     {
@@ -19,13 +19,13 @@ namespace DVLD_DataAccess.PeopleDataAccess
                 connection.Open();
                 SqlDataReader reader = command.ExecuteReader();
                 while (reader.HasRows)
-                {                    
-                      dtPeople.Load(reader);
+                {
+                    dtPeople.Load(reader);
                 }
             }
             catch (Exception ex)
             {
-                
+
             }
             finally
             {
@@ -34,9 +34,19 @@ namespace DVLD_DataAccess.PeopleDataAccess
 
             return dtPeople;
         }
-        public static int AddNewPerson(string nationalNo, string firstName, string secondName, string thirdName,
-        string lastName, string gendor, DateTime dateOfBirth, string address, string phoneNumber, 
-        string email, short countryID, string notes, string imagePath)
+        public static int AddNewPerson(string nationalNo,
+                                       string firstName,
+                                       string secondName,
+                                       string thirdName,
+                                       string lastName,
+                                       string gendor,
+                                       DateTime dateOfBirth,
+                                       string address,
+                                       string phoneNumber,
+                                       string email,
+                                       short countryID,
+                                       string notes,
+                                       string imagePath)
         {
             // Validation
 
@@ -90,7 +100,7 @@ namespace DVLD_DataAccess.PeopleDataAccess
             if (string.IsNullOrEmpty(imagePath))
                 command.Parameters.AddWithValue("@imagePath", (object)DBNull.Value);
             else
-                command.Parameters.AddWithValue("@imagePath", imagePath);               
+                command.Parameters.AddWithValue("@imagePath", imagePath);
 
             try
             {
@@ -111,6 +121,81 @@ namespace DVLD_DataAccess.PeopleDataAccess
             }
 
             return ID;
+        }
+
+        public static bool UpdatePerson(int PersonID,
+                                        string nationalNo,
+                                        string firstName,
+                                        string secondName,
+                                        string thirdName,
+                                        string lastName,
+                                        string gendor,
+                                        DateTime dateOfBirth,
+                                        string address,
+                                        string phoneNumber,
+                                        string email,
+                                        short countryID,
+                                        string notes,
+                                        string imagePath)
+        {
+            bool IsUpdated = false;
+
+            SqlConnection connection = new SqlConnection(DataAccessSettings.ConnectionString);
+            string sql = @"UPDATE tblPeople
+                            SET NationalNo = @NationalNo,   
+                                FirstName = @FirstName,    
+                                SecondName = @SecondName,   
+                                ThirdName = @ThirdName,   
+                                LastName = @LastName,     
+                                Gendor = @Gendor,       
+                                DateOfBirth = @DateOfBirth, 
+                                Address = @Address,      
+                                PhoneNumber = @PhoneNumber,   
+                                Email = @Email,        
+                                CountryID = @CountryID,   
+                                Notes = @Notes,        
+                                ImagePath = @ImagePath   
+                            WHERE PersonID = @PersonID";
+
+            SqlCommand command = new SqlCommand(sql, connection);
+
+            command.Parameters.AddWithValue("@PersonID", PersonID);
+            command.Parameters.AddWithValue("@NationalNo", nationalNo);
+            command.Parameters.AddWithValue("@FirstName", firstName);
+            command.Parameters.AddWithValue("@SecondName", secondName);
+            command.Parameters.AddWithValue("@ThirdName", thirdName);
+            command.Parameters.AddWithValue("@LastName", lastName);
+            command.Parameters.AddWithValue("@Gendor", gendor);
+            command.Parameters.AddWithValue("@DateOfBirth", dateOfBirth);
+            command.Parameters.AddWithValue("@Address", string.IsNullOrEmpty(address) ? (object)DBNull.Value : address);
+            command.Parameters.AddWithValue("@PhoneNumber", phoneNumber);
+            command.Parameters.AddWithValue("@Email", string.IsNullOrEmpty(email) ? (object)DBNull.Value : email);
+            command.Parameters.AddWithValue("@CountryID", countryID);
+            command.Parameters.AddWithValue("@Notes", string.IsNullOrEmpty(notes) ? (object)DBNull.Value : notes);
+            if (string.IsNullOrEmpty(imagePath))
+                command.Parameters.AddWithValue("@imagePath", (object)DBNull.Value);
+            else
+                command.Parameters.AddWithValue("@imagePath", imagePath);
+
+            try
+            {
+                connection.Open();
+                int result = command.ExecuteNonQuery();
+                if (result != 0)
+                {
+                    IsUpdated = true;
+                }
+            }
+            catch (Exception ex)
+            {
+
+            }
+            finally
+            {
+                connection.Close();
+            }
+
+            return IsUpdated;
         }
     }
 }

@@ -1,7 +1,7 @@
 ﻿using System.Drawing;
 using System.Windows.Forms;
 
-namespace DVLD.UI
+namespace DVLD.WinForms.UI
 {
     public static class clsUIHelper
     {

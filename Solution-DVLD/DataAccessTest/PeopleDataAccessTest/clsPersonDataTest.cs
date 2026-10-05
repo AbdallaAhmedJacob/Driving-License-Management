@@ -19,7 +19,57 @@ namespace DataAccessTest
                 Console.Write("\n");
             }
         }
+        internal static bool GetPersonByID_SetPersonID_ReturnPersonData(int PersonID)
+        {
+            int personID = PersonID;
+            string nationalNo = "";
+            string firstName = "";
+            string secondName = "";
+            string thirdName = "";
+            string lastName = "";
+            string gendor = "";
+            DateTime dateOfBirth = DateTime.Now;
+            string address = "";
+            string phoneNumber = "";
+            string email = "";
+            short CountryID = -1;
+            string notes = "";
+            string imagePath = "";
 
+            if( clsPersonData.GetPersonByID(ref personID,
+                                               ref nationalNo,
+                                               ref firstName,
+                                               ref secondName,
+                                               ref thirdName,
+                                               ref lastName,
+                                               ref gendor,
+                                               ref dateOfBirth,
+                                               ref address,
+                                               ref phoneNumber,
+                                               ref email,
+                                               ref CountryID,
+                                               ref notes,
+                                               ref imagePath))
+            {
+                Console.WriteLine(PersonID);
+                Console.WriteLine(nationalNo);
+                Console.WriteLine(firstName);
+                Console.WriteLine(secondName);
+                Console.WriteLine(thirdName);
+                Console.WriteLine(lastName);
+                Console.WriteLine(gendor);
+                Console.WriteLine(dateOfBirth);
+                Console.WriteLine(address);
+                Console.WriteLine(phoneNumber);
+                Console.WriteLine(email);
+                Console.WriteLine(CountryID);
+                Console.WriteLine(notes);
+                Console.WriteLine(imagePath);
+                return true;
+            }
+            else
+                return false;
+        }
         internal static void AddNewPerson_PersonData_PersonID()
         {
             int personID = -1;

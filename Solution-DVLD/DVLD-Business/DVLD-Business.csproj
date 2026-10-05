@@ -2,7 +2,7 @@
 
   <PropertyGroup>
     <TargetFramework>net48</TargetFramework>
-    <RootNamespace>DVLD_Business</RootNamespace>
+    <RootNamespace>DVLD.Business</RootNamespace>
   </PropertyGroup>
 
   <ItemGroup>

@@ -1,7 +1,7 @@
 ﻿using System;
 using System.IO;
 
-namespace DVLD_Business.Helpers
+namespace DVLD.Business.Helpers
 {
     internal class clsImageHelper
     {

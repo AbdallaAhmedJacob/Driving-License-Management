@@ -1,8 +1,8 @@
-﻿using DVLD_Business.People;
+﻿using DVLD.Business.People;
 using System;
 using System.Data;
 
-namespace DVLD_Business.Test
+namespace DVLD.Business.Test
 {
     internal class clsPersonTest
     {
@@ -39,5 +39,14 @@ namespace DVLD_Business.Test
 
             Console.WriteLine(person.Save());
         }
+        internal static void FindPersonByID_SetPersonID_ReturnPersonObject()
+        {
+            clsPerson Person = clsPerson.FindPersonByID(12);
+            Console.WriteLine(( Person == null)? "NULL" : "Person Is Found");
+        }
+        //internal static void UpdatePerson_EditPersonData_Return1()
+        //{
+           
+        //}
     }
 }

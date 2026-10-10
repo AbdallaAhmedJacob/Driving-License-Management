@@ -131,5 +131,9 @@ namespace DataAccessTest
         {
             return clsPersonData.IsExistNationalNo(nationalNo);
         }
+        internal static bool DeletePersonByID_SetPersonID_ReturnBoolean(int personID)
+        {
+            return clsPersonData.DeletePersonByID(personID);
+        }
     }
 }

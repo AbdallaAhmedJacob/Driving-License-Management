@@ -12,7 +12,9 @@ namespace DataAccessTest
             //clsPersonDataTest.AddNewPerson_PersonData_PersonID();
             //clsPersonDataTest.UpdatePerson_EditPersonData_Return1();
             //Console.WriteLine(clsPersonDataTest.GetPersonByID_SetPersonID_ReturnPersonData(4));
-            Console.WriteLine(clsPersonDataTest.IsExist_SetNationalNo_ReturnBoolean("N001"));
+            //Console.WriteLine(clsPersonDataTest.IsExist_SetNationalNo_ReturnBoolean("N001"));
+            Console.WriteLine(clsPersonDataTest.DeletePersonByID_SetPersonID_ReturnBoolean(12));
+
 
         }
     }

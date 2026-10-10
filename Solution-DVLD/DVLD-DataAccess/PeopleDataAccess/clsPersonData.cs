@@ -279,5 +279,30 @@ namespace DVLD.DataAccess.PeopleDataAccess
 
             return IsExist;
         }
+        public static bool DeletePersonByID(int personID)
+        {
+            bool IsDeleted = false;
+            if (personID == -1) return false;
+
+            SqlConnection connection = new SqlConnection(DataAccessSettings.ConnectionString);
+            string sql = @"DELETE FROM tblPeople WHERE PersonID = @personID";
+            SqlCommand command = new SqlCommand(sql, connection);
+            command.Parameters.AddWithValue("@personID", personID);
+            try
+            {
+                connection.Open();
+                int RowsAffected = command.ExecuteNonQuery();
+                if (RowsAffected > 0) IsDeleted = true;
+            }
+            catch (Exception ex)
+            {
+
+            }
+            finally
+            {
+                connection.Close();
+            }
+            return IsDeleted;
+        }
     }
 }

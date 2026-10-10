@@ -138,6 +138,8 @@ namespace DVLD.Business.People
             if (this.ImagePath != "")
                 this.ImagePath = clsImageHelper.SavePersonImage(this.ImagePath);
 
+            if(clsPersonData.IsExistNationalNo(this.NationalNo)) return -1;
+
             this.PersonID = clsPersonData.AddNewPerson(this.NationalNo, this.FirstName, this.SecondName, this.ThirdName,
                 this.LastName, this.Gendor, this.DateOfBirth, this.Address,this.PhoneNumber, this.Email,
                 this.CountryID, this.Notes, this.ImagePath);
@@ -169,6 +171,10 @@ namespace DVLD.Business.People
                     return (this._UpdatePerson());
                 default: return false;
             }
+        }
+        public static bool IsExistNationalNo(String nationalNO)
+        {
+            return clsPersonData.IsExistNationalNo(nationalNO);
         }
     }
 }

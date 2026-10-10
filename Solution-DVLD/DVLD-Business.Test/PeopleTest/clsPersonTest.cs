@@ -44,9 +44,18 @@ namespace DVLD.Business.Test
             clsPerson Person = clsPerson.FindPersonByID(12);
             Console.WriteLine(( Person == null)? "NULL" : "Person Is Found");
         }
-        //internal static void UpdatePerson_EditPersonData_Return1()
-        //{
-           
-        //}
+        internal static void UpdatePerson_EditPersonData_Return1()
+        {
+            clsPerson person = clsPerson.FindPersonByID(12);
+            Console.WriteLine(person.CountryID);
+            person.CountryID++;
+            Console.WriteLine(person.CountryID);
+            person.Save();
+            Console.WriteLine(person.CountryID);
+        }
+        internal static void IsExistNationalNo_ReturnBoolean(string nationalNO)
+        {
+            Console.WriteLine(clsPerson.IsExistNationalNo(nationalNO));
+        }
     }
 }

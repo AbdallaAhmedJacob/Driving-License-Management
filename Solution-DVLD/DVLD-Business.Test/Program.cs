@@ -9,7 +9,9 @@ namespace DVLD.Business.Test
         {
             //clsPersonTest.GetAllPeopleTest();
             //clsPersonTest.AddNewPerson_AddPersonData_ReturnPersonID();
-            clsPersonTest.FindPersonByID_SetPersonID_ReturnPersonObject();
+            //clsPersonTest.FindPersonByID_SetPersonID_ReturnPersonObject();
+            //clsPersonTest.UpdatePerson_EditPersonData_Return1();
+            clsPersonTest.IsExistNationalNo_ReturnBoolean("N009");
         }
     }
 }

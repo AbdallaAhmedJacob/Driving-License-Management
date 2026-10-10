@@ -176,5 +176,9 @@ namespace DVLD.Business.People
         {
             return clsPersonData.IsExistNationalNo(nationalNO);
         }
+        public bool Delete()
+        {
+            return clsPersonData.DeletePersonByID(this.PersonID);
+        }
     }
 }

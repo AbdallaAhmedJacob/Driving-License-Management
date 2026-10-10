@@ -57,5 +57,17 @@ namespace DVLD.Business.Test
         {
             Console.WriteLine(clsPerson.IsExistNationalNo(nationalNO));
         }
+        internal static void Delete_SetPersonID_ReturnBoolean(int personID)
+        {
+            clsPerson person = clsPerson.FindPersonByID(personID);
+            if (person != null)
+            {
+                Console.WriteLine(person.Delete());
+            }
+            else
+            {
+                Console.WriteLine("this object is null");
+            }
+        }
     }
 }

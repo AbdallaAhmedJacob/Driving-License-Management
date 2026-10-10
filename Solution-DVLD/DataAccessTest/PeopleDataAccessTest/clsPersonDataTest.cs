@@ -36,7 +36,7 @@ namespace DataAccessTest
             string notes = "";
             string imagePath = "";
 
-            if( clsPersonData.GetPersonByID(ref personID,
+            if (clsPersonData.GetPersonByID(ref personID,
                                                ref nationalNo,
                                                ref firstName,
                                                ref secondName,
@@ -126,6 +126,10 @@ namespace DataAccessTest
                                                   imagePath);
 
             Console.WriteLine(result);
+        }
+        internal static bool IsExist_SetNationalNo_ReturnBoolean(string nationalNo)
+        {
+            return clsPersonData.IsExistNationalNo(nationalNo);
         }
     }
 }

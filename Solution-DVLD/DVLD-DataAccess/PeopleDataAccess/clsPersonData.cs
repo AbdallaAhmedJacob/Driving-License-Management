@@ -50,7 +50,7 @@ namespace DVLD.DataAccess.PeopleDataAccess
                                          ref string imagePath)
         {
             bool IsFound = false;
-            if(personID == -1)return false;
+            if (personID == -1) return false;
 
             SqlConnection connection = new SqlConnection(DataAccessSettings.ConnectionString);
             string sql = @"SELECT * FROM tblPeople WHERE PersonID = @PersonID";
@@ -253,6 +253,31 @@ namespace DVLD.DataAccess.PeopleDataAccess
             }
 
             return IsUpdated;
+        }
+        public static bool IsExistNationalNo(string nationalNo)
+        {
+            bool IsExist = false;
+            if (nationalNo == "") return false;
+
+            SqlConnection connection = new SqlConnection(DataAccessSettings.ConnectionString);
+            string sql = @"SELECT FOUND = 1 FROM tblPeople WHERE nationalNo = @nationalNo";
+            SqlCommand command = new SqlCommand(sql, connection);
+            command.Parameters.AddWithValue("@nationalNo", nationalNo);
+            try
+            {
+                connection.Open();
+                object result = command.ExecuteScalar();
+                if (result != null) IsExist = true;
+            }
+            catch (Exception ex)
+            {
+            }
+            finally
+            {
+                connection.Close();
+            }
+
+            return IsExist;
         }
     }
 }

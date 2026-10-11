@@ -1,4 +1,5 @@
-﻿using System.Drawing;
+﻿using System;
+using System.Drawing;
 using System.Windows.Forms;
 
 namespace DVLD.WinForms.UI
@@ -60,6 +61,10 @@ namespace DVLD.WinForms.UI
             else if (control is DataGridView)
             {
                 ApplyDataGridViewTheme((DataGridView)control);
+            }
+            else if (control is MenuStrip)
+            {
+                ApplyMenuStripTheme((MenuStrip)control);
             }
         }
 
@@ -258,6 +263,88 @@ namespace DVLD.WinForms.UI
             dataGridView.RowTemplate.Height = 36;
 
             dataGridView.ColumnHeadersHeight = 40;
+        }
+
+        // =========================================================
+        // MenuStrip
+        // =========================================================
+
+        private static void ApplyMenuStripTheme(MenuStrip menuStrip)
+        {
+            if (menuStrip == null)
+                return;
+
+            menuStrip.BackColor = clsTheme.Sidebar;
+            menuStrip.ForeColor = clsTheme.TextWhite;
+            menuStrip.Font = clsTheme.FontLargeMedium;
+
+            menuStrip.GripStyle = ToolStripGripStyle.Hidden;
+            menuStrip.RenderMode = ToolStripRenderMode.System;
+
+            foreach (ToolStripItem item in menuStrip.Items)
+            {
+                if (item is ToolStripMenuItem menuItem)
+                {
+                    menuItem.BackColor = clsTheme.Sidebar;
+                    menuItem.ForeColor = clsTheme.TextWhite;
+
+                    menuItem.MouseEnter += MenuItem_MouseEnter;
+                    menuItem.MouseLeave += MenuItem_MouseLeave;
+                    ApplyMenuDropDownTheme(menuItem);
+                }
+            }
+        }
+        private static void MenuItem_MouseEnter(object sender, EventArgs e)
+        {
+            if (sender is ToolStripMenuItem menuItem)
+            {
+                menuItem.BackColor = clsTheme.MenuHoverBackColor;
+            }
+        }
+        private static void MenuItem_MouseLeave(object sender, EventArgs e)
+        {
+            if (sender is ToolStripMenuItem menuItem)
+            {
+                menuItem.BackColor = clsTheme.Sidebar;
+            }
+        }
+        private static void ApplyMenuDropDownTheme(ToolStripMenuItem menuItem)
+        {
+            menuItem.DropDown.BackColor = clsTheme.Sidebar;
+            menuItem.DropDown.ForeColor = clsTheme.TextWhite;
+            menuItem.DropDown.Font = clsTheme.FontRegular;
+
+            foreach (ToolStripItem item in menuItem.DropDownItems)
+            {
+                if (item is ToolStripSeparator)
+                {
+                    item.BackColor = clsTheme.MenuHoverBackColor;
+                }
+                else
+                {
+                    item.BackColor = clsTheme.Sidebar;
+                    item.ForeColor = clsTheme.TextWhite;
+
+                    item.MouseEnter += DropDownItem_MouseEnter;
+                    item.MouseLeave += DropDownItem_MouseLeave;
+                }
+            }
+        }
+
+        private static void DropDownItem_MouseEnter(object sender, EventArgs e)
+        {
+            if (sender is ToolStripItem item)
+            {
+                item.BackColor = clsTheme.MenuHoverBackColor;
+            }
+        }
+
+        private static void DropDownItem_MouseLeave(object sender, EventArgs e)
+        {
+            if (sender is ToolStripItem item)
+            {
+                item.BackColor = clsTheme.Sidebar;
+            }
         }
     }
 }

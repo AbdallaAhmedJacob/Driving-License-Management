@@ -81,6 +81,15 @@ namespace DVLD.WinForms.UI
         public static readonly Color InfoLight =
             Color.FromArgb(240, 249, 255);        // #F0F9FF
 
+        // Menu Strip
+        public static readonly Color MenuHoverBackColor =
+            Color.FromArgb(37, 50, 75);
+
+        public static readonly Color MenuDropDownBackColor =
+            Color.FromArgb(23, 32, 51);
+
+        public static readonly Color MenuDropDownBorderColor =
+            Color.FromArgb(51, 65, 85);
 
         // =========================================================
         // Fonts

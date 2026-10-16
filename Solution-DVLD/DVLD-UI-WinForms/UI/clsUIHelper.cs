@@ -101,22 +101,26 @@ namespace DVLD.WinForms.UI
 
         private static void ApplyButtonTheme(Button button)
         {
-            button.BackColor = clsTheme.Primary;
-            button.ForeColor = clsTheme.TextWhite;
-
-            button.Font = clsTheme.FontMedium;
-
-            button.FlatStyle = FlatStyle.Flat;
-
-            button.FlatAppearance.BorderSize = 0;
-            button.FlatAppearance.MouseOverBackColor =
-                clsTheme.PrimaryHover;
-
-            button.FlatAppearance.MouseDownBackColor =
-                clsTheme.PrimaryHover;
-
+            switch (button.Tag)
+            {
+                case "Primary":
+                    button.BackColor = clsTheme.Primary;
+                    button.ForeColor = clsTheme.TextWhite;
+                    button.FlatAppearance.BorderSize = 0;
+                    button.FlatAppearance.MouseOverBackColor = clsTheme.PrimaryHover;
+                    button.FlatAppearance.MouseDownBackColor = clsTheme.PrimaryHover;
+                    break;
+                case "Secondary":
+                    button.BackColor = clsTheme.Surface;
+                    button.ForeColor = clsTheme.TextPrimary;
+                    button.FlatStyle = FlatStyle.Flat;
+                    button.FlatAppearance.BorderSize = 1;
+                    button.FlatAppearance.BorderColor = clsTheme.Border;
+                    button.FlatAppearance.MouseOverBackColor = clsTheme.Background;
+                    button.FlatAppearance.MouseDownBackColor = clsTheme.Divider;
+                    break;
+            }
             button.Cursor = Cursors.Hand;
-
             button.Height = clsTheme.ButtonHeight;
         }
 
@@ -127,8 +131,21 @@ namespace DVLD.WinForms.UI
 
         private static void ApplyLabelTheme(Label label)
         {
-            label.ForeColor = clsTheme.TextPrimary;
-            label.Font = clsTheme.FontRegular;
+            switch (label.Tag)
+            {
+                case "Title":
+                    label.ForeColor = clsTheme.Primary;
+                    label.Font = clsTheme.FontPageTitle;
+                    break;
+                case "Secondary":
+                    label.ForeColor = clsTheme.TextSecondary;
+                    label.Font = clsTheme.FontRegular;
+                    break;
+                default:
+                    label.ForeColor = clsTheme.TextPrimary;
+                    label.Font = clsTheme.FontRegular;
+                    break;
+            }
         }
 
 
@@ -223,6 +240,12 @@ namespace DVLD.WinForms.UI
             dataGridView.ColumnHeadersDefaultCellStyle.Font =
                 clsTheme.FontMedium;
 
+            dataGridView.ColumnHeadersDefaultCellStyle.SelectionBackColor =
+                clsTheme.GridHeaderBackColor;
+
+            dataGridView.ColumnHeadersDefaultCellStyle.SelectionForeColor = 
+                clsTheme.GridHeaderForeColor;
+
 
             // Rows
             dataGridView.DefaultCellStyle.BackColor =
@@ -263,6 +286,8 @@ namespace DVLD.WinForms.UI
             dataGridView.RowTemplate.Height = 36;
 
             dataGridView.ColumnHeadersHeight = 40;
+
+            //dataGridView.Dock = DockStyle.Bottom;
         }
 
         // =========================================================

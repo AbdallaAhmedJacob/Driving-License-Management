@@ -4,6 +4,7 @@ using System.Data;
 using DVLD.Business.Helpers;
 using DVLD.DataAccess.PeopleDataAccess;
 using DVLD.Shared.Validation.People;
+using DVLD.Shared.Utile;
 
 namespace DVLD.Business.People
 {
@@ -83,7 +84,9 @@ namespace DVLD.Business.People
 
         public static DataTable GetAllPeople()
         {
-            return clsPersonData.GetAllPeople();
+            DataTable dtPeople = clsPersonData.GetAllPeople();
+            clsUtile.TrimDataTableStrings(ref dtPeople);
+            return dtPeople;
         }
         public static clsPerson FindPersonByID(int PersonID)
         {

@@ -4,6 +4,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using DVLD.WinForms.Forms;
+using DVLD.WinForms.Forms.People;
 using DVLD.WinForms.UI;
 
 namespace DVLD.WinForms

@@ -83,6 +83,7 @@
             this.managePeopleToolStripMenuItem.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.P)));
             this.managePeopleToolStripMenuItem.Size = new System.Drawing.Size(253, 26);
             this.managePeopleToolStripMenuItem.Text = "&Manage People";
+            this.managePeopleToolStripMenuItem.Click += new System.EventHandler(this.managePeopleToolStripMenuItem_Click);
             // 
             // menuDrivers
             // 

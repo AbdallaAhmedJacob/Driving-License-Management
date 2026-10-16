@@ -130,7 +130,7 @@ namespace DVLD.WinForms.UI
 
         public const int ControlHeight = 36;
 
-        public const int ButtonHeight = 36;
+        public const int ButtonHeight = 30;
 
         public const int SidebarWidth = 230;
 

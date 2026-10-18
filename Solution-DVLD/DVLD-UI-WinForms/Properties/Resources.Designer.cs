@@ -59,5 +59,15 @@ namespace DVLD.WinForms.Properties {
                 resourceCulture = value;
             }
         }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap A_modern_clean_and_professional_vector_logo_for_a_Driving_Vehhicle_License {
+            get {
+                object obj = ResourceManager.GetObject("A_modern_clean_and_professional_vector_logo_for_a_Driving_Vehhicle_License", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
     }
 }

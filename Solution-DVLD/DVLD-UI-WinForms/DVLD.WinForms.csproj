@@ -130,5 +130,8 @@
       <Name>DVLD-Business</Name>
     </ProjectReference>
   </ItemGroup>
+  <ItemGroup>
+    <None Include="Images\A_modern_clean_and_professional_vector_logo_for_a_Driving_Vehhicle_License.jpg" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

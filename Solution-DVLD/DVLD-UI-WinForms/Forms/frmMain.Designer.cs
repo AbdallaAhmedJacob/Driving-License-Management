@@ -28,7 +28,6 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frmMain));
             this.menuMain = new System.Windows.Forms.MenuStrip();
             this.menuApplications = new System.Windows.Forms.ToolStripMenuItem();
             this.menuPeople = new System.Windows.Forms.ToolStripMenuItem();
@@ -37,11 +36,8 @@
             this.menuUsers = new System.Windows.Forms.ToolStripMenuItem();
             this.menuAccountSettings = new System.Windows.Forms.ToolStripMenuItem();
             this.pnlContent = new System.Windows.Forms.Panel();
-            this.pbLogo = new System.Windows.Forms.PictureBox();
             this.pnlFooter = new System.Windows.Forms.Panel();
             this.menuMain.SuspendLayout();
-            this.pnlContent.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.pbLogo)).BeginInit();
             this.SuspendLayout();
             // 
             // menuMain
@@ -105,24 +101,14 @@
             // 
             // pnlContent
             // 
-            this.pnlContent.Controls.Add(this.pbLogo);
+            this.pnlContent.BackgroundImage = global::DVLD.WinForms.Properties.Resources.A_modern_clean_and_professional_vector_logo_for_a_Driving_Vehhicle_License;
+            this.pnlContent.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
             this.pnlContent.Dock = System.Windows.Forms.DockStyle.Fill;
             this.pnlContent.Location = new System.Drawing.Point(0, 32);
             this.pnlContent.Name = "pnlContent";
             this.pnlContent.Padding = new System.Windows.Forms.Padding(20);
             this.pnlContent.Size = new System.Drawing.Size(800, 530);
             this.pnlContent.TabIndex = 3;
-            // 
-            // pbLogo
-            // 
-            this.pbLogo.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.pbLogo.Image = ((System.Drawing.Image)(resources.GetObject("pbLogo.Image")));
-            this.pbLogo.Location = new System.Drawing.Point(20, 20);
-            this.pbLogo.Name = "pbLogo";
-            this.pbLogo.Size = new System.Drawing.Size(760, 490);
-            this.pbLogo.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
-            this.pbLogo.TabIndex = 0;
-            this.pbLogo.TabStop = false;
             // 
             // pnlFooter
             // 
@@ -148,8 +134,6 @@
             this.WindowState = System.Windows.Forms.FormWindowState.Maximized;
             this.menuMain.ResumeLayout(false);
             this.menuMain.PerformLayout();
-            this.pnlContent.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.pbLogo)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -166,6 +150,5 @@
         private System.Windows.Forms.Panel pnlContent;
         private System.Windows.Forms.Panel pnlFooter;
         private System.Windows.Forms.ToolStripMenuItem managePeopleToolStripMenuItem;
-        private System.Windows.Forms.PictureBox pbLogo;
     }
 }

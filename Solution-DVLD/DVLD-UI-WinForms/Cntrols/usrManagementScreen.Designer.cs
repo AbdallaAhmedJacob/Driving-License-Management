@@ -29,8 +29,8 @@
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
-            this.usrHeaderManagementScreen = new DVLD.WinForms.Cntrols.usrHeader();
             this.pnlToolbar = new System.Windows.Forms.Panel();
+            this.pnlFilterContainer = new System.Windows.Forms.Panel();
             this.txtSearch = new System.Windows.Forms.TextBox();
             this.cbFilterBy = new System.Windows.Forms.ComboBox();
             this.lblFilterBy = new System.Windows.Forms.Label();
@@ -41,26 +41,17 @@
             this.pnlGridContainer = new System.Windows.Forms.Panel();
             this.dgvResults = new System.Windows.Forms.DataGridView();
             this.cmsPeopleOptions = new System.Windows.Forms.ContextMenuStrip(this.components);
+            this.usrHeaderManagementScreen = new DVLD.WinForms.Cntrols.usrHeader();
             this.pnlToolbar.SuspendLayout();
+            this.pnlFilterContainer.SuspendLayout();
             this.pnlFooter.SuspendLayout();
             this.pnlGridContainer.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvResults)).BeginInit();
             this.SuspendLayout();
             // 
-            // usrHeaderManagementScreen
-            // 
-            this.usrHeaderManagementScreen.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-            this.usrHeaderManagementScreen.Dock = System.Windows.Forms.DockStyle.Top;
-            this.usrHeaderManagementScreen.Location = new System.Drawing.Point(10, 10);
-            this.usrHeaderManagementScreen.Name = "usrHeaderManagementScreen";
-            this.usrHeaderManagementScreen.Padding = new System.Windows.Forms.Padding(10);
-            this.usrHeaderManagementScreen.Size = new System.Drawing.Size(634, 70);
-            this.usrHeaderManagementScreen.TabIndex = 0;
-            this.usrHeaderManagementScreen.Title = "Title";
-            // 
             // pnlToolbar
             // 
-            this.pnlToolbar.Controls.Add(this.txtSearch);
+            this.pnlToolbar.Controls.Add(this.pnlFilterContainer);
             this.pnlToolbar.Controls.Add(this.cbFilterBy);
             this.pnlToolbar.Controls.Add(this.lblFilterBy);
             this.pnlToolbar.Controls.Add(this.btnAddNew);
@@ -71,12 +62,20 @@
             this.pnlToolbar.Size = new System.Drawing.Size(634, 50);
             this.pnlToolbar.TabIndex = 0;
             // 
+            // pnlFilterContainer
+            // 
+            this.pnlFilterContainer.Controls.Add(this.txtSearch);
+            this.pnlFilterContainer.Location = new System.Drawing.Point(206, 13);
+            this.pnlFilterContainer.Name = "pnlFilterContainer";
+            this.pnlFilterContainer.Size = new System.Drawing.Size(200, 24);
+            this.pnlFilterContainer.TabIndex = 1;
+            // 
             // txtSearch
             // 
-            this.txtSearch.Anchor = System.Windows.Forms.AnchorStyles.Left;
-            this.txtSearch.Location = new System.Drawing.Point(232, 14);
+            this.txtSearch.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.txtSearch.Location = new System.Drawing.Point(0, 0);
             this.txtSearch.Name = "txtSearch";
-            this.txtSearch.Size = new System.Drawing.Size(100, 22);
+            this.txtSearch.Size = new System.Drawing.Size(200, 22);
             this.txtSearch.TabIndex = 1;
             this.txtSearch.Tag = "Control";
             this.txtSearch.TextChanged += new System.EventHandler(this.txtSearch_TextChanged);
@@ -181,6 +180,17 @@
             this.cmsPeopleOptions.Name = "cmsPeopleOptions";
             this.cmsPeopleOptions.Size = new System.Drawing.Size(61, 4);
             // 
+            // usrHeaderManagementScreen
+            // 
+            this.usrHeaderManagementScreen.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            this.usrHeaderManagementScreen.Dock = System.Windows.Forms.DockStyle.Top;
+            this.usrHeaderManagementScreen.Location = new System.Drawing.Point(10, 10);
+            this.usrHeaderManagementScreen.Name = "usrHeaderManagementScreen";
+            this.usrHeaderManagementScreen.Padding = new System.Windows.Forms.Padding(10);
+            this.usrHeaderManagementScreen.Size = new System.Drawing.Size(634, 70);
+            this.usrHeaderManagementScreen.TabIndex = 0;
+            this.usrHeaderManagementScreen.Title = "Title";
+            // 
             // usrManagementScreen
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
@@ -194,6 +204,8 @@
             this.Size = new System.Drawing.Size(654, 434);
             this.pnlToolbar.ResumeLayout(false);
             this.pnlToolbar.PerformLayout();
+            this.pnlFilterContainer.ResumeLayout(false);
+            this.pnlFilterContainer.PerformLayout();
             this.pnlFooter.ResumeLayout(false);
             this.pnlFooter.PerformLayout();
             this.pnlGridContainer.ResumeLayout(false);
@@ -216,5 +228,6 @@
         private System.Windows.Forms.Panel pnlGridContainer;
         private System.Windows.Forms.DataGridView dgvResults;
         private System.Windows.Forms.ContextMenuStrip cmsPeopleOptions;
+        private System.Windows.Forms.Panel pnlFilterContainer;
     }
 }

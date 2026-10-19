@@ -8,6 +8,8 @@ namespace DVLD.WinForms.Forms.People
 {
     public partial class frmListPeople : frmBase
     {
+        DataTable _dtPeople = clsPerson.GetAllPeople();
+
         public frmListPeople()
         {
             InitializeComponent();
@@ -15,20 +17,119 @@ namespace DVLD.WinForms.Forms.People
 
         private void usrManagePeople_Load(object sender, EventArgs e)
         {
+            pnlGendorFilter.Visible = false;
+
+            dtpDateFilter.Visible = false;
+            dtpDateFilter.MaxDate = DateTime.Now;
+
             LoadPeopleData();
         }
 
         private void LoadPeopleData()
         {
             usrManagePeople.NumericFilterFields = new string[] { "Person ID", "Phone" };
-
-            DataTable dtPeople = clsPerson.GetAllPeople();
-            usrManagePeople.DataSource = dtPeople;
-            usrManagePeople.RecordsCount = dtPeople.Rows.Count;
+            usrManagePeople.DataSource = _dtPeople;
+            usrManagePeople.RecordsCount = _dtPeople.Rows.Count;
             usrManagePeople.PopulateFilterOptionsFromGrid();
             PopulateContextMenuStrip();
+
+            usrManagePeople.SearchTextChanged += usrManagePeople_SearchTextChanged;
+            usrManagePeople.FilterByIndexChanged += usrManagePeople_FilterByIndexChanged;
         }
-        
+
+        private void usrManagePeople_SearchTextChanged(object sender, EventArgs e)
+        {
+            ApplyFilter();
+        }
+
+        private void usrManagePeople_FilterByIndexChanged(object sender, EventArgs e)
+        {
+            string filterColumn = usrManagePeople.SelectedFilterItem?.ToString();
+            usrManagePeople.SearchText = "";
+            rdMale.Checked = false; 
+            rdFemale.Checked = false;
+
+            switch (filterColumn)
+            {
+                case "None":
+                    usrManagePeople.IsSearchTextBoxVisible = false;
+                    pnlGendorFilter.Visible = false;
+                    dtpDateFilter.Visible = false;
+                    break;
+                case "Person ID":
+                    pnlGendorFilter.Visible = false;
+                    dtpDateFilter.Visible = false;
+
+                    usrManagePeople.IsSearchTextBoxVisible = true;
+                    break;
+                case "Gendor":
+                    usrManagePeople.IsSearchTextBoxVisible = false;
+                    dtpDateFilter.Visible = false;
+                    
+                    pnlGendorFilter.Dock = DockStyle.Fill;
+                    usrManagePeople.FilterContainer.Controls.Add(pnlGendorFilter);
+                    pnlGendorFilter.Visible = true;
+                    break;
+                case "Date Of Birth":
+                    usrManagePeople.IsSearchTextBoxVisible = false;
+                    pnlGendorFilter.Visible = false;
+
+                    dtpDateFilter.Dock = DockStyle.Fill;
+                    usrManagePeople.FilterContainer.Controls.Add(dtpDateFilter);
+                    dtpDateFilter.Visible = true;
+                    break;
+                default:
+                    pnlGendorFilter.Visible = false;
+                    dtpDateFilter.Visible = false;
+                    usrManagePeople.IsSearchTextBoxVisible = true;
+                    break;
+            }
+            ApplyFilter();
+        }
+
+        private void ApplyFilter()
+        {
+            if (_dtPeople == null) return;
+
+            string filterColumn = usrManagePeople.SelectedFilterItem?.ToString();
+            string filterValue = "";
+
+            if (filterColumn == "None")
+            {
+                _dtPeople.DefaultView.RowFilter = "";
+            }
+            else
+            {
+                switch (filterColumn)
+                {
+                    case "Person ID":
+                        filterValue = usrManagePeople.SearchText.Trim();
+
+                        usrManagePeople.IsSearchTextBoxVisible = true;
+                        if (filterValue is int)
+                            _dtPeople.DefaultView.RowFilter = $"[{filterColumn}] = {filterValue}";
+                        break;
+                    case "Gendor":
+                        if (rdMale.Checked)
+                            _dtPeople.DefaultView.RowFilter = $"[{filterColumn}] = 'Male'";
+                        else if(rdFemale.Checked)
+                            _dtPeople.DefaultView.RowFilter = $"[{filterColumn}] = 'Female'";
+                        break;
+                    case "Date Of Birth":
+                        filterValue = dtpDateFilter.Value.ToString("MM/dd/yyyy");
+                        _dtPeople.DefaultView.RowFilter = $"[{filterColumn}] = #{filterValue}#";
+                        break;
+                    default:
+                        filterValue = usrManagePeople.SearchText.Trim();
+
+                        _dtPeople.DefaultView.RowFilter = $"[{filterColumn}] LIKE '%{filterValue}%'";
+                        break;
+                }
+            }
+
+            usrManagePeople.RecordsCount = _dtPeople.DefaultView.Count;
+        }
+
         private void PopulateContextMenuStrip()
         {
             ContextMenuStrip peopleMenu = new ContextMenuStrip();
@@ -42,6 +143,20 @@ namespace DVLD.WinForms.Forms.People
             peopleMenu.Items.Add("Phone Call", null, PhoneCall_Click);
 
             usrManagePeople.GridContextMenu = peopleMenu;
+        }
+
+
+        private void dtpDateFilter_ValueChanged(object sender, EventArgs e)
+        {
+            ApplyFilter();
+        }
+
+        private void rdMale_CheckedChanged(object sender, EventArgs e)
+        {
+            if (((RadioButton)sender).Checked)
+            {
+                ApplyFilter();
+            }
         }
 
         private void ShowDetails_Click(object sender, EventArgs e)

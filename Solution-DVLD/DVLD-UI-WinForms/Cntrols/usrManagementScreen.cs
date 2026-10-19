@@ -47,6 +47,17 @@ namespace DVLD.WinForms.Cntrols
             set { dgvResults.ContextMenuStrip = value; }
         }
 
+        public bool IsSearchTextBoxVisible
+        {
+            get { return txtSearch.Visible; }
+            set { txtSearch.Visible = value; }
+        }
+
+        public Panel FilterContainer
+        {
+            get { return pnlFilterContainer; }
+        }
+
         public string[] NumericFilterFields { get; set; }
 
         public void SetFilterOptions(string[] options)
@@ -77,7 +88,7 @@ namespace DVLD.WinForms.Cntrols
 
         public event EventHandler AddNewClick;
 
-        private void btnAddNew_Click(object sender, EventArgs e)
+        protected void btnAddNew_Click(object sender, EventArgs e)
         {
             AddNewClick?.Invoke(this, e);
         }
@@ -91,7 +102,7 @@ namespace DVLD.WinForms.Cntrols
 
         public event EventHandler FilterByIndexChanged;
 
-        private void cbFilterBy_SelectedIndexChanged(object sender, EventArgs e)
+        protected void cbFilterBy_SelectedIndexChanged(object sender, EventArgs e)
         {
             bool isNone = cbFilterBy.Text == "None" || string.IsNullOrEmpty(cbFilterBy.Text);
             txtSearch.Visible = !isNone;
@@ -103,14 +114,14 @@ namespace DVLD.WinForms.Cntrols
 
         public event EventHandler CloseClick;
 
-        private void btnClose_Click(object sender, EventArgs e)
+        protected void btnClose_Click(object sender, EventArgs e)
         {
             CloseClick?.Invoke(this, e);
 
             this.FindForm()?.Close();
         }
 
-        private void txtSearch_KeyPress(object sender, KeyPressEventArgs e)
+        protected void txtSearch_KeyPress(object sender, KeyPressEventArgs e)
         {
             if (NumericFilterFields != null
                 && Array.Exists(NumericFilterFields, field => field.Equals(cbFilterBy.Text, StringComparison.OrdinalIgnoreCase)))

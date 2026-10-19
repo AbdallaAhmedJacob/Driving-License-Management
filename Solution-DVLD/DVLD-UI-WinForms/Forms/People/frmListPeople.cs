@@ -18,7 +18,6 @@ namespace DVLD.WinForms.Forms.People
         private void usrManagePeople_Load(object sender, EventArgs e)
         {
             pnlGendorFilter.Visible = false;
-
             dtpDateFilter.Visible = false;
             dtpDateFilter.MaxDate = DateTime.Now;
 

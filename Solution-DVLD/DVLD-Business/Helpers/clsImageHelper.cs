@@ -1,5 +1,6 @@
 ﻿using System;
 using System.IO;
+using System.Linq;
 
 namespace DVLD.Business.Helpers
 {
@@ -9,7 +10,7 @@ namespace DVLD.Business.Helpers
 
         public static string SavePersonImage(string sourceFilePath)
         {
-            // Validation
+            if(!IsAllowedImage(sourceFilePath)) return null;
 
             string extension = Path.GetExtension(sourceFilePath);
 
@@ -22,6 +23,15 @@ namespace DVLD.Business.Helpers
             File.Copy(sourceFilePath, destinationPath);
 
             return destinationPath;
+        }
+
+        public static bool IsAllowedImage(string sourceFilePath)
+        {
+            if (string.IsNullOrEmpty(sourceFilePath)) return false;
+
+            string[] AllowedExtensions = { ".jpg", ".jpeg", ".peng" };
+            string extinsion = Path.GetExtension(sourceFilePath);
+            return AllowedExtensions.Contains(extinsion);
         }
     }
 }

@@ -17,7 +17,7 @@ namespace DVLD.WinForms.Forms.People
 
         private void usrManagePeople_Load(object sender, EventArgs e)
         {
-            pnlGendorFilter.Visible = false;
+            pnlGenderFilter.Visible = false;
             dtpDateFilter.Visible = false;
             dtpDateFilter.MaxDate = DateTime.Now;
 
@@ -52,33 +52,33 @@ namespace DVLD.WinForms.Forms.People
             {
                 case "None":
                     usrManagePeople.IsSearchTextBoxVisible = false;
-                    pnlGendorFilter.Visible = false;
+                    pnlGenderFilter.Visible = false;
                     dtpDateFilter.Visible = false;
                     break;
                 case "Person ID":
-                    pnlGendorFilter.Visible = false;
+                    pnlGenderFilter.Visible = false;
                     dtpDateFilter.Visible = false;
 
                     usrManagePeople.IsSearchTextBoxVisible = true;
                     break;
-                case "Gendor":
+                case "Gender":
                     usrManagePeople.IsSearchTextBoxVisible = false;
                     dtpDateFilter.Visible = false;
                     
-                    pnlGendorFilter.Dock = DockStyle.Fill;
-                    usrManagePeople.FilterContainer.Controls.Add(pnlGendorFilter);
-                    pnlGendorFilter.Visible = true;
+                    pnlGenderFilter.Dock = DockStyle.Fill;
+                    usrManagePeople.FilterContainer.Controls.Add(pnlGenderFilter);
+                    pnlGenderFilter.Visible = true;
                     break;
                 case "Date Of Birth":
                     usrManagePeople.IsSearchTextBoxVisible = false;
-                    pnlGendorFilter.Visible = false;
+                    pnlGenderFilter.Visible = false;
 
                     dtpDateFilter.Dock = DockStyle.Fill;
                     usrManagePeople.FilterContainer.Controls.Add(dtpDateFilter);
                     dtpDateFilter.Visible = true;
                     break;
                 default:
-                    pnlGendorFilter.Visible = false;
+                    pnlGenderFilter.Visible = false;
                     dtpDateFilter.Visible = false;
                     usrManagePeople.IsSearchTextBoxVisible = true;
                     break;
@@ -108,7 +108,7 @@ namespace DVLD.WinForms.Forms.People
                         if (filterValue is int)
                             _dtPeople.DefaultView.RowFilter = $"[{filterColumn}] = {filterValue}";
                         break;
-                    case "Gendor":
+                    case "Gender":
                         if (rdMale.Checked)
                             _dtPeople.DefaultView.RowFilter = $"[{filterColumn}] = 'Male'";
                         else if(rdFemale.Checked)

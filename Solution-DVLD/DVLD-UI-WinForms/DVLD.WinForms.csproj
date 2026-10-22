@@ -46,6 +46,12 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Cntrols\People\usrPerson.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Cntrols\People\usrPerson.Designer.cs">
+      <DependentUpon>usrPerson.cs</DependentUpon>
+    </Compile>
     <Compile Include="Cntrols\usrHeader.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -86,6 +92,9 @@
     <Compile Include="UI\frmTest.Designer.cs">
       <DependentUpon>frmTest.cs</DependentUpon>
     </Compile>
+    <EmbeddedResource Include="Cntrols\People\usrPerson.resx">
+      <DependentUpon>usrPerson.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Cntrols\usrHeader.resx">
       <DependentUpon>usrHeader.cs</DependentUpon>
     </EmbeddedResource>

@@ -27,7 +27,7 @@ namespace DataAccessTest
             string secondName = "";
             string thirdName = "";
             string lastName = "";
-            string gendor = "";
+            string Gender = "";
             DateTime dateOfBirth = DateTime.Now;
             string address = "";
             string phoneNumber = "";
@@ -42,7 +42,7 @@ namespace DataAccessTest
                                                ref secondName,
                                                ref thirdName,
                                                ref lastName,
-                                               ref gendor,
+                                               ref Gender,
                                                ref dateOfBirth,
                                                ref address,
                                                ref phoneNumber,
@@ -57,7 +57,7 @@ namespace DataAccessTest
                 Console.WriteLine(secondName);
                 Console.WriteLine(thirdName);
                 Console.WriteLine(lastName);
-                Console.WriteLine(gendor);
+                Console.WriteLine(Gender);
                 Console.WriteLine(dateOfBirth);
                 Console.WriteLine(address);
                 Console.WriteLine(phoneNumber);
@@ -78,7 +78,7 @@ namespace DataAccessTest
             string secondName = "Ali";
             string thirdName = "Ahmed";
             string lastName = "Sood";
-            string gendor = "M";
+            string Gender = "M";
             DateTime dateOfBirth = DateTime.Now.AddYears(-20);
             string address = "X, Y, Z";
             string phoneNumber = "987654321";
@@ -88,7 +88,7 @@ namespace DataAccessTest
             string imagePath = "";
 
             personID = clsPersonData.AddNewPerson(nationalNo, firstName, secondName, thirdName,
-            lastName, gendor, dateOfBirth, address, phoneNumber, email,
+            lastName, Gender, dateOfBirth, address, phoneNumber, email,
             countryID, notes, imagePath);
 
             Console.WriteLine(personID);
@@ -101,7 +101,7 @@ namespace DataAccessTest
             string secondName = "Ali";
             string thirdName = "Ahmed";
             string lastName = "Sood";
-            string gendor = "M";
+            string Gender = "M";
             DateTime dateOfBirth = DateTime.Now.AddYears(-20);
             string address = "456 Oak Avenue, London, UK";
             string phoneNumber = "987654321";
@@ -116,7 +116,7 @@ namespace DataAccessTest
                                                   secondName,
                                                   thirdName,
                                                   lastName,
-                                                  gendor,
+                                                  Gender,
                                                   dateOfBirth,
                                                   address,
                                                   phoneNumber,

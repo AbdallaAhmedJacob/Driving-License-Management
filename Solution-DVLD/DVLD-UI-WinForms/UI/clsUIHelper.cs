@@ -66,6 +66,10 @@ namespace DVLD.WinForms.UI
             {
                 ApplyMenuStripTheme((MenuStrip)control);
             }
+            else if (control is GroupBox)
+            {
+                ApplyGroupBoxTheme((GroupBox)control);
+            }
         }
 
 
@@ -78,6 +82,7 @@ namespace DVLD.WinForms.UI
             form.BackColor = clsTheme.Background;
             form.ForeColor = clsTheme.TextPrimary;
             form.Font = clsTheme.FontRegular;
+            form.Padding = new Padding(10);
 
             form.StartPosition = clsTheme.DefaultStartPosition;
             form.FormBorderStyle = clsTheme.DefaultFormBorderStyle;
@@ -92,6 +97,7 @@ namespace DVLD.WinForms.UI
         {
             panel.BackColor = clsTheme.Surface;
             panel.ForeColor = clsTheme.TextPrimary;
+            panel.Padding =new Padding(10);
         }
 
 
@@ -318,6 +324,17 @@ namespace DVLD.WinForms.UI
                     ApplyMenuDropDownTheme(menuItem);
                 }
             }
+        }
+
+        // =========================================================
+        // GroupBox
+        // =========================================================
+
+        private static void ApplyGroupBoxTheme(GroupBox groupBox)
+        {
+            groupBox.BackColor = clsTheme.Surface;
+            groupBox.ForeColor = clsTheme.TextPrimary;
+            groupBox.Font = clsTheme.FontMedium; // خط عريض وواضح لعنوان المجموعة
         }
         private static void MenuItem_MouseEnter(object sender, EventArgs e)
         {

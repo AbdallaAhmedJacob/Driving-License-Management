@@ -5,6 +5,7 @@ using DVLD.Business.Helpers;
 using DVLD.DataAccess.PeopleDataAccess;
 using DVLD.Shared.Validation.People;
 using DVLD.Shared.Utile;
+using System.IO;
 
 namespace DVLD.Business.People
 {
@@ -13,6 +14,7 @@ namespace DVLD.Business.People
         public enum enMode { AddNew = 0, Update = 1 }
         public enMode Mode = enMode.AddNew;
 
+        static protected clsPerson _oldPerson;
         private int PersonID { get; set; }
         public string NationalNo { get; set; }
         public string FirstName { get; set; }
@@ -20,7 +22,7 @@ namespace DVLD.Business.People
         public string ThirdName { get; set; }
         public string LastName { get; set; }
         public string FullName => $"{FirstName} {SecondName} {ThirdName} {LastName}";
-        public string Gendor { get; set; }
+        public string Gender { get; set; }
         public DateTime DateOfBirth { get; set; }
         public string Address { get; set; }
         public string PhoneNumber { get; set; }
@@ -37,7 +39,7 @@ namespace DVLD.Business.People
             this.SecondName = "";
             this.ThirdName = "";
             this.LastName = "";
-            this.Gendor = "M";
+            this.Gender = "M";
             this.DateOfBirth = DateTime.Now;
             this.Address = "";
             this.PhoneNumber = "";
@@ -55,7 +57,7 @@ namespace DVLD.Business.People
                           string secondName,
                           string thirdName,
                           string lastName,
-                          string gendor,
+                          string Gender,
                           DateTime dateOfBirth,
                           string address,
                           string phoneNumber,
@@ -70,7 +72,7 @@ namespace DVLD.Business.People
             this.SecondName = secondName;
             this.ThirdName = thirdName;
             this.LastName = lastName;
-            this.Gendor = gendor;
+            this.Gender = Gender;
             this.DateOfBirth = dateOfBirth;
             this.Address = address;
             this.PhoneNumber = phoneNumber;
@@ -96,45 +98,48 @@ namespace DVLD.Business.People
             string secondName = "";
             string thirdName = "";
             string lastName = "";
-            string gendor = "";
+            string Gender = "";
             DateTime dateOfBirth = DateTime.Now;
             string address = "";
             string phoneNumber = "";
             string email = "";
             short countryID = -1;
             string notes = "";
-            string imagePath = "";  
-            
+            string imagePath = "";
+
             if (clsPersonData.GetPersonByID(ref personID,
                                             ref nationalNo,
                                             ref firstName,
                                             ref secondName,
                                             ref thirdName,
                                             ref lastName,
-                                            ref gendor,
+                                            ref Gender,
                                             ref dateOfBirth,
                                             ref address,
                                             ref phoneNumber,
                                             ref email,
                                             ref countryID,
                                             ref notes,
-                                            ref imagePath) 
+                                            ref imagePath)
                 == false) return null;
-
-            return new clsPerson(personID,
-                                 nationalNo,
-                                 firstName,
-                                 secondName,
-                                 thirdName,
-                                 lastName,
-                                 gendor,
-                                 dateOfBirth,
-                                 address,
-                                 phoneNumber,
-                                 email,
-                                 countryID,
-                                 notes,
-                                 imagePath);
+            else
+            {
+                _oldPerson = new clsPerson(personID,
+                                           nationalNo,
+                                           firstName,
+                                           secondName,
+                                           thirdName,
+                                           lastName,
+                                           Gender,
+                                           dateOfBirth,
+                                           address,
+                                           phoneNumber,
+                                           email,
+                                           countryID,
+                                           notes,
+                                           imagePath);
+                return _oldPerson;
+            }
         }
         private int _AddNewPerson()
         {
@@ -144,7 +149,7 @@ namespace DVLD.Business.People
             if(clsPersonData.IsExistNationalNo(this.NationalNo)) return -1;
 
             this.PersonID = clsPersonData.AddNewPerson(this.NationalNo, this.FirstName, this.SecondName, this.ThirdName,
-                this.LastName, this.Gendor, this.DateOfBirth, this.Address,this.PhoneNumber, this.Email,
+                this.LastName, this.Gender, this.DateOfBirth, this.Address,this.PhoneNumber, this.Email,
                 this.CountryID, this.Notes, this.ImagePath);
             if(this.PersonID != -1) 
                 this.Mode = enMode.Update;
@@ -153,17 +158,25 @@ namespace DVLD.Business.People
         }
         private bool _UpdatePerson()
         {
-            if (this.ImagePath != "")
+            bool isAbdated = false;  
+            if (this.ImagePath != _oldPerson.ImagePath)
                 this.ImagePath = clsImageHelper.SavePersonImage(this.ImagePath);
 
-            return clsPersonData.UpdatePerson(this.PersonID, this.NationalNo, this.FirstName, this.SecondName, this.ThirdName,
-                this.LastName, this.Gendor, this.DateOfBirth, this.Address,this.PhoneNumber, this.Email,
+            isAbdated = clsPersonData.UpdatePerson(this.PersonID, this.NationalNo, this.FirstName, this.SecondName, this.ThirdName,
+                this.LastName, this.Gender, this.DateOfBirth, this.Address,this.PhoneNumber, this.Email,
                 this.CountryID, this.Notes, this.ImagePath);
+
+            if (isAbdated)
+            {
+                if (this.ImagePath != _oldPerson.ImagePath)
+                    File.Delete(_oldPerson.ImagePath);
+            }
+            return isAbdated;
         }
         public bool Save()
         {
             if(!clsPersonValidation.ValidatePersonInfo(this.NationalNo, this.FirstName, this.SecondName, this.ThirdName,
-                this.LastName, this.Gendor, this.DateOfBirth, this.Address, this.PhoneNumber, this.Email,
+                this.LastName, this.Gender, this.DateOfBirth, this.Address, this.PhoneNumber, this.Email,
                 this.CountryID, this.Notes, this.ImagePath, out string errorMassage)) return false;
 
             switch (this.Mode)

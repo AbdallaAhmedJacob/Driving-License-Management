@@ -30,11 +30,11 @@
         {
             this.components = new System.ComponentModel.Container();
             this.usrManagePeople = new DVLD.WinForms.Cntrols.usrManagementScreen();
-            this.pnlGendorFilter = new System.Windows.Forms.Panel();
+            this.pnlGenderFilter = new System.Windows.Forms.Panel();
             this.rdFemale = new System.Windows.Forms.RadioButton();
             this.rdMale = new System.Windows.Forms.RadioButton();
             this.dtpDateFilter = new System.Windows.Forms.DateTimePicker();
-            this.pnlGendorFilter.SuspendLayout();
+            this.pnlGenderFilter.SuspendLayout();
             this.SuspendLayout();
             // 
             // usrManagePeople
@@ -54,14 +54,14 @@
             this.usrManagePeople.TabIndex = 0;
             this.usrManagePeople.Load += new System.EventHandler(this.usrManagePeople_Load);
             // 
-            // pnlGendorFilter
+            // pnlGenderFilter
             // 
-            this.pnlGendorFilter.Controls.Add(this.rdFemale);
-            this.pnlGendorFilter.Controls.Add(this.rdMale);
-            this.pnlGendorFilter.Location = new System.Drawing.Point(215, 116);
-            this.pnlGendorFilter.Name = "pnlGendorFilter";
-            this.pnlGendorFilter.Size = new System.Drawing.Size(200, 31);
-            this.pnlGendorFilter.TabIndex = 1;
+            this.pnlGenderFilter.Controls.Add(this.rdFemale);
+            this.pnlGenderFilter.Controls.Add(this.rdMale);
+            this.pnlGenderFilter.Location = new System.Drawing.Point(215, 116);
+            this.pnlGenderFilter.Name = "pnlGenderFilter";
+            this.pnlGenderFilter.Size = new System.Drawing.Size(200, 31);
+            this.pnlGenderFilter.TabIndex = 1;
             // 
             // rdFemale
             // 
@@ -102,14 +102,14 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.White;
             this.ClientSize = new System.Drawing.Size(800, 450);
-            this.Controls.Add(this.pnlGendorFilter);
+            this.Controls.Add(this.pnlGenderFilter);
             this.Controls.Add(this.dtpDateFilter);
             this.Controls.Add(this.usrManagePeople);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
             this.Name = "frmListPeople";
             this.Text = "frmListPeople";
-            this.pnlGendorFilter.ResumeLayout(false);
-            this.pnlGendorFilter.PerformLayout();
+            this.pnlGenderFilter.ResumeLayout(false);
+            this.pnlGenderFilter.PerformLayout();
             this.ResumeLayout(false);
 
         }
@@ -117,7 +117,7 @@
         #endregion
 
         private Cntrols.usrManagementScreen usrManagePeople;
-        private System.Windows.Forms.Panel pnlGendorFilter;
+        private System.Windows.Forms.Panel pnlGenderFilter;
         private System.Windows.Forms.RadioButton rdFemale;
         private System.Windows.Forms.RadioButton rdMale;
         private System.Windows.Forms.DateTimePicker dtpDateFilter;

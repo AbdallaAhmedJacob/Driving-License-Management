@@ -40,7 +40,7 @@ namespace DVLD.DataAccess.PeopleDataAccess
                                          ref string secondName,
                                          ref string thirdName,
                                          ref string lastName,
-                                         ref string gendor,
+                                         ref string Gender,
                                          ref DateTime dateOfBirth,
                                          ref string address,
                                          ref string phoneNumber,
@@ -69,7 +69,7 @@ namespace DVLD.DataAccess.PeopleDataAccess
                     secondName = (string)reader["SecondName"];
                     thirdName = (string)reader["ThirdName"];
                     lastName = (string)reader["LastName"];
-                    gendor = (string)reader["Gendor"];
+                    Gender = (string)reader["Gender"];
                     dateOfBirth = (DateTime)reader["DateOfBirth"];
                     address = (string)reader["Address"];
                     phoneNumber = (string)reader["PhoneNumber"];
@@ -96,7 +96,7 @@ namespace DVLD.DataAccess.PeopleDataAccess
                                        string secondName,
                                        string thirdName,
                                        string lastName,
-                                       string gendor,
+                                       string Gender,
                                        DateTime dateOfBirth,
                                        string address,
                                        string phoneNumber,
@@ -115,7 +115,7 @@ namespace DVLD.DataAccess.PeopleDataAccess
                                 SecondName, 
                                 ThirdName,
                                 LastName, 
-                                Gendor, 
+                                Gender, 
                                 DateOfBirth,
                                 Address, 
                                 PhoneNumber, 
@@ -130,7 +130,7 @@ namespace DVLD.DataAccess.PeopleDataAccess
                                 @SecondName, 
                                 @ThirdName,
                                 @LastName, 
-                                @Gendor, 
+                                @Gender, 
                                 @DateOfBirth,
                                 @Address, 
                                 @PhoneNumber, 
@@ -147,7 +147,7 @@ namespace DVLD.DataAccess.PeopleDataAccess
             command.Parameters.AddWithValue("@SecondName", secondName);
             command.Parameters.AddWithValue("@ThirdName", thirdName);
             command.Parameters.AddWithValue("@LastName", lastName);
-            command.Parameters.AddWithValue("@Gendor", gendor);
+            command.Parameters.AddWithValue("@Gender", Gender);
             command.Parameters.AddWithValue("@DateOfBirth", dateOfBirth);
             command.Parameters.AddWithValue("@Address", string.IsNullOrEmpty(address) ? (object)DBNull.Value : address);
             command.Parameters.AddWithValue("@PhoneNumber", phoneNumber);
@@ -186,7 +186,7 @@ namespace DVLD.DataAccess.PeopleDataAccess
                                         string secondName,
                                         string thirdName,
                                         string lastName,
-                                        string gendor,
+                                        string Gender,
                                         DateTime dateOfBirth,
                                         string address,
                                         string phoneNumber,
@@ -204,7 +204,7 @@ namespace DVLD.DataAccess.PeopleDataAccess
                                 SecondName = @SecondName,   
                                 ThirdName = @ThirdName,   
                                 LastName = @LastName,     
-                                Gendor = @Gendor,       
+                                Gender = @Gender,       
                                 DateOfBirth = @DateOfBirth, 
                                 Address = @Address,      
                                 PhoneNumber = @PhoneNumber,   
@@ -222,7 +222,7 @@ namespace DVLD.DataAccess.PeopleDataAccess
             command.Parameters.AddWithValue("@SecondName", secondName);
             command.Parameters.AddWithValue("@ThirdName", thirdName);
             command.Parameters.AddWithValue("@LastName", lastName);
-            command.Parameters.AddWithValue("@Gendor", gendor);
+            command.Parameters.AddWithValue("@Gender", Gender);
             command.Parameters.AddWithValue("@DateOfBirth", dateOfBirth);
             command.Parameters.AddWithValue("@Address", string.IsNullOrEmpty(address) ? (object)DBNull.Value : address);
             command.Parameters.AddWithValue("@PhoneNumber", phoneNumber);

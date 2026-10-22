@@ -31,8 +31,8 @@ namespace DVLD.WinForms.Forms
             pnlContent.Tag = subForm;
             subForm.Show();
         }
-       
-        private void managePeopleToolStripMenuItem_Click(object sender, EventArgs e)
+
+        private void menuPeople_Click(object sender, EventArgs e)
         {
             frmListPeople frm = new frmListPeople();
             OpenFormInPanel(frm);

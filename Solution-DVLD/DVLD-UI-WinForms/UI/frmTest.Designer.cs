@@ -28,24 +28,25 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.usrManagementScreen1 = new DVLD.WinForms.Cntrols.usrManagementScreen();
+            this.usrPerson1 = new DVLD.WinForms.Cntrols.People.usrPerson();
             this.SuspendLayout();
             // 
-            // usrManagementScreen1
+            // usrPerson1
             // 
-            this.usrManagementScreen1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.usrManagementScreen1.Location = new System.Drawing.Point(0, 0);
-            this.usrManagementScreen1.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
-            this.usrManagementScreen1.Name = "usrManagementScreen1";
-            this.usrManagementScreen1.Size = new System.Drawing.Size(800, 450);
-            this.usrManagementScreen1.TabIndex = 0;
+            this.usrPerson1.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.usrPerson1.Location = new System.Drawing.Point(10, 10);
+            this.usrPerson1.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            this.usrPerson1.Name = "usrPerson1";
+            this.usrPerson1.Padding = new System.Windows.Forms.Padding(10, 12, 10, 12);
+            this.usrPerson1.Size = new System.Drawing.Size(1005, 617);
+            this.usrPerson1.TabIndex = 0;
             // 
             // frmTest
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 20F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(800, 450);
-            this.Controls.Add(this.usrManagementScreen1);
+            this.ClientSize = new System.Drawing.Size(1025, 637);
+            this.Controls.Add(this.usrPerson1);
             this.Name = "frmTest";
             this.Text = "frmTest";
             this.ResumeLayout(false);
@@ -54,6 +55,6 @@
 
         #endregion
 
-        private Cntrols.usrManagementScreen usrManagementScreen1;
+        private Cntrols.People.usrPerson usrPerson1;
     }
 }

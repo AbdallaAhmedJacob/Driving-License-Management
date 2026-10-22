@@ -12,7 +12,7 @@ namespace DVLD.Shared.Validation.People
             string secondName,
             string thirdName,
             string lastName,
-            string gendor,
+            string Gender,
             DateTime dateOfBirth,
             string address,
             string phoneNumber,
@@ -74,9 +74,9 @@ namespace DVLD.Shared.Validation.People
             }
 
             // 3. فحص الجنس (M أو F فقط)
-            if (string.IsNullOrWhiteSpace(gendor) || (gendor.ToUpper() != "M" && gendor.ToUpper() != "F"))
+            if (string.IsNullOrWhiteSpace(Gender) || (Gender.ToUpper() != "M" && Gender.ToUpper() != "F"))
             {
-                errorMessage = "Gendor must be either 'M' or 'F'.";
+                errorMessage = "Gender must be either 'M' or 'F'.";
                 return false;
             }
 

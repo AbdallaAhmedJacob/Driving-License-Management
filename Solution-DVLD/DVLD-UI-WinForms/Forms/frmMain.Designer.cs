@@ -31,7 +31,6 @@
             this.menuMain = new System.Windows.Forms.MenuStrip();
             this.menuApplications = new System.Windows.Forms.ToolStripMenuItem();
             this.menuPeople = new System.Windows.Forms.ToolStripMenuItem();
-            this.managePeopleToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.menuDrivers = new System.Windows.Forms.ToolStripMenuItem();
             this.menuUsers = new System.Windows.Forms.ToolStripMenuItem();
             this.menuAccountSettings = new System.Windows.Forms.ToolStripMenuItem();
@@ -66,20 +65,11 @@
             // 
             // menuPeople
             // 
-            this.menuPeople.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.managePeopleToolStripMenuItem});
             this.menuPeople.Name = "menuPeople";
             this.menuPeople.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.P)));
             this.menuPeople.Size = new System.Drawing.Size(70, 24);
             this.menuPeople.Text = "&People";
-            // 
-            // managePeopleToolStripMenuItem
-            // 
-            this.managePeopleToolStripMenuItem.Name = "managePeopleToolStripMenuItem";
-            this.managePeopleToolStripMenuItem.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.P)));
-            this.managePeopleToolStripMenuItem.Size = new System.Drawing.Size(253, 26);
-            this.managePeopleToolStripMenuItem.Text = "&Manage People";
-            this.managePeopleToolStripMenuItem.Click += new System.EventHandler(this.managePeopleToolStripMenuItem_Click);
+            this.menuPeople.Click += new System.EventHandler(this.menuPeople_Click);
             // 
             // menuDrivers
             // 
@@ -149,6 +139,5 @@
         private System.Windows.Forms.ToolStripMenuItem menuAccountSettings;
         private System.Windows.Forms.Panel pnlContent;
         private System.Windows.Forms.Panel pnlFooter;
-        private System.Windows.Forms.ToolStripMenuItem managePeopleToolStripMenuItem;
     }
 }

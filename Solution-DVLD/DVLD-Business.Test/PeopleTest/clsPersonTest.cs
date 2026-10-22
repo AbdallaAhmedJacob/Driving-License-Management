@@ -28,7 +28,7 @@ namespace DVLD.Business.Test
             person.SecondName = "Slah";
             person.ThirdName = "Ahmed";
             person.LastName = "Qasm";
-            person.Gendor = "M";
+            person.Gender = "M";
             person.DateOfBirth = DateTime.Now.AddYears(-20);
             person.Address = "A, Y, N";
             person.PhoneNumber = "987654321";

@@ -8,7 +8,7 @@ namespace DataAccessTest
     {
         internal static void GetAllContris_ReturnAllCountries()
         {
-            DataTable dtCountries = clsCountries.GetAllCountries();
+            DataTable dtCountries = clsCountriesDataAccess.GetAllCountries();
 
             foreach (DataRow row in dtCountries.Rows)
             {

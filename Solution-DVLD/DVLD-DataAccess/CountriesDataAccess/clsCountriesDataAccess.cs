@@ -5,7 +5,7 @@ using DVLD.DataAccess.Settings;
 
 namespace DVLD.DataAccess.CountriesDataAccess
 {
-    public class clsCountries
+    public class clsCountriesDataAccess
     {
         public static DataTable GetAllCountries()
         {

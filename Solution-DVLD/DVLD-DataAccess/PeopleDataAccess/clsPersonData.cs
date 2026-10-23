@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Data;
 using System.Data.SqlClient;
-using DVLD_DataAccess.Settings;
+using DVLD.DataAccess.Settings;
 
 namespace DVLD.DataAccess.PeopleDataAccess
 {

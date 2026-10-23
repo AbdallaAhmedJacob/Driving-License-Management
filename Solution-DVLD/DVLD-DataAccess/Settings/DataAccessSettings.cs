@@ -1,7 +1,5 @@
-﻿using System;
-using System.Data.SqlClient;
-
-namespace DVLD_DataAccess.Settings
+﻿
+namespace DVLD.DataAccess.Settings
 {
     public class DataAccessSettings
     {

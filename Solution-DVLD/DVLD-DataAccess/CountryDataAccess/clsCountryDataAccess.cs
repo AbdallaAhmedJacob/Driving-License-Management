@@ -3,11 +3,11 @@ using System.Data;
 using System.Data.SqlClient;
 using DVLD.DataAccess.Settings;
 
-namespace DVLD.DataAccess.CountriesDataAccess
+namespace DVLD.DataAccess.CountryDataAccess
 {
-    public class clsCountriesDataAccess
+    public class clsCountryDataAccess
     {
-        public static DataTable GetAllCountries()
+        public static DataTable GetAllCountry()
         {
             SqlConnection connection = new SqlConnection(DataAccessSettings.ConnectionString);
             string sql = @"SELECT * FROM tblCountries";

@@ -1,18 +1,18 @@
-﻿using DVLD.Business.Countries;
+﻿using DVLD.Business.Country;
 using System;
 using System.Data;
 
 namespace DataAccessTest
 {
-    internal class clsCountriesTest
+    internal class clsCountryTest
     {
-        internal static void GetAllContris_ReturnAllCountries()
+        internal static void GetAllContris_ReturnAllCountry()
         {
-            DataTable dtCountries = clsCountries.GetAllCountries();
+            DataTable dtCountry = clsCountry.GetAllCountry();
 
-            foreach (DataRow row in dtCountries.Rows)
+            foreach (DataRow row in dtCountry.Rows)
             {
-                for (int i = 0; i < dtCountries.Columns.Count; i++)
+                for (int i = 0; i < dtCountry.Columns.Count; i++)
                 {
                     Console.Write($"{row[i].ToString().Trim()} | ");
                 }

@@ -42,7 +42,7 @@
             this.usrManagePeople.DataSource = null;
             this.usrManagePeople.Dock = System.Windows.Forms.DockStyle.Fill;
             this.usrManagePeople.IsSearchTextBoxVisible = true;
-            this.usrManagePeople.Location = new System.Drawing.Point(0, 0);
+            this.usrManagePeople.Location = new System.Drawing.Point(10, 10);
             this.usrManagePeople.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.usrManagePeople.Name = "usrManagePeople";
             this.usrManagePeople.NumericFilterFields = null;
@@ -50,7 +50,7 @@
             this.usrManagePeople.ScreenTitle = "Manage People";
             this.usrManagePeople.SearchText = "";
             this.usrManagePeople.SelectedFilterItem = null;
-            this.usrManagePeople.Size = new System.Drawing.Size(800, 450);
+            this.usrManagePeople.Size = new System.Drawing.Size(780, 430);
             this.usrManagePeople.TabIndex = 0;
             this.usrManagePeople.Load += new System.EventHandler(this.usrManagePeople_Load);
             // 
@@ -58,15 +58,15 @@
             // 
             this.pnlGenderFilter.Controls.Add(this.rdFemale);
             this.pnlGenderFilter.Controls.Add(this.rdMale);
-            this.pnlGenderFilter.Location = new System.Drawing.Point(215, 116);
+            this.pnlGenderFilter.Location = new System.Drawing.Point(237, 211);
             this.pnlGenderFilter.Name = "pnlGenderFilter";
-            this.pnlGenderFilter.Size = new System.Drawing.Size(200, 31);
-            this.pnlGenderFilter.TabIndex = 1;
+            this.pnlGenderFilter.Size = new System.Drawing.Size(200, 38);
+            this.pnlGenderFilter.TabIndex = 3;
             // 
             // rdFemale
             // 
             this.rdFemale.AutoSize = true;
-            this.rdFemale.Location = new System.Drawing.Point(119, 3);
+            this.rdFemale.Location = new System.Drawing.Point(119, -2);
             this.rdFemale.Name = "rdFemale";
             this.rdFemale.Size = new System.Drawing.Size(78, 24);
             this.rdFemale.TabIndex = 1;
@@ -78,7 +78,7 @@
             // rdMale
             // 
             this.rdMale.AutoSize = true;
-            this.rdMale.Location = new System.Drawing.Point(3, 3);
+            this.rdMale.Location = new System.Drawing.Point(3, -2);
             this.rdMale.Name = "rdMale";
             this.rdMale.Size = new System.Drawing.Size(63, 24);
             this.rdMale.TabIndex = 0;
@@ -90,10 +90,10 @@
             // dtpDateFilter
             // 
             this.dtpDateFilter.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
-            this.dtpDateFilter.Location = new System.Drawing.Point(215, 116);
+            this.dtpDateFilter.Location = new System.Drawing.Point(234, 178);
             this.dtpDateFilter.Name = "dtpDateFilter";
             this.dtpDateFilter.Size = new System.Drawing.Size(200, 27);
-            this.dtpDateFilter.TabIndex = 2;
+            this.dtpDateFilter.TabIndex = 4;
             this.dtpDateFilter.ValueChanged += new System.EventHandler(this.dtpDateFilter_ValueChanged);
             // 
             // frmListPeople

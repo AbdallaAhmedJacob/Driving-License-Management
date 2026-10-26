@@ -1,5 +1,5 @@
 ﻿using DataAccessTest;
-using DVLD.Business.Countries;
+using DVLD.Business.Country;
 using System;
 
 
@@ -15,7 +15,7 @@ namespace DVLD.Business.Test
             //clsPersonTest.UpdatePerson_EditPersonData_Return1();
             //clsPersonTest.IsExistNationalNo_ReturnBoolean("N009");
             //clsPersonTest.Delete_SetPersonID_ReturnBoolean(10);
-            clsCountriesTest.GetAllContris_ReturnAllCountries();
+            clsCountryTest.GetAllContris_ReturnAllCountry();
         }
     }
 }

@@ -97,7 +97,7 @@ namespace DVLD.WinForms.UI
         {
             panel.BackColor = clsTheme.Surface;
             panel.ForeColor = clsTheme.TextPrimary;
-            panel.Padding =new Padding(10);
+            panel.Padding = new Padding(10);
         }
 
 

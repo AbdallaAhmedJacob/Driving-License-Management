@@ -65,9 +65,9 @@
             // pnlFilterContainer
             // 
             this.pnlFilterContainer.Controls.Add(this.txtSearch);
-            this.pnlFilterContainer.Location = new System.Drawing.Point(206, 13);
+            this.pnlFilterContainer.Location = new System.Drawing.Point(206, 2);
             this.pnlFilterContainer.Name = "pnlFilterContainer";
-            this.pnlFilterContainer.Size = new System.Drawing.Size(200, 24);
+            this.pnlFilterContainer.Size = new System.Drawing.Size(200, 52);
             this.pnlFilterContainer.TabIndex = 1;
             // 
             // txtSearch
@@ -86,7 +86,7 @@
             this.cbFilterBy.Anchor = System.Windows.Forms.AnchorStyles.Left;
             this.cbFilterBy.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cbFilterBy.FormattingEnabled = true;
-            this.cbFilterBy.Location = new System.Drawing.Point(79, 13);
+            this.cbFilterBy.Location = new System.Drawing.Point(79, 12);
             this.cbFilterBy.Name = "cbFilterBy";
             this.cbFilterBy.Size = new System.Drawing.Size(121, 24);
             this.cbFilterBy.TabIndex = 0;
@@ -97,7 +97,7 @@
             // 
             this.lblFilterBy.Anchor = System.Windows.Forms.AnchorStyles.Left;
             this.lblFilterBy.AutoSize = true;
-            this.lblFilterBy.Location = new System.Drawing.Point(14, 17);
+            this.lblFilterBy.Location = new System.Drawing.Point(14, 16);
             this.lblFilterBy.Name = "lblFilterBy";
             this.lblFilterBy.Size = new System.Drawing.Size(58, 16);
             this.lblFilterBy.TabIndex = 1;

@@ -1,14 +1,14 @@
 ﻿using System;
 using System.Data;
-using DVLD.DataAccess.CountriesDataAccess;
+using DVLD.DataAccess.CountryDataAccess;
 
-namespace DVLD.Business.Countries
+namespace DVLD.Business.Country
 {
-    public class clsCountries
+    public class clsCountry
     {
-        public static DataTable GetAllCountries()
+        public static DataTable GetAllCountry()
         {
-            return clsCountriesDataAccess.GetAllCountries();
+            return clsCountryDataAccess.GetAllCountry();
         }
     }
 }

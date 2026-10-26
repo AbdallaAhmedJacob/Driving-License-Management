@@ -15,7 +15,7 @@ CREATE TABLE tblPeople (
     SecondName NVARCHAR(50) NOT NULL,
     ThirdName NVARCHAR(50) NOT NULL,
     LastName NVARCHAR(50) NOT NULL,
-    Gendor CHAR(1) NOT NULL,
+    Gender CHAR(1) NOT NULL,
     DateOfBirth DATE NOT NULL,
     Address NVARCHAR(500) NOT NULL,
     PhoneNumber VARCHAR(20) NOT NULL,

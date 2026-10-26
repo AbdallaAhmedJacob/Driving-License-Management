@@ -2,7 +2,7 @@ USE DVLD_DB
 GO
 
 ALTER TABLE tblPeople
-ADD CONSTRAINT CK_tblPeople_Gendor CHECK (Gendor IN ('M', 'F'));
+ADD CONSTRAINT CK_tblPeople_Gender CHECK (Gendor IN ('M', 'F'));
 GO
 
 ALTER TABLE tblApplications

@@ -10,9 +10,9 @@ SELECT P.PersonID "Person ID",
 	   P.ThirdName "Third Name",
 	   P.LastName "Last Name",
 	   CASE
-	       WHEN P.Gendor = 'M' THEN 'Male'
-	       WHEN P.Gendor = 'F' THEN 'Female'
-	   END "Gendor",
+	       WHEN P.Gender = 'M' THEN 'Male'
+	       WHEN P.Gender = 'F' THEN 'Female'
+	   END "Gender",
 	   P.DateOfBirth "Date Of Birth",
 	   C.CountryName "Nationality",
 	   P.PhoneNumber "Phone",

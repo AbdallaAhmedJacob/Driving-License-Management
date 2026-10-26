@@ -51,7 +51,7 @@
             this.txtFerstName = new System.Windows.Forms.TextBox();
             this.label1 = new System.Windows.Forms.Label();
             this.dtpDateOfBirth = new System.Windows.Forms.DateTimePicker();
-            this.cbCountries = new System.Windows.Forms.ComboBox();
+            this.cbCountry = new System.Windows.Forms.ComboBox();
             this.pbImage = new System.Windows.Forms.PictureBox();
             this.lklblChangeImage = new System.Windows.Forms.LinkLabel();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
@@ -74,7 +74,7 @@
             this.gpContainer.Controls.Add(this.groupBox2);
             this.gpContainer.Controls.Add(this.lklblChangeImage);
             this.gpContainer.Controls.Add(this.pbImage);
-            this.gpContainer.Controls.Add(this.cbCountries);
+            this.gpContainer.Controls.Add(this.cbCountry);
             this.gpContainer.Controls.Add(this.dtpDateOfBirth);
             this.gpContainer.Controls.Add(this.txtNationalNO);
             this.gpContainer.Controls.Add(this.label9);
@@ -295,14 +295,14 @@
             this.dtpDateOfBirth.Size = new System.Drawing.Size(307, 22);
             this.dtpDateOfBirth.TabIndex = 2;
             // 
-            // cbCountries
+            // cbCountry
             // 
-            this.cbCountries.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.cbCountries.FormattingEnabled = true;
-            this.cbCountries.Location = new System.Drawing.Point(636, 234);
-            this.cbCountries.Name = "cbCountries";
-            this.cbCountries.Size = new System.Drawing.Size(163, 24);
-            this.cbCountries.TabIndex = 5;
+            this.cbCountry.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cbCountry.FormattingEnabled = true;
+            this.cbCountry.Location = new System.Drawing.Point(636, 234);
+            this.cbCountry.Name = "cbCountry";
+            this.cbCountry.Size = new System.Drawing.Size(163, 24);
+            this.cbCountry.TabIndex = 5;
             // 
             // pbImage
             // 
@@ -422,7 +422,7 @@
         private System.Windows.Forms.DateTimePicker dtpDateOfBirth;
         private System.Windows.Forms.LinkLabel lklblChangeImage;
         private System.Windows.Forms.PictureBox pbImage;
-        private System.Windows.Forms.ComboBox cbCountries;
+        private System.Windows.Forms.ComboBox cbCountry;
         private System.Windows.Forms.GroupBox groupBox2;
         private System.Windows.Forms.RichTextBox rtbAddress;
         private System.Windows.Forms.Button btnClose;

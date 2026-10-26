@@ -102,11 +102,10 @@ namespace DVLD.WinForms.Forms.People
                 switch (filterColumn)
                 {
                     case "Person ID":
-                        filterValue = usrManagePeople.SearchText.Trim();
-
                         usrManagePeople.IsSearchTextBoxVisible = true;
-                        if (filterValue is int)
-                            _dtPeople.DefaultView.RowFilter = $"[{filterColumn}] = {filterValue}";
+                        filterValue = usrManagePeople.SearchText.Trim();
+                        if(int.TryParse(filterValue, out int ID))
+                            _dtPeople.DefaultView.RowFilter = $"[{filterColumn}] = {ID}";
                         break;
                     case "Gender":
                         if (rdMale.Checked)
@@ -160,7 +159,10 @@ namespace DVLD.WinForms.Forms.People
 
         private void ShowDetails_Click(object sender, EventArgs e)
         {
-            MessageBox.Show("Show Details Will Be Here");
+            //MessageBox.Show("Show Details Will Be Here");
+
+            Form frmDetails = new frmAddEditPerson(2);
+            frmDetails.ShowDialog();
         }
         private void AddNewPerson_Click(object sender, EventArgs e)
         {

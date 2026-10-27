@@ -1,5 +1,6 @@
 ﻿using DVLD.Business.People;
 using DVLD.WinForms.UI;
+using DVLD.WinForms.Cntrols.People;
 using System;
 using System.Data;
 using System.Windows.Forms;
@@ -161,9 +162,20 @@ namespace DVLD.WinForms.Forms.People
         {
             //MessageBox.Show("Show Details Will Be Here");
 
-            Form frmDetails = new frmAddEditPerson(2);
-            frmDetails.ShowDialog();
+            _OpenPersonCard(usrManagePeople.SelectedID, usrPerson.enMode.ShowDetails);
         }
+
+        private void _OpenPersonCard(int personID, usrPerson.enMode mode)
+        {
+            using (var frm = new frmPersonCard(personID, mode))
+            {
+                if (frm.ShowDialog(this) == DialogResult.OK)
+                {
+                    LoadPeopleData();
+                }
+            }
+        }
+
         private void AddNewPerson_Click(object sender, EventArgs e)
         {
             MessageBox.Show("Add New Person Will Be Here");

@@ -29,13 +29,21 @@
         private void InitializeComponent()
         {
             this.gpContainer = new System.Windows.Forms.GroupBox();
-            this.txtNationalNO = new System.Windows.Forms.TextBox();
+            this.btnClose = new System.Windows.Forms.Button();
+            this.btnSave = new System.Windows.Forms.Button();
+            this.groupBox2 = new System.Windows.Forms.GroupBox();
+            this.txtAddress = new System.Windows.Forms.RichTextBox();
+            this.linkSetImage = new System.Windows.Forms.LinkLabel();
+            this.pbImage = new System.Windows.Forms.PictureBox();
+            this.cbCountry = new System.Windows.Forms.ComboBox();
+            this.dtpDateOfBirth = new System.Windows.Forms.DateTimePicker();
+            this.txtNationalNo = new System.Windows.Forms.TextBox();
             this.label9 = new System.Windows.Forms.Label();
             this.label8 = new System.Windows.Forms.Label();
             this.label7 = new System.Windows.Forms.Label();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
             this.txtEmail = new System.Windows.Forms.TextBox();
-            this.txtPhonNumber = new System.Windows.Forms.TextBox();
+            this.txtPhoneNumber = new System.Windows.Forms.TextBox();
             this.label6 = new System.Windows.Forms.Label();
             this.label5 = new System.Windows.Forms.Label();
             this.gbGender = new System.Windows.Forms.GroupBox();
@@ -48,23 +56,15 @@
             this.label3 = new System.Windows.Forms.Label();
             this.txtSecondName = new System.Windows.Forms.TextBox();
             this.label2 = new System.Windows.Forms.Label();
-            this.txtFerstName = new System.Windows.Forms.TextBox();
+            this.txtFirstName = new System.Windows.Forms.TextBox();
             this.label1 = new System.Windows.Forms.Label();
-            this.dtpDateOfBirth = new System.Windows.Forms.DateTimePicker();
-            this.cbCountry = new System.Windows.Forms.ComboBox();
-            this.pbImage = new System.Windows.Forms.PictureBox();
-            this.lklblChangeImage = new System.Windows.Forms.LinkLabel();
-            this.groupBox2 = new System.Windows.Forms.GroupBox();
-            this.rtbAddress = new System.Windows.Forms.RichTextBox();
-            this.btnSave = new System.Windows.Forms.Button();
-            this.btnClose = new System.Windows.Forms.Button();
             this.usrHeader = new DVLD.WinForms.Cntrols.usrHeader();
             this.gpContainer.SuspendLayout();
+            this.groupBox2.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pbImage)).BeginInit();
             this.groupBox1.SuspendLayout();
             this.gbGender.SuspendLayout();
             this.gbFullName.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.pbImage)).BeginInit();
-            this.groupBox2.SuspendLayout();
             this.SuspendLayout();
             // 
             // gpContainer
@@ -72,11 +72,11 @@
             this.gpContainer.Controls.Add(this.btnClose);
             this.gpContainer.Controls.Add(this.btnSave);
             this.gpContainer.Controls.Add(this.groupBox2);
-            this.gpContainer.Controls.Add(this.lklblChangeImage);
+            this.gpContainer.Controls.Add(this.linkSetImage);
             this.gpContainer.Controls.Add(this.pbImage);
             this.gpContainer.Controls.Add(this.cbCountry);
             this.gpContainer.Controls.Add(this.dtpDateOfBirth);
-            this.gpContainer.Controls.Add(this.txtNationalNO);
+            this.gpContainer.Controls.Add(this.txtNationalNo);
             this.gpContainer.Controls.Add(this.label9);
             this.gpContainer.Controls.Add(this.label8);
             this.gpContainer.Controls.Add(this.label7);
@@ -92,12 +92,90 @@
             this.gpContainer.TabStop = false;
             this.gpContainer.Text = "ID: N/A";
             // 
-            // txtNationalNO
+            // btnClose
             // 
-            this.txtNationalNO.Location = new System.Drawing.Point(108, 172);
-            this.txtNationalNO.Name = "txtNationalNO";
-            this.txtNationalNO.Size = new System.Drawing.Size(266, 22);
-            this.txtNationalNO.TabIndex = 1;
+            this.btnClose.Location = new System.Drawing.Point(650, 384);
+            this.btnClose.Name = "btnClose";
+            this.btnClose.Size = new System.Drawing.Size(140, 38);
+            this.btnClose.TabIndex = 9;
+            this.btnClose.Tag = "Secondary";
+            this.btnClose.Text = "Close";
+            this.btnClose.UseVisualStyleBackColor = true;
+            this.btnClose.Click += new System.EventHandler(this.btnClose_Click);
+            // 
+            // btnSave
+            // 
+            this.btnSave.Location = new System.Drawing.Point(835, 384);
+            this.btnSave.Name = "btnSave";
+            this.btnSave.Size = new System.Drawing.Size(140, 38);
+            this.btnSave.TabIndex = 8;
+            this.btnSave.Tag = "Primary";
+            this.btnSave.Text = "Save";
+            this.btnSave.UseVisualStyleBackColor = true;
+            this.btnSave.Click += new System.EventHandler(this.btnSave_Click);
+            // 
+            // groupBox2
+            // 
+            this.groupBox2.Controls.Add(this.txtAddress);
+            this.groupBox2.Location = new System.Drawing.Point(387, 278);
+            this.groupBox2.Name = "groupBox2";
+            this.groupBox2.Size = new System.Drawing.Size(415, 58);
+            this.groupBox2.TabIndex = 6;
+            this.groupBox2.TabStop = false;
+            this.groupBox2.Text = "Address";
+            // 
+            // txtAddress
+            // 
+            this.txtAddress.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.txtAddress.Location = new System.Drawing.Point(3, 18);
+            this.txtAddress.Name = "txtAddress";
+            this.txtAddress.Size = new System.Drawing.Size(409, 37);
+            this.txtAddress.TabIndex = 0;
+            this.txtAddress.Text = "";
+            // 
+            // linkSetImage
+            // 
+            this.linkSetImage.AutoSize = true;
+            this.linkSetImage.Location = new System.Drawing.Point(868, 345);
+            this.linkSetImage.Name = "linkSetImage";
+            this.linkSetImage.Size = new System.Drawing.Size(68, 16);
+            this.linkSetImage.TabIndex = 7;
+            this.linkSetImage.TabStop = true;
+            this.linkSetImage.Text = "Set Image";
+            // 
+            // pbImage
+            // 
+            this.pbImage.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.pbImage.Location = new System.Drawing.Point(820, 156);
+            this.pbImage.Name = "pbImage";
+            this.pbImage.Size = new System.Drawing.Size(150, 180);
+            this.pbImage.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.pbImage.TabIndex = 11;
+            this.pbImage.TabStop = false;
+            // 
+            // cbCountry
+            // 
+            this.cbCountry.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cbCountry.FormattingEnabled = true;
+            this.cbCountry.Location = new System.Drawing.Point(636, 234);
+            this.cbCountry.Name = "cbCountry";
+            this.cbCountry.Size = new System.Drawing.Size(163, 24);
+            this.cbCountry.TabIndex = 5;
+            // 
+            // dtpDateOfBirth
+            // 
+            this.dtpDateOfBirth.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
+            this.dtpDateOfBirth.Location = new System.Drawing.Point(492, 172);
+            this.dtpDateOfBirth.Name = "dtpDateOfBirth";
+            this.dtpDateOfBirth.Size = new System.Drawing.Size(307, 22);
+            this.dtpDateOfBirth.TabIndex = 2;
+            // 
+            // txtNationalNo
+            // 
+            this.txtNationalNo.Location = new System.Drawing.Point(108, 172);
+            this.txtNationalNo.Name = "txtNationalNo";
+            this.txtNationalNo.Size = new System.Drawing.Size(266, 22);
+            this.txtNationalNo.TabIndex = 1;
             // 
             // label9
             // 
@@ -129,7 +207,7 @@
             // groupBox1
             // 
             this.groupBox1.Controls.Add(this.txtEmail);
-            this.groupBox1.Controls.Add(this.txtPhonNumber);
+            this.groupBox1.Controls.Add(this.txtPhoneNumber);
             this.groupBox1.Controls.Add(this.label6);
             this.groupBox1.Controls.Add(this.label5);
             this.groupBox1.Location = new System.Drawing.Point(5, 217);
@@ -146,12 +224,12 @@
             this.txtEmail.Size = new System.Drawing.Size(298, 22);
             this.txtEmail.TabIndex = 9;
             // 
-            // txtPhonNumber
+            // txtPhoneNumber
             // 
-            this.txtPhonNumber.Location = new System.Drawing.Point(71, 32);
-            this.txtPhonNumber.Name = "txtPhonNumber";
-            this.txtPhonNumber.Size = new System.Drawing.Size(298, 22);
-            this.txtPhonNumber.TabIndex = 8;
+            this.txtPhoneNumber.Location = new System.Drawing.Point(71, 32);
+            this.txtPhoneNumber.Name = "txtPhoneNumber";
+            this.txtPhoneNumber.Size = new System.Drawing.Size(298, 22);
+            this.txtPhoneNumber.TabIndex = 8;
             // 
             // label6
             // 
@@ -167,9 +245,9 @@
             this.label5.AutoSize = true;
             this.label5.Location = new System.Drawing.Point(6, 32);
             this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(45, 16);
+            this.label5.Size = new System.Drawing.Size(46, 16);
             this.label5.TabIndex = 0;
-            this.label5.Text = "phone";
+            this.label5.Text = "Phone";
             // 
             // gbGender
             // 
@@ -177,7 +255,7 @@
             this.gbGender.Controls.Add(this.rbMale);
             this.gbGender.Location = new System.Drawing.Point(387, 217);
             this.gbGender.Name = "gbGender";
-            this.gbGender.Size = new System.Drawing.Size(159, 55);
+            this.gbGender.Size = new System.Drawing.Size(171, 55);
             this.gbGender.TabIndex = 4;
             this.gbGender.TabStop = false;
             this.gbGender.Text = "Gender ";
@@ -212,7 +290,7 @@
             this.gbFullName.Controls.Add(this.label3);
             this.gbFullName.Controls.Add(this.txtSecondName);
             this.gbFullName.Controls.Add(this.label2);
-            this.gbFullName.Controls.Add(this.txtFerstName);
+            this.gbFullName.Controls.Add(this.txtFirstName);
             this.gbFullName.Controls.Add(this.label1);
             this.gbFullName.Dock = System.Windows.Forms.DockStyle.Top;
             this.gbFullName.Location = new System.Drawing.Point(5, 20);
@@ -271,12 +349,12 @@
             this.label2.TabIndex = 2;
             this.label2.Text = "Second";
             // 
-            // txtFerstName
+            // txtFirstName
             // 
-            this.txtFerstName.Location = new System.Drawing.Point(13, 55);
-            this.txtFerstName.Name = "txtFerstName";
-            this.txtFerstName.Size = new System.Drawing.Size(149, 22);
-            this.txtFerstName.TabIndex = 1;
+            this.txtFirstName.Location = new System.Drawing.Point(13, 55);
+            this.txtFirstName.Name = "txtFirstName";
+            this.txtFirstName.Size = new System.Drawing.Size(149, 22);
+            this.txtFirstName.TabIndex = 1;
             // 
             // label1
             // 
@@ -286,80 +364,6 @@
             this.label1.Size = new System.Drawing.Size(32, 16);
             this.label1.TabIndex = 0;
             this.label1.Text = "First";
-            // 
-            // dtpDateOfBirth
-            // 
-            this.dtpDateOfBirth.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
-            this.dtpDateOfBirth.Location = new System.Drawing.Point(492, 172);
-            this.dtpDateOfBirth.Name = "dtpDateOfBirth";
-            this.dtpDateOfBirth.Size = new System.Drawing.Size(307, 22);
-            this.dtpDateOfBirth.TabIndex = 2;
-            // 
-            // cbCountry
-            // 
-            this.cbCountry.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.cbCountry.FormattingEnabled = true;
-            this.cbCountry.Location = new System.Drawing.Point(636, 234);
-            this.cbCountry.Name = "cbCountry";
-            this.cbCountry.Size = new System.Drawing.Size(163, 24);
-            this.cbCountry.TabIndex = 5;
-            // 
-            // pbImage
-            // 
-            this.pbImage.Location = new System.Drawing.Point(820, 156);
-            this.pbImage.Name = "pbImage";
-            this.pbImage.Size = new System.Drawing.Size(150, 180);
-            this.pbImage.TabIndex = 11;
-            this.pbImage.TabStop = false;
-            // 
-            // lklblChangeImage
-            // 
-            this.lklblChangeImage.AutoSize = true;
-            this.lklblChangeImage.Location = new System.Drawing.Point(868, 345);
-            this.lklblChangeImage.Name = "lklblChangeImage";
-            this.lklblChangeImage.Size = new System.Drawing.Size(68, 16);
-            this.lklblChangeImage.TabIndex = 7;
-            this.lklblChangeImage.TabStop = true;
-            this.lklblChangeImage.Text = "linkLabel1";
-            // 
-            // groupBox2
-            // 
-            this.groupBox2.Controls.Add(this.rtbAddress);
-            this.groupBox2.Location = new System.Drawing.Point(387, 278);
-            this.groupBox2.Name = "groupBox2";
-            this.groupBox2.Size = new System.Drawing.Size(415, 58);
-            this.groupBox2.TabIndex = 6;
-            this.groupBox2.TabStop = false;
-            this.groupBox2.Text = "Address";
-            // 
-            // rtbAddress
-            // 
-            this.rtbAddress.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.rtbAddress.Location = new System.Drawing.Point(3, 18);
-            this.rtbAddress.Name = "rtbAddress";
-            this.rtbAddress.Size = new System.Drawing.Size(409, 37);
-            this.rtbAddress.TabIndex = 0;
-            this.rtbAddress.Text = "";
-            // 
-            // btnSave
-            // 
-            this.btnSave.Location = new System.Drawing.Point(835, 384);
-            this.btnSave.Name = "btnSave";
-            this.btnSave.Size = new System.Drawing.Size(140, 38);
-            this.btnSave.TabIndex = 8;
-            this.btnSave.Tag = "Primary";
-            this.btnSave.Text = "Save";
-            this.btnSave.UseVisualStyleBackColor = true;
-            // 
-            // btnClose
-            // 
-            this.btnClose.Location = new System.Drawing.Point(650, 384);
-            this.btnClose.Name = "btnClose";
-            this.btnClose.Size = new System.Drawing.Size(140, 38);
-            this.btnClose.TabIndex = 9;
-            this.btnClose.Tag = "Secondary";
-            this.btnClose.Text = "Close";
-            this.btnClose.UseVisualStyleBackColor = true;
             // 
             // usrHeader
             // 
@@ -382,14 +386,14 @@
             this.Size = new System.Drawing.Size(1000, 500);
             this.gpContainer.ResumeLayout(false);
             this.gpContainer.PerformLayout();
+            this.groupBox2.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.pbImage)).EndInit();
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();
             this.gbGender.ResumeLayout(false);
             this.gbGender.PerformLayout();
             this.gbFullName.ResumeLayout(false);
             this.gbFullName.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.pbImage)).EndInit();
-            this.groupBox2.ResumeLayout(false);
             this.ResumeLayout(false);
 
         }
@@ -405,26 +409,26 @@
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.TextBox txtSecondName;
         private System.Windows.Forms.Label label2;
-        private System.Windows.Forms.TextBox txtFerstName;
+        private System.Windows.Forms.TextBox txtFirstName;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.GroupBox gbGender;
         private System.Windows.Forms.RadioButton rbFemale;
         private System.Windows.Forms.RadioButton rbMale;
         private System.Windows.Forms.GroupBox groupBox1;
         private System.Windows.Forms.TextBox txtEmail;
-        private System.Windows.Forms.TextBox txtPhonNumber;
+        private System.Windows.Forms.TextBox txtPhoneNumber;
         private System.Windows.Forms.Label label6;
         private System.Windows.Forms.Label label5;
-        private System.Windows.Forms.TextBox txtNationalNO;
+        private System.Windows.Forms.TextBox txtNationalNo;
         private System.Windows.Forms.Label label9;
         private System.Windows.Forms.Label label8;
         private System.Windows.Forms.Label label7;
         private System.Windows.Forms.DateTimePicker dtpDateOfBirth;
-        private System.Windows.Forms.LinkLabel lklblChangeImage;
+        private System.Windows.Forms.LinkLabel linkSetImage;
         private System.Windows.Forms.PictureBox pbImage;
         private System.Windows.Forms.ComboBox cbCountry;
         private System.Windows.Forms.GroupBox groupBox2;
-        private System.Windows.Forms.RichTextBox rtbAddress;
+        private System.Windows.Forms.RichTextBox txtAddress;
         private System.Windows.Forms.Button btnClose;
         private System.Windows.Forms.Button btnSave;
     }

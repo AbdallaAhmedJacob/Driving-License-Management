@@ -1,6 +1,6 @@
 ﻿namespace DVLD.WinForms.Forms.People
 {
-    partial class frmAddEditPerson
+    partial class frmPersonCard
     {
         /// <summary>
         /// Required designer variable.
@@ -33,20 +33,27 @@
             // 
             // usrPerson
             // 
-            this.usrPerson.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.usrPerson.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.usrPerson.Location = new System.Drawing.Point(0, 0);
             this.usrPerson.Name = "usrPerson";
-            this.usrPerson.Size = new System.Drawing.Size(800, 450);
+            this.usrPerson.Padding = new System.Windows.Forms.Padding(10);
+            this.usrPerson.Size = new System.Drawing.Size(1019, 500);
             this.usrPerson.TabIndex = 0;
             // 
             // frmAddEditPerson
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(800, 450);
+            this.ClientSize = new System.Drawing.Size(1031, 501);
             this.Controls.Add(this.usrPerson);
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
+            this.MaximizeBox = false;
             this.Name = "frmAddEditPerson";
-            this.Text = "frmAddEditPerson";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
+            this.Text = "Add/Edit Person";
+            this.Load += new System.EventHandler(this.frmAddEditPerson_Load);
             this.ResumeLayout(false);
 
         }

@@ -64,11 +64,11 @@
     <Compile Include="Cntrols\usrManagementScreen.Designer.cs">
       <DependentUpon>usrManagementScreen.cs</DependentUpon>
     </Compile>
-    <Compile Include="Forms\People\frmAddEditPerson.cs">
+    <Compile Include="Forms\People\frmPersonCard.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Forms\People\frmAddEditPerson.Designer.cs">
-      <DependentUpon>frmAddEditPerson.cs</DependentUpon>
+    <Compile Include="Forms\People\frmPersonCard.Designer.cs">
+      <DependentUpon>frmPersonCard.cs</DependentUpon>
     </Compile>
     <Compile Include="Forms\People\frmListPeople.cs">
       <SubType>Form</SubType>
@@ -107,8 +107,8 @@
     <EmbeddedResource Include="Cntrols\usrManagementScreen.resx">
       <DependentUpon>usrManagementScreen.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Forms\People\frmAddEditPerson.resx">
-      <DependentUpon>frmAddEditPerson.cs</DependentUpon>
+    <EmbeddedResource Include="Forms\People\frmPersonCard.resx">
+      <DependentUpon>frmPersonCard.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Forms\People\frmListPeople.resx">
       <DependentUpon>frmListPeople.cs</DependentUpon>

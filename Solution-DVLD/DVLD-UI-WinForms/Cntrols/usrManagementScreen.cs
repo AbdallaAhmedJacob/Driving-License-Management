@@ -60,6 +60,18 @@ namespace DVLD.WinForms.Cntrols
 
         public string[] NumericFilterFields { get; set; }
 
+        public int SelectedID
+        {
+            get
+            {
+                if (dgvResults.CurrentRow != null)
+                {
+                    return Convert.ToInt32(dgvResults.CurrentRow.Cells["Person ID"].Value);
+                }
+                return -1;
+            }
+        }
+
         public void SetFilterOptions(string[] options)
         {
             cbFilterBy.Items.Clear();

@@ -16,6 +16,10 @@ namespace DVLD.WinForms.Forms.People
             InitializeComponent();
         }
 
+        // ===================================
+        // Load
+        // ===================================
+
         private void usrManagePeople_Load(object sender, EventArgs e)
         {
             pnlGenderFilter.Visible = false;
@@ -35,7 +39,27 @@ namespace DVLD.WinForms.Forms.People
 
             usrManagePeople.SearchTextChanged += usrManagePeople_SearchTextChanged;
             usrManagePeople.FilterByIndexChanged += usrManagePeople_FilterByIndexChanged;
+            usrManagePeople.AddNewClick += AddNewPerson_Click;
         }
+
+        private void PopulateContextMenuStrip()
+        {
+            ContextMenuStrip peopleMenu = new ContextMenuStrip();
+            peopleMenu.Items.Add("Show Details", null, ShowDetails_Click);
+            peopleMenu.Items.Add("-");
+            peopleMenu.Items.Add("Add New Person", null, AddNewPerson_Click);
+            peopleMenu.Items.Add("Edit", null, Edit_Click);
+            peopleMenu.Items.Add("Delete", null, Delete_Click);
+            peopleMenu.Items.Add("-");
+            peopleMenu.Items.Add("Send Email", null, SendEmail_Click);
+            peopleMenu.Items.Add("Phone Call", null, PhoneCall_Click);
+
+            usrManagePeople.GridContextMenu = peopleMenu;
+        }
+
+        // ===================================
+        // Filter
+        // ===================================
 
         private void usrManagePeople_SearchTextChanged(object sender, EventArgs e)
         {
@@ -129,22 +153,6 @@ namespace DVLD.WinForms.Forms.People
             usrManagePeople.RecordsCount = _dtPeople.DefaultView.Count;
         }
 
-        private void PopulateContextMenuStrip()
-        {
-            ContextMenuStrip peopleMenu = new ContextMenuStrip();
-            peopleMenu.Items.Add("Show Details", null, ShowDetails_Click);
-            peopleMenu.Items.Add("-"); 
-            peopleMenu.Items.Add("Add New Person", null, AddNewPerson_Click);
-            peopleMenu.Items.Add("Edit", null, Edit_Click);
-            peopleMenu.Items.Add("Delete", null, Delete_Click);
-            peopleMenu.Items.Add("-");
-            peopleMenu.Items.Add("Send Email", null, SendEmail_Click);
-            peopleMenu.Items.Add("Phone Call", null, PhoneCall_Click);
-
-            usrManagePeople.GridContextMenu = peopleMenu;
-        }
-
-
         private void dtpDateFilter_ValueChanged(object sender, EventArgs e)
         {
             ApplyFilter();
@@ -157,14 +165,9 @@ namespace DVLD.WinForms.Forms.People
                 ApplyFilter();
             }
         }
-
-        private void ShowDetails_Click(object sender, EventArgs e)
-        {
-            //MessageBox.Show("Show Details Will Be Here");
-
-            _OpenPersonCard(usrManagePeople.SelectedID, usrPerson.enMode.ShowDetails);
-        }
-
+        // ===================================
+        // Manage Person
+        // ===================================
         private void _OpenPersonCard(int personID, usrPerson.enMode mode)
         {
             using (var frm = new frmPersonCard(personID, mode))
@@ -176,9 +179,18 @@ namespace DVLD.WinForms.Forms.People
             }
         }
 
+        private void ShowDetails_Click(object sender, EventArgs e)
+        {
+            //MessageBox.Show("Show Details Will Be Here");
+
+            _OpenPersonCard(usrManagePeople.SelectedID, usrPerson.enMode.ShowDetails);
+        }
+
         private void AddNewPerson_Click(object sender, EventArgs e)
         {
-            MessageBox.Show("Add New Person Will Be Here");
+            //MessageBox.Show("Add New Person Will Be Here");
+
+            _OpenPersonCard(-1, usrPerson.enMode.AddNew);
         }
         private void Edit_Click(object sender, EventArgs e)
         {

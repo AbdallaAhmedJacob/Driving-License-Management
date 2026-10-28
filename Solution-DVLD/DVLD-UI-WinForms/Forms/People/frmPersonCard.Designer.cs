@@ -53,7 +53,7 @@
             this.Name = "frmAddEditPerson";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
             this.Text = "Add/Edit Person";
-            this.Load += new System.EventHandler(this.frmAddEditPerson_Load);
+            this.Load += new System.EventHandler(this.frmPersonCard_Load);
             this.ResumeLayout(false);
 
         }

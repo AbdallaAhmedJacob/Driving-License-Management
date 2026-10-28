@@ -4,6 +4,7 @@ using DVLD.WinForms.Forms.People;
 using DVLD.WinForms.UI;
 using System;
 using System.Data;
+using System.Runtime.Remoting.Messaging;
 using System.Windows.Forms;
 
 namespace DVLD.WinForms.Cntrols.People
@@ -13,14 +14,17 @@ namespace DVLD.WinForms.Cntrols.People
         public enum enMode { AddNew = 0, Update = 1, ShowDetails = 2 };
 
         private enMode _Mode = enMode.AddNew;
-        private int _PersonID = -1;
-        private clsPerson _Person;
+        private clsPerson _Person = new clsPerson();
         public usrPerson()
         {
             InitializeComponent();
             clsUIHelper.ApplyTheme(this);
             _Load_usrPerson();
         }
+
+        // ===================================
+        // Load
+        // ===================================
 
         private void _Load_usrPerson()
         {
@@ -32,7 +36,6 @@ namespace DVLD.WinForms.Cntrols.People
 
         public void LoadInfo(int personID, enMode mode)
         {
-            _PersonID = personID;
             _Mode = mode;
 
             switch (_Mode)
@@ -40,20 +43,77 @@ namespace DVLD.WinForms.Cntrols.People
                 case enMode.AddNew:
                     usrHeader.Text = "Add New Person";
                     _ClearFields();
+                    btnSave.Visible = true;
+                    linkSetImage.Visible = true;
                     break;
-
                 case enMode.Update:
                     usrHeader.Text = "Update Person Info";
-                    _LoadPersonData(_PersonID);
+                    _LoadPersonData(personID);
                     _EnableControls(true);
+                    btnSave.Visible = true;
+                    linkSetImage.Text = "Change Image";
+                    linkSetImage.Visible = false;
                     break;
-
                 case enMode.ShowDetails:
-                    _LoadPersonData(_PersonID);
+                    _LoadPersonData(personID);
                     _ConfigureForShowDetails();
                     break;
             }
         }
+
+        private void _LoadPersonData(int personID)
+        {
+            if (personID < 0) return;
+
+            // ID
+            _Person = clsPerson.FindPersonByID(personID);
+
+            // Name
+
+            gpContainer.Text = $"ID: {personID}";
+            txtFirstName.Text = _Person.FirstName.ToString();
+            txtSecondName.Text = _Person.SecondName.ToString();
+            txtThirdName.Text = _Person.ThirdName.ToString();
+            txtLastName.Text = _Person.LastName.ToString();
+
+            // National NO
+
+            txtNationalNo.Text = _Person.NationalNo.ToString();
+
+            // Contact Info
+
+            txtPhoneNumber.Text = _Person.PhoneNumber.ToString();
+            txtEmail.Text = _Person.Email.ToString();
+
+            // Date Of Birth
+
+            dtpDateOfBirth.Value = _Person.DateOfBirth;
+
+            // Gender
+
+            if (_Person.Gender == "Male")
+                rbMale.Checked = true;
+            else
+                rbFemale.Checked = true;
+
+            // Country 
+
+            cbCountry.SelectedValue = _Person.CountryID;
+
+            // Address
+
+            txtAddress.Text = _Person.Address;
+
+            // Image
+
+            if (!string.IsNullOrEmpty(_Person.ImagePath))
+                pbImage.Load(_Person.ImagePath);
+
+        }
+
+        // ===================================
+        // Helpers
+        // ===================================
 
         private void _ClearFields()
         {
@@ -67,7 +127,7 @@ namespace DVLD.WinForms.Cntrols.People
             txtEmail.Clear();
             txtAddress.Clear();
 
-            dtpDateOfBirth.Value = DateTime.Now.AddYears(-16);
+            dtpDateOfBirth.Value.AddYears(-16);
             rbMale.Checked = false;
             rbFemale .Checked = false;
             cbCountry.SelectedValue = 190;
@@ -111,61 +171,11 @@ namespace DVLD.WinForms.Cntrols.People
             dtpDateOfBirth.MaxDate = DateTime.Now.AddYears(-16);
         }
 
-        private void _LoadPersonData(int personID)
-        {
-            if (personID < 0) return;
-
-            // ID
-            _Person = clsPerson.FindPersonByID(personID);
-
-            // Name
-
-            gpContainer.Text = $"ID: {personID}";
-            txtFirstName.Text = _Person.FirstName.ToString();
-            txtSecondName.Text = _Person.SecondName.ToString();
-            txtThirdName.Text = _Person.ThirdName.ToString();
-            txtLastName.Text = _Person.LastName.ToString();
-
-            // National NO
-
-            txtNationalNo.Text = _Person.NationalNo.ToString();
-
-            // Contact Info
-
-            txtPhoneNumber.Text = _Person.PhoneNumber.ToString();
-            txtEmail.Text = _Person.Email.ToString();
-
-            // Date Of Birth
-
-            dtpDateOfBirth.Value = _Person.DateOfBirth;
-
-            // Gender
-
-            if (_Person.Gender == "Male")
-                rbMale.Checked = true;
-            else
-                rbMale.Checked = true;
-
-            // Country 
-
-            cbCountry.SelectedValue = _Person.CountryID;
-
-            // Address
-
-            txtAddress.Text = _Person.Address;
-
-            // Image
-
-            if (!string.IsNullOrEmpty(_Person.ImagePath))
-                pbImage.Load(_Person.ImagePath);
-
-        }
-
         private void _ConfigureForShowDetails()
         {
             _Mode = enMode.ShowDetails;
 
-            _LoadPersonData(_PersonID);
+            _LoadPersonData(_Person.PersonID);
 
             txtFirstName.Enabled = false;
             txtSecondName.Enabled = false;
@@ -187,6 +197,74 @@ namespace DVLD.WinForms.Cntrols.People
              usrHeader.Title = "Person Details";
         }
 
+        private void _AddNewPerson()
+        {
+            // Name
+            _Person.FirstName = txtFirstName.Text ;
+            _Person.SecondName = txtSecondName.Text ;
+            _Person.ThirdName = txtThirdName.Text ;
+            _Person.LastName = txtLastName.Text;
+
+            // National NO
+            _Person.NationalNo = txtNationalNo.Text;
+
+            // Contact Info
+            _Person.PhoneNumber= txtPhoneNumber.Text;
+            _Person.Email = txtEmail.Text;
+
+            // Date Of Birth
+            _Person.DateOfBirth = dtpDateOfBirth.Value;
+
+            // Gender
+            if (rbMale.Checked)
+                _Person.Gender = "M";
+            else if (rbFemale.Checked)
+                _Person.Gender = "F";
+
+            // Country 
+            _Person.CountryID = (short)cbCountry.SelectedIndex;
+
+            // Address
+            _Person.Address = txtAddress.Text;
+
+            // Image
+
+            if (!string.IsNullOrEmpty(_Person.ImagePath))
+                _Person.ImagePath = pbImage.ImageLocation;
+
+        }
+
+        //private void _UpdatePerson()
+        //{
+
+        //}
+
+        private void _Save()
+        {
+            switch(_Mode)
+            {
+                case enMode.AddNew:
+                    _AddNewPerson();
+                    if (_Person.Save())
+                    {
+                        MessageBox.Show("Person Saved Saccessfuly");
+                        _Mode = enMode.Update;
+                        LoadInfo(_Person.PersonID, _Mode);
+                    }
+                    break;
+                    //case enMode.Update:
+                    //_UpdatePerson();
+                    //if (_Person.Save())
+                    //{
+                    //    MessageBox.Show("Person Updated Saccessfuly");
+                    //    _Mode = enMode.Update;
+                    //    LoadInfo(_Person.PersonID, _Mode);
+                    //}
+                    //break;
+            }
+        }
+        
+
         public event EventHandler CloseClick;
 
         private void btnClose_Click(object sender, EventArgs e)
@@ -199,8 +277,9 @@ namespace DVLD.WinForms.Cntrols.People
 
         private void btnSave_Click(object sender, EventArgs e)
         {
+            _Save();
             SavedClick?.Invoke(this, e);
-            this.FindForm()?.Close();
+            //this.FindForm()?.Close();
         }
     }
 }

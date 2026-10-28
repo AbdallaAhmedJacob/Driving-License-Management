@@ -18,7 +18,11 @@ namespace DVLD.WinForms.Forms.People
             usrPerson.SavedClick += (s, e) => this.DialogResult = DialogResult.OK;
         }
 
-        private void frmAddEditPerson_Load(object sender, EventArgs e)
+        // ===================================
+        // Manage Person
+        // ===================================
+
+        private void frmPersonCard_Load(object sender, EventArgs e)
         {
             usrPerson.LoadInfo(_PersonID, _Mode);
 

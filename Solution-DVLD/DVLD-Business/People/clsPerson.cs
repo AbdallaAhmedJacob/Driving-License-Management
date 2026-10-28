@@ -15,7 +15,7 @@ namespace DVLD.Business.People
         public enMode Mode = enMode.AddNew;
 
         static protected clsPerson _oldPerson;
-        private int PersonID { get; set; }
+        public int PersonID { get; set; }
         public string NationalNo { get; set; }
         public string FirstName { get; set; }
         public string SecondName { get; set; }

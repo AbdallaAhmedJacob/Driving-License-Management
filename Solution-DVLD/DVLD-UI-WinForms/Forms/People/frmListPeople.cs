@@ -200,7 +200,24 @@ namespace DVLD.WinForms.Forms.People
         }
         private void Delete_Click(object sender, EventArgs e)
         {
-            MessageBox.Show("Delete Will Be Here");
+            //MessageBox.Show("Delete Will Be Here");
+
+            int personID = usrManagePeople.SelectedID;
+            if (personID == -1) return;
+
+            if (MessageBox.Show("Are you sure you want to delete this person?", "Confirm Delete",
+                MessageBoxButtons.YesNo, MessageBoxIcon.Warning) == DialogResult.Yes)
+            {
+                if (clsPerson.Delete(personID))
+                {
+                    MessageBox.Show("Person deleted successfully.", "Deleted", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    _RefreshPeopleList();
+                }
+                else
+                {
+                    MessageBox.Show("Could not delete person because it has data linked to it.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
+            }
         }
         private void SendEmail_Click(object sender, EventArgs e)
         {

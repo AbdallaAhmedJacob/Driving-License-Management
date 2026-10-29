@@ -196,5 +196,9 @@ namespace DVLD.Business.People
         {
             return clsPersonData.DeletePersonByID(this.PersonID);
         }
+        public static bool Delete(int personID)
+        {
+            return clsPersonData.DeletePersonByID(personID);
+        }
     }
 }

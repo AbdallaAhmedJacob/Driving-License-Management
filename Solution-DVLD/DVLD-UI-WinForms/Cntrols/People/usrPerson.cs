@@ -47,12 +47,12 @@ namespace DVLD.WinForms.Cntrols.People
                     linkSetImage.Visible = true;
                     break;
                 case enMode.Update:
-                    usrHeader.Text = "Update Person Info";
+                    usrHeader.Text = "Edit Person Info";
                     _LoadPersonData(personID);
                     _EnableControls(true);
                     btnSave.Visible = true;
                     linkSetImage.Text = "Change Image";
-                    linkSetImage.Visible = false;
+                    linkSetImage.Visible = true;
                     break;
                 case enMode.ShowDetails:
                     _LoadPersonData(personID);
@@ -65,9 +65,9 @@ namespace DVLD.WinForms.Cntrols.People
         {
             if (personID < 0) return;
 
-            // ID
             _Person = clsPerson.FindPersonByID(personID);
 
+            if (_Person == null) return;
             // Name
 
             gpContainer.Text = $"ID: {personID}";
@@ -130,7 +130,7 @@ namespace DVLD.WinForms.Cntrols.People
             dtpDateOfBirth.Value.AddYears(-16);
             rbMale.Checked = false;
             rbFemale .Checked = false;
-            cbCountry.SelectedValue = 190;
+            cbCountry.SelectedValue = 191;
 
             linkSetImage.Visible = false;
             btnSave.Visible = false;
@@ -197,7 +197,7 @@ namespace DVLD.WinForms.Cntrols.People
              usrHeader.Title = "Person Details";
         }
 
-        private void _AddNewPerson()
+        private void _FillPersonData()
         {
             // Name
             _Person.FirstName = txtFirstName.Text ;
@@ -222,7 +222,7 @@ namespace DVLD.WinForms.Cntrols.People
                 _Person.Gender = "F";
 
             // Country 
-            _Person.CountryID = (short)cbCountry.SelectedIndex;
+            _Person.CountryID = (short)cbCountry.SelectedValue;
 
             // Address
             _Person.Address = txtAddress.Text;
@@ -234,10 +234,29 @@ namespace DVLD.WinForms.Cntrols.People
 
         }
 
-        //private void _UpdatePerson()
-        //{
+        private void _AddNewPerson()
+        {
+            _FillPersonData();
 
-        //}
+            if (_Person.Save())
+            {
+                MessageBox.Show("Person Saved Saccessfuly");
+                _Mode = enMode.Update;
+                LoadInfo(_Person.PersonID, _Mode);
+            }
+        }
+
+        private void _UpdatePerson()
+        {
+            _FillPersonData();
+
+            if (_Person.Save())
+            {
+                MessageBox.Show("Person Updated Saccessfuly");
+                _Mode = enMode.Update;
+                LoadInfo(_Person.PersonID, _Mode);
+            }
+        }
 
         private void _Save()
         {
@@ -245,22 +264,10 @@ namespace DVLD.WinForms.Cntrols.People
             {
                 case enMode.AddNew:
                     _AddNewPerson();
-                    if (_Person.Save())
-                    {
-                        MessageBox.Show("Person Saved Saccessfuly");
-                        _Mode = enMode.Update;
-                        LoadInfo(_Person.PersonID, _Mode);
-                    }
                     break;
-                    //case enMode.Update:
-                    //_UpdatePerson();
-                    //if (_Person.Save())
-                    //{
-                    //    MessageBox.Show("Person Updated Saccessfuly");
-                    //    _Mode = enMode.Update;
-                    //    LoadInfo(_Person.PersonID, _Mode);
-                    //}
-                    //break;
+                case enMode.Update:
+                    _UpdatePerson();
+                    break;
             }
         }
         

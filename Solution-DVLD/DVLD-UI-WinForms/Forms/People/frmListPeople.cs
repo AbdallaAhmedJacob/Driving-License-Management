@@ -174,7 +174,7 @@ namespace DVLD.WinForms.Forms.People
             {
                 if (frm.ShowDialog(this) == DialogResult.OK)
                 {
-                    LoadPeopleData();
+                    _RefreshPeopleList();
                 }
             }
         }
@@ -194,7 +194,9 @@ namespace DVLD.WinForms.Forms.People
         }
         private void Edit_Click(object sender, EventArgs e)
         {
-            MessageBox.Show("Edit Will Be Here");
+            //MessageBox.Show("Edit Will Be Here");
+
+            _OpenPersonCard(usrManagePeople.SelectedID, usrPerson.enMode.Update);
         }
         private void Delete_Click(object sender, EventArgs e)
         {
@@ -209,5 +211,15 @@ namespace DVLD.WinForms.Forms.People
             MessageBox.Show("Phone Call Will Be Here");
         }
 
+        // ===================================
+        // Helpers
+        // ===================================
+
+        private void _RefreshPeopleList()
+        {
+            _dtPeople = clsPerson.GetAllPeople();
+            usrManagePeople.DataSource = _dtPeople;
+            usrManagePeople.RecordsCount = _dtPeople.Rows.Count;
+        }
     }
 }

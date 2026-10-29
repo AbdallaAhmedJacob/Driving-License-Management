@@ -73,7 +73,7 @@ namespace DVLD.DataAccess.PeopleDataAccess
                     dateOfBirth = (DateTime)reader["DateOfBirth"];
                     address = (string)reader["Address"];
                     phoneNumber = (string)reader["PhoneNumber"];
-                    email = (string)reader["Email"];
+                    email = (reader["Email"] == DBNull.Value) ? "" : (string)reader["Email"];
                     CountryID = (short)reader["CountryID"];
                     notes = (reader["Notes"] == DBNull.Value) ? "" : (string)reader["Notes"];
                     imagePath = (reader["ImagePath"] == DBNull.Value) ? "" : (string)reader["ImagePath"];

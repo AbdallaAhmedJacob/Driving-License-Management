@@ -2,10 +2,13 @@
 using DVLD.Business.People;
 using DVLD.WinForms.Forms.People;
 using DVLD.WinForms.UI;
+using DVLD.Shared.Validation.People;
 using System;
+using System.ComponentModel;
 using System.Data;
 using System.Runtime.Remoting.Messaging;
 using System.Windows.Forms;
+using static System.Net.Mime.MediaTypeNames;
 
 namespace DVLD.WinForms.Cntrols.People
 {
@@ -128,8 +131,8 @@ namespace DVLD.WinForms.Cntrols.People
             txtAddress.Clear();
 
             dtpDateOfBirth.Value.AddYears(-16);
-            rbMale.Checked = false;
-            rbFemale .Checked = false;
+            rbMale.Checked = true;
+            rbFemale.Checked = false;
             cbCountry.SelectedValue = 191;
 
             linkSetImage.Visible = false;
@@ -194,22 +197,22 @@ namespace DVLD.WinForms.Cntrols.People
             linkSetImage.Visible = false;
             btnSave.Visible = false;
 
-             usrHeader.Title = "Person Details";
+            usrHeader.Title = "Person Details";
         }
 
         private void _FillPersonData()
         {
             // Name
-            _Person.FirstName = txtFirstName.Text ;
-            _Person.SecondName = txtSecondName.Text ;
-            _Person.ThirdName = txtThirdName.Text ;
+            _Person.FirstName = txtFirstName.Text;
+            _Person.SecondName = txtSecondName.Text;
+            _Person.ThirdName = txtThirdName.Text;
             _Person.LastName = txtLastName.Text;
 
             // National NO
             _Person.NationalNo = txtNationalNo.Text;
 
             // Contact Info
-            _Person.PhoneNumber= txtPhoneNumber.Text;
+            _Person.PhoneNumber = txtPhoneNumber.Text;
             _Person.Email = txtEmail.Text;
 
             // Date Of Birth
@@ -234,10 +237,12 @@ namespace DVLD.WinForms.Cntrols.People
 
         }
 
+        // ===================================
+        // Manage Person
+        // ===================================
+
         private void _AddNewPerson()
         {
-            _FillPersonData();
-
             if (_Person.Save())
             {
                 MessageBox.Show("Person Saved Saccessfuly");
@@ -248,8 +253,6 @@ namespace DVLD.WinForms.Cntrols.People
 
         private void _UpdatePerson()
         {
-            _FillPersonData();
-
             if (_Person.Save())
             {
                 MessageBox.Show("Person Updated Saccessfuly");
@@ -260,7 +263,27 @@ namespace DVLD.WinForms.Cntrols.People
 
         private void _Save()
         {
-            switch(_Mode)
+            _FillPersonData();
+            if (!clsPersonValidation.ValidatePersonInfo(_Person.NationalNo,
+                                                        _Person.FirstName,
+                                                        _Person.SecondName,
+                                                        _Person.ThirdName,
+                                                        _Person.LastName,
+                                                        _Person.Gender,
+                                                        _Person.DateOfBirth,
+                                                        _Person.Address,
+                                                        _Person.PhoneNumber,
+                                                        _Person.Email,
+                                                        _Person.CountryID,
+                                                        _Person.Notes,
+                                                        _Person.ImagePath,
+                                                        out string errorMessage))
+            {
+                MessageBox.Show(errorMessage, "Validation Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return;
+            }
+
+            switch (_Mode)
             {
                 case enMode.AddNew:
                     _AddNewPerson();
@@ -270,7 +293,61 @@ namespace DVLD.WinForms.Cntrols.People
                     break;
             }
         }
-        
+
+        // ===================================
+        // Validation
+        // ===================================
+
+        private void txtTextBox_Validating(object sender, CancelEventArgs e)
+        {
+            Control tempControl = sender as Control;
+            if (sender is TextBox)
+            {
+                tempControl = (TextBox)sender;
+            }
+            else if (sender is RichTextBox)
+            {
+                tempControl = (RichTextBox)sender;
+            }
+
+            if (string.IsNullOrWhiteSpace(tempControl.Text))
+            {
+                e.Cancel = true;
+                errorProvider.SetError(tempControl, "This field is required!");
+            }
+            else
+            {
+                e.Cancel = false;
+                errorProvider.SetError(tempControl, "");
+            }
+
+        }
+
+        private void txtEmail_Validating(object sender, CancelEventArgs e)
+        {
+            if (string.IsNullOrWhiteSpace(txtEmail.Text))
+            {
+                e.Cancel = false;
+                errorProvider.SetError(txtEmail, "");
+                return;
+            }
+
+            if (!System.Text.RegularExpressions.Regex.IsMatch(txtEmail.Text, @"^([\w\.\-]+)@([\w\-]+)((\.(\w){2,3})+)$"))
+            {
+                e.Cancel = true;
+                txtEmail.Focus();
+                errorProvider.SetError(txtEmail, "Invalid Email Address Format!");
+            }
+            else
+            {
+                e.Cancel = false;
+                errorProvider.SetError(txtEmail, "");
+            }
+        }
+
+        // ===================================
+        // Events
+        // ===================================
 
         public event EventHandler CloseClick;
 

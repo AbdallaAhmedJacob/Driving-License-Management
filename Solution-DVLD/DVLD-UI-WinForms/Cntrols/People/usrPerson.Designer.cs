@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            this.components = new System.ComponentModel.Container();
             this.gpContainer = new System.Windows.Forms.GroupBox();
             this.btnClose = new System.Windows.Forms.Button();
             this.btnSave = new System.Windows.Forms.Button();
@@ -59,12 +60,14 @@
             this.txtFirstName = new System.Windows.Forms.TextBox();
             this.label1 = new System.Windows.Forms.Label();
             this.usrHeader = new DVLD.WinForms.Cntrols.usrHeader();
+            this.errorProvider = new System.Windows.Forms.ErrorProvider(this.components);
             this.gpContainer.SuspendLayout();
             this.groupBox2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pbImage)).BeginInit();
             this.groupBox1.SuspendLayout();
             this.gbGender.SuspendLayout();
             this.gbFullName.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.errorProvider)).BeginInit();
             this.SuspendLayout();
             // 
             // gpContainer
@@ -87,7 +90,7 @@
             this.gpContainer.Location = new System.Drawing.Point(10, 60);
             this.gpContainer.Name = "gpContainer";
             this.gpContainer.Padding = new System.Windows.Forms.Padding(5);
-            this.gpContainer.Size = new System.Drawing.Size(980, 430);
+            this.gpContainer.Size = new System.Drawing.Size(998, 430);
             this.gpContainer.TabIndex = 2;
             this.gpContainer.TabStop = false;
             this.gpContainer.Text = "ID: N/A";
@@ -117,7 +120,7 @@
             // groupBox2
             // 
             this.groupBox2.Controls.Add(this.txtAddress);
-            this.groupBox2.Location = new System.Drawing.Point(387, 278);
+            this.groupBox2.Location = new System.Drawing.Point(400, 278);
             this.groupBox2.Name = "groupBox2";
             this.groupBox2.Size = new System.Drawing.Size(415, 58);
             this.groupBox2.TabIndex = 6;
@@ -132,11 +135,12 @@
             this.txtAddress.Size = new System.Drawing.Size(409, 37);
             this.txtAddress.TabIndex = 0;
             this.txtAddress.Text = "";
+            this.txtAddress.Validating += new System.ComponentModel.CancelEventHandler(this.txtTextBox_Validating);
             // 
             // linkSetImage
             // 
             this.linkSetImage.AutoSize = true;
-            this.linkSetImage.Location = new System.Drawing.Point(868, 345);
+            this.linkSetImage.Location = new System.Drawing.Point(881, 345);
             this.linkSetImage.Name = "linkSetImage";
             this.linkSetImage.Size = new System.Drawing.Size(68, 16);
             this.linkSetImage.TabIndex = 7;
@@ -146,7 +150,7 @@
             // pbImage
             // 
             this.pbImage.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.pbImage.Location = new System.Drawing.Point(820, 156);
+            this.pbImage.Location = new System.Drawing.Point(833, 156);
             this.pbImage.Name = "pbImage";
             this.pbImage.Size = new System.Drawing.Size(150, 180);
             this.pbImage.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
@@ -157,7 +161,7 @@
             // 
             this.cbCountry.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cbCountry.FormattingEnabled = true;
-            this.cbCountry.Location = new System.Drawing.Point(636, 234);
+            this.cbCountry.Location = new System.Drawing.Point(649, 234);
             this.cbCountry.Name = "cbCountry";
             this.cbCountry.Size = new System.Drawing.Size(163, 24);
             this.cbCountry.TabIndex = 5;
@@ -176,11 +180,12 @@
             this.txtNationalNo.Name = "txtNationalNo";
             this.txtNationalNo.Size = new System.Drawing.Size(266, 22);
             this.txtNationalNo.TabIndex = 1;
+            this.txtNationalNo.Validating += new System.ComponentModel.CancelEventHandler(this.txtTextBox_Validating);
             // 
             // label9
             // 
             this.label9.AutoSize = true;
-            this.label9.Location = new System.Drawing.Point(564, 238);
+            this.label9.Location = new System.Drawing.Point(577, 238);
             this.label9.Name = "label9";
             this.label9.Size = new System.Drawing.Size(52, 16);
             this.label9.TabIndex = 5;
@@ -212,7 +217,7 @@
             this.groupBox1.Controls.Add(this.label5);
             this.groupBox1.Location = new System.Drawing.Point(5, 217);
             this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(375, 119);
+            this.groupBox1.Size = new System.Drawing.Size(390, 119);
             this.groupBox1.TabIndex = 3;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Contact Info";
@@ -223,6 +228,7 @@
             this.txtEmail.Name = "txtEmail";
             this.txtEmail.Size = new System.Drawing.Size(298, 22);
             this.txtEmail.TabIndex = 9;
+            this.txtEmail.Validating += new System.ComponentModel.CancelEventHandler(this.txtEmail_Validating);
             // 
             // txtPhoneNumber
             // 
@@ -230,6 +236,7 @@
             this.txtPhoneNumber.Name = "txtPhoneNumber";
             this.txtPhoneNumber.Size = new System.Drawing.Size(298, 22);
             this.txtPhoneNumber.TabIndex = 8;
+            this.txtPhoneNumber.Validating += new System.ComponentModel.CancelEventHandler(this.txtTextBox_Validating);
             // 
             // label6
             // 
@@ -253,7 +260,7 @@
             // 
             this.gbGender.Controls.Add(this.rbFemale);
             this.gbGender.Controls.Add(this.rbMale);
-            this.gbGender.Location = new System.Drawing.Point(387, 217);
+            this.gbGender.Location = new System.Drawing.Point(400, 217);
             this.gbGender.Name = "gbGender";
             this.gbGender.Size = new System.Drawing.Size(171, 55);
             this.gbGender.TabIndex = 4;
@@ -296,7 +303,7 @@
             this.gbFullName.Location = new System.Drawing.Point(5, 20);
             this.gbFullName.Name = "gbFullName";
             this.gbFullName.Padding = new System.Windows.Forms.Padding(5);
-            this.gbFullName.Size = new System.Drawing.Size(970, 112);
+            this.gbFullName.Size = new System.Drawing.Size(988, 112);
             this.gbFullName.TabIndex = 0;
             this.gbFullName.TabStop = false;
             this.gbFullName.Text = "Full Name";
@@ -307,6 +314,7 @@
             this.txtLastName.Name = "txtLastName";
             this.txtLastName.Size = new System.Drawing.Size(149, 22);
             this.txtLastName.TabIndex = 7;
+            this.txtLastName.Validating += new System.ComponentModel.CancelEventHandler(this.txtTextBox_Validating);
             // 
             // label4
             // 
@@ -323,6 +331,7 @@
             this.txtThirdName.Name = "txtThirdName";
             this.txtThirdName.Size = new System.Drawing.Size(149, 22);
             this.txtThirdName.TabIndex = 5;
+            this.txtThirdName.Validating += new System.ComponentModel.CancelEventHandler(this.txtTextBox_Validating);
             // 
             // label3
             // 
@@ -339,6 +348,7 @@
             this.txtSecondName.Name = "txtSecondName";
             this.txtSecondName.Size = new System.Drawing.Size(149, 22);
             this.txtSecondName.TabIndex = 3;
+            this.txtSecondName.Validating += new System.ComponentModel.CancelEventHandler(this.txtTextBox_Validating);
             // 
             // label2
             // 
@@ -355,6 +365,7 @@
             this.txtFirstName.Name = "txtFirstName";
             this.txtFirstName.Size = new System.Drawing.Size(149, 22);
             this.txtFirstName.TabIndex = 1;
+            this.txtFirstName.Validating += new System.ComponentModel.CancelEventHandler(this.txtTextBox_Validating);
             // 
             // label1
             // 
@@ -371,9 +382,13 @@
             this.usrHeader.Dock = System.Windows.Forms.DockStyle.Top;
             this.usrHeader.Location = new System.Drawing.Point(10, 10);
             this.usrHeader.Name = "usrHeader";
-            this.usrHeader.Size = new System.Drawing.Size(980, 50);
+            this.usrHeader.Size = new System.Drawing.Size(998, 50);
             this.usrHeader.TabIndex = 0;
             this.usrHeader.Title = "Person Info";
+            // 
+            // errorProvider
+            // 
+            this.errorProvider.ContainerControl = this;
             // 
             // usrPerson
             // 
@@ -383,7 +398,7 @@
             this.Controls.Add(this.usrHeader);
             this.Name = "usrPerson";
             this.Padding = new System.Windows.Forms.Padding(10);
-            this.Size = new System.Drawing.Size(1000, 500);
+            this.Size = new System.Drawing.Size(1018, 500);
             this.gpContainer.ResumeLayout(false);
             this.gpContainer.PerformLayout();
             this.groupBox2.ResumeLayout(false);
@@ -394,6 +409,7 @@
             this.gbGender.PerformLayout();
             this.gbFullName.ResumeLayout(false);
             this.gbFullName.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.errorProvider)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -431,5 +447,6 @@
         private System.Windows.Forms.RichTextBox txtAddress;
         private System.Windows.Forms.Button btnClose;
         private System.Windows.Forms.Button btnSave;
+        private System.Windows.Forms.ErrorProvider errorProvider;
     }
 }

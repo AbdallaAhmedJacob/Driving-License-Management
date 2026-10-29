@@ -147,6 +147,10 @@
       <Project>{863485ea-4975-405f-ac2f-9c2fd37ab562}</Project>
       <Name>DVLD-Business</Name>
     </ProjectReference>
+    <ProjectReference Include="..\DVLD.Shared\DVLD.Shared.csproj">
+      <Project>{7a844829-1393-4c8a-b196-8f6ff91653f2}</Project>
+      <Name>DVLD.Shared</Name>
+    </ProjectReference>
   </ItemGroup>
   <ItemGroup>
     <None Include="Images\A_modern_clean_and_professional_vector_logo_for_a_Driving_Vehhicle_License.jpg" />

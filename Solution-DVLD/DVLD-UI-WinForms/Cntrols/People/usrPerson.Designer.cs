@@ -180,7 +180,7 @@
             this.txtNationalNo.Name = "txtNationalNo";
             this.txtNationalNo.Size = new System.Drawing.Size(266, 22);
             this.txtNationalNo.TabIndex = 1;
-            this.txtNationalNo.Validating += new System.ComponentModel.CancelEventHandler(this.txtTextBox_Validating);
+            this.txtNationalNo.Validating += new System.ComponentModel.CancelEventHandler(this.txtNationalNo_Validating);
             // 
             // label9
             // 

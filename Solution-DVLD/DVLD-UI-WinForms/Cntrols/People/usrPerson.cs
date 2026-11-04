@@ -245,9 +245,14 @@ namespace DVLD.WinForms.Cntrols.People
         {
             if (_Person.Save())
             {
-                MessageBox.Show("Person Saved Saccessfuly");
+                MessageBox.Show("Person Saved Saccessfuly", "Saccessfuly", MessageBoxButtons.OK);
                 _Mode = enMode.Update;
+                usrHeader.Title = "Edit Person Info";
                 LoadInfo(_Person.PersonID, _Mode);
+            }
+            else
+            {
+                MessageBox.Show("Error: Data Was not Saved Saccessfuly", "Fiald", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
 
@@ -258,6 +263,10 @@ namespace DVLD.WinForms.Cntrols.People
                 MessageBox.Show("Person Updated Saccessfuly");
                 _Mode = enMode.Update;
                 LoadInfo(_Person.PersonID, _Mode);
+            }
+            else
+            {
+                MessageBox.Show("Error: Data Was not Updated Saccessfuly", "Fiald", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
 
@@ -321,6 +330,26 @@ namespace DVLD.WinForms.Cntrols.People
                 errorProvider.SetError(tempControl, "");
             }
 
+        }
+        private void txtNationalNo_Validating(object sender, CancelEventArgs e)
+        {
+            Control tempControl = sender as TextBox;
+
+            if (string.IsNullOrWhiteSpace(tempControl.Text))
+            {
+                e.Cancel = true;
+                errorProvider.SetError(tempControl, "This field is required!");
+            }
+            else if(clsPerson.IsExistNationalNo(tempControl.Text))
+            {
+                e.Cancel = true;
+                errorProvider.SetError(tempControl, "National Number Used by Another Person!");
+            }
+            else
+            {
+                e.Cancel = false;
+                errorProvider.SetError(tempControl, "");
+            }
         }
 
         private void txtEmail_Validating(object sender, CancelEventArgs e)

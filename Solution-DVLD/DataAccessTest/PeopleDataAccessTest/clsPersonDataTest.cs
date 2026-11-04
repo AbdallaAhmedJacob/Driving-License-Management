@@ -135,5 +135,61 @@ namespace DataAccessTest
         {
             return clsPersonData.DeletePersonByID(personID);
         }
+
+        internal static bool GetPersonByNationalNo_SetNationalNo_ReturnPersonData(string NationalNo)
+        {
+            int personID = -1;
+            string nationalNo = NationalNo;
+            string firstName = "";
+            string secondName = "";
+            string thirdName = "";
+            string lastName = "";
+            string Gender = "";
+            DateTime dateOfBirth = DateTime.Now;
+            string address = "";
+            string phoneNumber = "";
+            string email = "";
+            short CountryID = -1;
+            string notes = "";
+            string imagePath = "";
+
+            if (clsPersonData.GetPersonByNationalNo(ref personID,
+                                               ref nationalNo,
+                                               ref firstName,
+                                               ref secondName,
+                                               ref thirdName,
+                                               ref lastName,
+                                               ref Gender,
+                                               ref dateOfBirth,
+                                               ref address,
+                                               ref phoneNumber,
+                                               ref email,
+                                               ref CountryID,
+                                               ref notes,
+                                               ref imagePath))
+            {
+                Console.WriteLine(personID);
+                Console.WriteLine(nationalNo);
+                Console.WriteLine(firstName);
+                Console.WriteLine(secondName);
+                Console.WriteLine(thirdName);
+                Console.WriteLine(lastName);
+                Console.WriteLine(Gender);
+                Console.WriteLine(dateOfBirth);
+                Console.WriteLine(address);
+                Console.WriteLine(phoneNumber);
+                Console.WriteLine(email);
+                Console.WriteLine(CountryID);
+                Console.WriteLine(notes);
+                Console.WriteLine(imagePath);
+                return true;
+            }
+            else
+            {
+                Console.WriteLine("Person is Not fuond");
+                return false;
+            }
+        }
+
     }
 }

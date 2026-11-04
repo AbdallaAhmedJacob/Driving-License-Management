@@ -15,7 +15,8 @@ namespace DataAccessTest
             //Console.WriteLine(clsPersonDataTest.GetPersonByID_SetPersonID_ReturnPersonData(4));
             //Console.WriteLine(clsPersonDataTest.IsExist_SetNationalNo_ReturnBoolean("N001"));
             //Console.WriteLine(clsPersonDataTest.DeletePersonByID_SetPersonID_ReturnBoolean(12));
-            clsCountryDataAccessTest.GetAllContris_ReturnAllCountry();
+            //clsCountryDataAccessTest.GetAllContris_ReturnAllCountry();
+            clsPersonDataTest.GetPersonByNationalNo_SetNationalNo_ReturnPersonData("N1");
 
 
 

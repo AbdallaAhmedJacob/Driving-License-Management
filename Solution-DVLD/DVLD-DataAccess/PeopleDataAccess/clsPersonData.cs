@@ -91,6 +91,63 @@ namespace DVLD.DataAccess.PeopleDataAccess
 
             return IsFound;
         }
+        public static bool GetPersonByNationalNo(ref int personID,
+                                                 ref string nationalNo,
+                                                 ref string firstName,
+                                                 ref string secondName,
+                                                 ref string thirdName,
+                                                 ref string lastName,
+                                                 ref string Gender,
+                                                 ref DateTime dateOfBirth,
+                                                 ref string address,
+                                                 ref string phoneNumber,
+                                                 ref string email,
+                                                 ref short CountryID,
+                                                 ref string notes,
+                                                 ref string imagePath)
+        {
+            bool IsFound = false;
+            if (string.IsNullOrEmpty(nationalNo)) return false;
+
+            SqlConnection connection = new SqlConnection(DataAccessSettings.ConnectionString);
+            string sql = @"SELECT * FROM tblPeople WHERE NationalNo = @NationalNo";
+            SqlCommand command = new SqlCommand(sql, connection);
+            command.Parameters.AddWithValue("@NationalNo", nationalNo);
+
+            try
+            {
+                connection.Open();
+                SqlDataReader reader = command.ExecuteReader();
+                if (reader.Read())
+                {
+                    personID = (int)reader["PersonID"];
+                    nationalNo = (string)reader["NationalNo"];
+                    firstName = (string)reader["FirstName"];
+                    secondName = (string)reader["SecondName"];
+                    thirdName = (string)reader["ThirdName"];
+                    lastName = (string)reader["LastName"];
+                    Gender = (string)reader["Gender"];
+                    dateOfBirth = (DateTime)reader["DateOfBirth"];
+                    address = (string)reader["Address"];
+                    phoneNumber = (string)reader["PhoneNumber"];
+                    email = (reader["Email"] == DBNull.Value) ? "" : (string)reader["Email"];
+                    CountryID = (short)reader["CountryID"];
+                    notes = (reader["Notes"] == DBNull.Value) ? "" : (string)reader["Notes"];
+                    imagePath = (reader["ImagePath"] == DBNull.Value) ? "" : (string)reader["ImagePath"];
+                    return true;
+                }
+            }
+            catch (Exception ex)
+            {
+
+            }
+            finally
+            {
+                connection.Close();
+            }
+
+            return IsFound;
+        }
         public static int AddNewPerson(string nationalNo,
                                        string firstName,
                                        string secondName,

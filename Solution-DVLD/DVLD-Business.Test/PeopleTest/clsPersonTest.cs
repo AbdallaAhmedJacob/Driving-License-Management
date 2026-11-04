@@ -44,6 +44,11 @@ namespace DVLD.Business.Test
             clsPerson Person = clsPerson.FindPersonByID(12);
             Console.WriteLine(( Person == null)? "NULL" : "Person Is Found");
         }
+        internal static void FindPersonByNationalNo_SetPersonNationalNo_ReturnPersonObject()
+        {
+            clsPerson Person = clsPerson.FindPersonByNationalNo("N001");
+            Console.WriteLine(( Person == null)? "NULL" : "Person Is Found");
+        }
         internal static void UpdatePerson_EditPersonData_Return1()
         {
             clsPerson person = clsPerson.FindPersonByID(12);

@@ -141,6 +141,59 @@ namespace DVLD.Business.People
                 return _oldPerson;
             }
         }
+
+        public static clsPerson FindPersonByNationalNo(string NationalNo)
+        {
+            int personID = -1;
+            string nationalNo = NationalNo;
+            string firstName = "";
+            string secondName = "";
+            string thirdName = "";
+            string lastName = "";
+            string Gender = "";
+            DateTime dateOfBirth = DateTime.Now;
+            string address = "";
+            string phoneNumber = "";
+            string email = "";
+            short countryID = -1;
+            string notes = "";
+            string imagePath = "";
+
+            if (clsPersonData.GetPersonByNationalNo(ref personID,
+                                                    ref nationalNo,
+                                                    ref firstName,
+                                                    ref secondName,
+                                                    ref thirdName,
+                                                    ref lastName,
+                                                    ref Gender,
+                                                    ref dateOfBirth,
+                                                    ref address,
+                                                    ref phoneNumber,
+                                                    ref email,
+                                                    ref countryID,
+                                                    ref notes,
+                                                    ref imagePath)
+                == false) return null;
+            else
+            {
+                _oldPerson = new clsPerson(personID,
+                                           nationalNo,
+                                           firstName,
+                                           secondName,
+                                           thirdName,
+                                           lastName,
+                                           Gender,
+                                           dateOfBirth,
+                                           address,
+                                           phoneNumber,
+                                           email,
+                                           countryID,
+                                           notes,
+                                           imagePath);
+                return _oldPerson;
+            }
+        }
+
         private int _AddNewPerson()
         {
             if (this.ImagePath != "")

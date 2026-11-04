@@ -211,20 +211,20 @@ namespace DVLD.Business.People
         }
         private bool _UpdatePerson()
         {
-            bool isAbdated = false;  
+            bool isUbdated = false;  
             if (this.ImagePath != _oldPerson.ImagePath)
                 this.ImagePath = clsImageHelper.SavePersonImage(this.ImagePath);
 
-            isAbdated = clsPersonData.UpdatePerson(this.PersonID, this.NationalNo, this.FirstName, this.SecondName, this.ThirdName,
+            isUbdated = clsPersonData.UpdatePerson(this.PersonID, this.NationalNo, this.FirstName, this.SecondName, this.ThirdName,
                 this.LastName, this.Gender, this.DateOfBirth, this.Address,this.PhoneNumber, this.Email,
                 this.CountryID, this.Notes, this.ImagePath);
 
-            if (isAbdated)
+            if (isUbdated)
             {
                 if (this.ImagePath != _oldPerson.ImagePath)
                     File.Delete(_oldPerson.ImagePath);
             }
-            return isAbdated;
+            return isUbdated;
         }
         public bool Save()
         {

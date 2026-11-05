@@ -191,5 +191,9 @@ namespace DataAccessTest
             }
         }
 
+        internal static void IsLinked_SetPersonID_ReturnBooleanResult(int personID)
+        {
+            Console.WriteLine(clsPersonData.IsLinked(personID));
+        }
     }
 }

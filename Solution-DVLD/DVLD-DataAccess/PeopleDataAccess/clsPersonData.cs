@@ -394,5 +394,39 @@ namespace DVLD.DataAccess.PeopleDataAccess
 
             return IsLinked;
         }
+        public static bool IsLinkedToUser(int personID)
+        {
+            bool IsLinked = false;
+            if (personID < 1) return false;
+
+            SqlConnection connection = new SqlConnection(DataAccessSettings.ConnectionString);
+            string sql = @"SELECT CASE 
+			                          WHEN EXISTS (SELECT 1 FROM tblUsers U WHERE U.PersonID = P.PersonID)
+			                          THEN 1
+			                          ELSE 0
+		                          END AS IsLinked
+                           FROM tblPeople P
+                           WHERE P.PersonID = @personID";
+            SqlCommand command = new SqlCommand(sql, connection);
+            command.Parameters.AddWithValue("@personID", personID);
+            try
+            {
+                connection.Open();
+                object result = command.ExecuteScalar();
+                if (result != null && int.TryParse(result.ToString(), out int value))
+                    IsLinked = (value == 1);
+            }
+            catch (Exception ex)
+            {
+            }
+            finally
+            {
+                connection.Close();
+            }
+
+            return IsLinked;
+        }
+
+
     }
 }

@@ -247,7 +247,15 @@ namespace DVLD.Business.People
         }
         public bool Delete()
         {
-            return clsPersonData.DeletePersonByID(this.PersonID);
+            if (clsPersonData.IsLinked(this.PersonID))
+            {
+                // Error Handling
+                return false;
+            }
+            else
+            {
+                return clsPersonData.DeletePersonByID(this.PersonID);
+            }
         }
         public static bool Delete(int personID)
         {

@@ -1,5 +1,7 @@
 ﻿using DataAccessTest;
 using DVLD.DataAccess.CountryDataAccess;
+using DVLD.DataAccess.PeopleDataAccess;
+using DVLD.DataAccess.Test.PeopleDataAccessTest;
 using System;
 
 namespace DataAccessTest
@@ -17,8 +19,9 @@ namespace DataAccessTest
             //Console.WriteLine(clsPersonDataTest.DeletePersonByID_SetPersonID_ReturnBoolean(12));
             //clsCountryDataAccessTest.GetAllContris_ReturnAllCountry();
             //clsPersonDataTest.GetPersonByNationalNo_SetNationalNo_ReturnPersonData("N1");
-            clsPersonDataTest.IsLinked_SetPersonID_ReturnBooleanResult(1);
-            clsPersonDataTest.IsLinked_SetPersonID_ReturnBooleanResult(7);
+            //clsPersonDataTest.IsLinked_SetPersonID_ReturnBooleanResult(1);
+            //clsPersonDataTest.IsLinked_SetPersonID_ReturnBooleanResult(7);
+            clsUserDataTest.AddNewUser_AddUserData_ReturnUserID();
 
 
 

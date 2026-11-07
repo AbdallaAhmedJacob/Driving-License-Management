@@ -22,8 +22,8 @@ namespace DataAccessTest
             //clsPersonDataTest.IsLinked_SetPersonID_ReturnBooleanResult(1);
             //clsPersonDataTest.IsLinked_SetPersonID_ReturnBooleanResult(7);
             //clsUserDataTest.AddNewUser_AddUserData_ReturnUserID();
-            clsPersonDataTest.IsLinkedToUser_SetPersonID_ReturnBooleanResult(1);
-
+            //clsPersonDataTest.IsLinkedToUser_SetPersonID_ReturnBooleanResult(1);
+            clsUserDataTest.IsExsitsUserName_SetUserName_ReturnBoolean("user2");
 
 
         }

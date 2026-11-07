@@ -190,5 +190,32 @@ namespace DVLD.DataAccess.PeopleDataAccess
         //            }
         //            return IsDeleted;
         //        }
+        public static bool IsExistUserName(string UserName)
+        {
+            bool IsExist = false;
+            if (UserName == "") return false;
+
+            SqlConnection connection = new SqlConnection(DataAccessSettings.ConnectionString);
+            string sql = @"SELECT FOUND = 1 FROM tblUsers WHERE UserName = @UserName";
+            SqlCommand command = new SqlCommand(sql, connection);
+            command.Parameters.AddWithValue("@UserName", UserName);
+            try
+            {
+                connection.Open();
+                object result = command.ExecuteScalar();
+                if (result != null) IsExist = true;
+            }
+            catch (Exception ex)
+            {
+            }
+            finally
+            {
+                connection.Close();
+            }
+
+            return IsExist;
+        }
+
+
     }
 }

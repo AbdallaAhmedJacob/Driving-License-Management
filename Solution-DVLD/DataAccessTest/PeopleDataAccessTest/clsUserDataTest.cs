@@ -13,5 +13,11 @@ namespace DVLD.DataAccess.Test.PeopleDataAccessTest
         {
             Console.WriteLine(clsUserData.AddNewUser(4, "user2", "1234", -1, true));
         }
+
+        internal static void IsExsitsUserName_SetUserName_ReturnBoolean(string userName)
+        {
+            Console.WriteLine(clsUserData.IsExistUserName(userName));
+        }
+
     }
 }

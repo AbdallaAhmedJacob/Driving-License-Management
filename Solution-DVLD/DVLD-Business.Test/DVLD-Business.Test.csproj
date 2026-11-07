@@ -45,6 +45,7 @@
   <ItemGroup>
     <Compile Include="CountriesTest\clsCountriesTest.cs" />
     <Compile Include="PeopleTest\clsPersonTest.cs" />
+    <Compile Include="PeopleTest\clsUserTest.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>

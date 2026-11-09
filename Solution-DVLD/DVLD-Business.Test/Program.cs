@@ -18,7 +18,11 @@ namespace DVLD.Business.Test
             //clsPersonTest.Delete_SetPersonID_ReturnBoolean(512);
             //clsCountryTest.GetAllContris_ReturnAllCountry();
             //clsPersonTest.FindPersonByNationalNo_SetPersonNationalNo_ReturnPersonObject();
-            clsUserTest.AddNewUser_AddUserData_ReturnUserID();
+            
+            
+            //clsUserTest.AddNewUser_AddUserData_ReturnUserID();
+            clsUserTest.GetAllUsersTest_ReurnAllUsersData();
+
         }
     }
 }

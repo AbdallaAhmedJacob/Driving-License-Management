@@ -7,33 +7,33 @@ namespace DVLD.DataAccess.PeopleDataAccess
 {
     public class clsUserData
     {
-        //        public static DataTable GetAllUsers()
-        //        {
-        //            SqlConnection connection = new SqlConnection(DataAccessSettings.ConnectionString);
-        //            string sql = @"SELECT * FROM vwUsers";
-        //            SqlCommand command = new SqlCommand(sql, connection);
-        //            DataTable dtUsers = new DataTable();
+        public static DataTable GetAllUsers()
+        {
+            SqlConnection connection = new SqlConnection(DataAccessSettings.ConnectionString);
+            string sql = @"SELECT * FROM vwUsers";
+            SqlCommand command = new SqlCommand(sql, connection);
+            DataTable dtUsers = new DataTable();
 
-        //            try
-        //            {
-        //                connection.Open();
-        //                SqlDataReader reader = command.ExecuteReader();
-        //                while (reader.HasRows)
-        //                {
-        //                    dtUsers.Load(reader);
-        //                }
-        //            }
-        //            catch (Exception ex)
-        //            {
+            try
+            {
+                connection.Open();
+                SqlDataReader reader = command.ExecuteReader();
+                while (reader.HasRows)
+                {
+                    dtUsers.Load(reader);
+                }
+            }
+            catch (Exception ex)
+            {
 
-        //            }
-        //            finally
-        //            {
-        //                connection.Close();
-        //            }
+            }
+            finally
+            {
+                connection.Close();
+            }
 
-        //            return dtUsers;
-        //        }
+            return dtUsers;
+        }
         //        public static bool GetUserByID(ref int userID,
         //                                       ref string userName,
         //                                       ref string password)

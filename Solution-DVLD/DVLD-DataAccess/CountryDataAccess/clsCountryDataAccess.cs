@@ -34,5 +34,35 @@ namespace DVLD.DataAccess.CountryDataAccess
 
             return dtCountries;
         }
+
+        public static string GetCountryByID(short countryID)
+        {
+            SqlConnection connection = new SqlConnection(DataAccessSettings.ConnectionString);
+            string sql = @"SELECT CountryName FROM tblCountries
+                           WHERE CountryID = @CountryID";
+            SqlCommand command = new SqlCommand(sql, connection);
+            command.Parameters.AddWithValue("@CountryID", countryID);
+            string countryName = "";
+
+            try
+            {
+                connection.Open();
+                object result = command.ExecuteScalar();
+                while (result != null)
+                {
+                    countryName = result.ToString();
+                }
+            }
+            catch (Exception ex)
+            {
+
+            }
+            finally
+            {
+                connection.Close();
+            }
+
+            return countryName;
+        }
     }
 }

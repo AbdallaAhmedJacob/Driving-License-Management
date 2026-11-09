@@ -1,21 +1,23 @@
 ﻿using System;
 using DVLD.WinForms.Cntrols.People;
+using DVLD.Business.People;
 using System.Windows.Forms;
+using DVLD.WinForms.UI;
 
 namespace DVLD.WinForms.Forms.People
 {
-    public partial class frmPersonCard : Form
+    public partial class frmPerson : frmBase
     {
         private int _PersonID = -1;
-        private usrPerson.enMode _Mode;
+        private clsPerson.enMode _Mode;
 
-        public frmPersonCard(int personID, usrPerson.enMode mode)
+        public frmPerson(int personID, clsPerson.enMode mode)
         {
             InitializeComponent();
             _PersonID = personID;
             _Mode = mode;
 
-            //usrPerson.SavedClick += _Save;
+            usrPerson.SavedClick += _Save;
         }
 
         // ===================================
@@ -28,10 +30,10 @@ namespace DVLD.WinForms.Forms.People
 
         }
 
-        //private void _Save(object sender, EventArgs e)
-        //{
-        //    frmPersonCard_Load(this, EventArgs.Empty);
-        //}
+        private void _Save(object sender, EventArgs e)
+        {
+            frmPersonCard_Load(this, EventArgs.Empty);
+        }
 
     }
 }

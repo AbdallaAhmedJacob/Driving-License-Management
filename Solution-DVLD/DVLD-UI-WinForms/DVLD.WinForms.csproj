@@ -52,6 +52,12 @@
     <Compile Include="Cntrols\People\usrPerson.Designer.cs">
       <DependentUpon>usrPerson.cs</DependentUpon>
     </Compile>
+    <Compile Include="Cntrols\People\usrPersonCard.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Cntrols\People\usrPersonCard.Designer.cs">
+      <DependentUpon>usrPersonCard.cs</DependentUpon>
+    </Compile>
     <Compile Include="Cntrols\usrHeader.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -64,17 +70,23 @@
     <Compile Include="Cntrols\usrManagementScreen.Designer.cs">
       <DependentUpon>usrManagementScreen.cs</DependentUpon>
     </Compile>
-    <Compile Include="Forms\People\frmPersonCard.cs">
+    <Compile Include="Forms\People\frmPerson.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Forms\People\frmPersonCard.Designer.cs">
-      <DependentUpon>frmPersonCard.cs</DependentUpon>
+    <Compile Include="Forms\People\frmPerson.Designer.cs">
+      <DependentUpon>frmPerson.cs</DependentUpon>
     </Compile>
     <Compile Include="Forms\People\frmListPeople.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="Forms\People\frmListPeople.Designer.cs">
       <DependentUpon>frmListPeople.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\People\frmPersonDetails.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\People\frmPersonDetails.Designer.cs">
+      <DependentUpon>frmPersonDetails.cs</DependentUpon>
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -101,17 +113,23 @@
     <EmbeddedResource Include="Cntrols\People\usrPerson.resx">
       <DependentUpon>usrPerson.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Cntrols\People\usrPersonCard.resx">
+      <DependentUpon>usrPersonCard.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Cntrols\usrHeader.resx">
       <DependentUpon>usrHeader.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Cntrols\usrManagementScreen.resx">
       <DependentUpon>usrManagementScreen.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Forms\People\frmPersonCard.resx">
-      <DependentUpon>frmPersonCard.cs</DependentUpon>
+    <EmbeddedResource Include="Forms\People\frmPerson.resx">
+      <DependentUpon>frmPerson.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Forms\People\frmListPeople.resx">
       <DependentUpon>frmListPeople.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\People\frmPersonDetails.resx">
+      <DependentUpon>frmPersonDetails.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>

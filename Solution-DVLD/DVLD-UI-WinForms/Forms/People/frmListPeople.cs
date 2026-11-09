@@ -168,9 +168,9 @@ namespace DVLD.WinForms.Forms.People
         // ===================================
         // Manage Person
         // ===================================
-        private void _OpenPersonCard(int personID, usrPerson.enMode mode)
+        private void _OpenPersonCard(int personID, clsPerson.enMode mode)
         {
-            using (var frm = new frmPersonCard(personID, mode))
+            using (var frm = new frmPerson(personID, mode))
             {
                 if (frm.ShowDialog(this) == DialogResult.OK)
                 {
@@ -182,21 +182,22 @@ namespace DVLD.WinForms.Forms.People
         private void ShowDetails_Click(object sender, EventArgs e)
         {
             //MessageBox.Show("Show Details Will Be Here");
-
-            _OpenPersonCard(usrManagePeople.SelectedID, usrPerson.enMode.ShowDetails);
+            Form form = new frmPersonDetails(usrManagePeople.SelectedID);
+            form.ShowDialog();
+            _RefreshPeopleList();
         }
 
         private void AddNewPerson_Click(object sender, EventArgs e)
         {
             //MessageBox.Show("Add New Person Will Be Here");
 
-            _OpenPersonCard(-1, usrPerson.enMode.AddNew);
+            _OpenPersonCard(-1, clsPerson.enMode.AddNew);
         }
         private void Edit_Click(object sender, EventArgs e)
         {
             //MessageBox.Show("Edit Will Be Here");
 
-            _OpenPersonCard(usrManagePeople.SelectedID, usrPerson.enMode.Update);
+            _OpenPersonCard(usrManagePeople.SelectedID, clsPerson.enMode.Update);
         }
         private void Delete_Click(object sender, EventArgs e)
         {

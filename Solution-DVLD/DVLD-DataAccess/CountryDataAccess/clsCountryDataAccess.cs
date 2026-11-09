@@ -48,10 +48,7 @@ namespace DVLD.DataAccess.CountryDataAccess
             {
                 connection.Open();
                 object result = command.ExecuteScalar();
-                while (result != null)
-                {
-                    countryName = result.ToString();
-                }
+                countryName = result.ToString().Trim();
             }
             catch (Exception ex)
             {

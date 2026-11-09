@@ -1,6 +1,6 @@
 ﻿namespace DVLD.WinForms.Forms.People
 {
-    partial class frmPersonCard
+    partial class frmPerson
     {
         /// <summary>
         /// Required designer variable.

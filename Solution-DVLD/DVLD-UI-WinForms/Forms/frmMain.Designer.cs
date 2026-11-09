@@ -36,6 +36,9 @@
             this.menuAccountSettings = new System.Windows.Forms.ToolStripMenuItem();
             this.pnlContent = new System.Windows.Forms.Panel();
             this.pnlFooter = new System.Windows.Forms.Panel();
+            this.currentUserInfoToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.chengPasswordToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.signOutToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.menuMain.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -49,11 +52,11 @@
             this.menuDrivers,
             this.menuUsers,
             this.menuAccountSettings});
-            this.menuMain.Location = new System.Drawing.Point(0, 0);
+            this.menuMain.Location = new System.Drawing.Point(10, 10);
             this.menuMain.Name = "menuMain";
             this.menuMain.Padding = new System.Windows.Forms.Padding(10, 4, 10, 4);
             this.menuMain.RenderMode = System.Windows.Forms.ToolStripRenderMode.Professional;
-            this.menuMain.Size = new System.Drawing.Size(800, 32);
+            this.menuMain.Size = new System.Drawing.Size(780, 32);
             this.menuMain.TabIndex = 1;
             this.menuMain.Text = "Menu Main";
             // 
@@ -85,6 +88,10 @@
             // 
             // menuAccountSettings
             // 
+            this.menuAccountSettings.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.currentUserInfoToolStripMenuItem,
+            this.chengPasswordToolStripMenuItem,
+            this.signOutToolStripMenuItem});
             this.menuAccountSettings.Name = "menuAccountSettings";
             this.menuAccountSettings.Size = new System.Drawing.Size(142, 24);
             this.menuAccountSettings.Text = "Account Settings";
@@ -94,19 +101,37 @@
             this.pnlContent.BackgroundImage = global::DVLD.WinForms.Properties.Resources.A_modern_clean_and_professional_vector_logo_for_a_Driving_Vehhicle_License;
             this.pnlContent.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
             this.pnlContent.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.pnlContent.Location = new System.Drawing.Point(0, 32);
+            this.pnlContent.Location = new System.Drawing.Point(10, 42);
             this.pnlContent.Name = "pnlContent";
             this.pnlContent.Padding = new System.Windows.Forms.Padding(20);
-            this.pnlContent.Size = new System.Drawing.Size(800, 530);
+            this.pnlContent.Size = new System.Drawing.Size(780, 510);
             this.pnlContent.TabIndex = 3;
             // 
             // pnlFooter
             // 
             this.pnlFooter.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.pnlFooter.Location = new System.Drawing.Point(0, 526);
+            this.pnlFooter.Location = new System.Drawing.Point(10, 516);
             this.pnlFooter.Name = "pnlFooter";
-            this.pnlFooter.Size = new System.Drawing.Size(800, 36);
+            this.pnlFooter.Size = new System.Drawing.Size(780, 36);
             this.pnlFooter.TabIndex = 4;
+            // 
+            // currentUserInfoToolStripMenuItem
+            // 
+            this.currentUserInfoToolStripMenuItem.Name = "currentUserInfoToolStripMenuItem";
+            this.currentUserInfoToolStripMenuItem.Size = new System.Drawing.Size(224, 26);
+            this.currentUserInfoToolStripMenuItem.Text = "Current User Info";
+            // 
+            // chengPasswordToolStripMenuItem
+            // 
+            this.chengPasswordToolStripMenuItem.Name = "chengPasswordToolStripMenuItem";
+            this.chengPasswordToolStripMenuItem.Size = new System.Drawing.Size(224, 26);
+            this.chengPasswordToolStripMenuItem.Text = "Cheng Password";
+            // 
+            // signOutToolStripMenuItem
+            // 
+            this.signOutToolStripMenuItem.Name = "signOutToolStripMenuItem";
+            this.signOutToolStripMenuItem.Size = new System.Drawing.Size(224, 26);
+            this.signOutToolStripMenuItem.Text = "Sign Out";
             // 
             // frmMain
             // 
@@ -139,5 +164,8 @@
         private System.Windows.Forms.ToolStripMenuItem menuAccountSettings;
         private System.Windows.Forms.Panel pnlContent;
         private System.Windows.Forms.Panel pnlFooter;
+        private System.Windows.Forms.ToolStripMenuItem currentUserInfoToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem chengPasswordToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem signOutToolStripMenuItem;
     }
 }

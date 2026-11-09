@@ -14,9 +14,7 @@ namespace DVLD.WinForms.Cntrols.People
 {
     public partial class usrPerson : UserControl
     {
-        public enum enMode { AddNew = 0, Update = 1, ShowDetails = 2 };
-
-        private enMode _Mode = enMode.AddNew;
+        private clsPerson.enMode _Mode = clsPerson.enMode.AddNew;
         private clsPerson _Person = new clsPerson();
         public usrPerson()
         {
@@ -37,29 +35,25 @@ namespace DVLD.WinForms.Cntrols.People
             _PopulatedtpDateOfBirth();
         }
 
-        public void LoadInfo(int personID, enMode mode)
+        public void LoadInfo(int personID, clsPerson.enMode mode)
         {
             _Mode = mode;
 
             switch (_Mode)
             {
-                case enMode.AddNew:
+                case clsPerson.enMode.AddNew:
                     usrHeader.Text = "Add New Person";
                     _ClearFields();
                     btnSave.Visible = true;
                     linkSetImage.Visible = true;
                     break;
-                case enMode.Update:
+                case clsPerson.enMode.Update:
                     usrHeader.Text = "Edit Person Info";
                     _LoadPersonData(personID);
                     _EnableControls(true);
                     btnSave.Visible = true;
                     linkSetImage.Text = "Change Image";
                     linkSetImage.Visible = true;
-                    break;
-                case enMode.ShowDetails:
-                    _LoadPersonData(personID);
-                    _ConfigureForShowDetails();
                     break;
             }
         }
@@ -94,7 +88,7 @@ namespace DVLD.WinForms.Cntrols.People
 
             // Gender
 
-            if (_Person.Gender == "Male")
+            if (_Person.Gender == "M")
                 rbMale.Checked = true;
             else
                 rbFemale.Checked = true;
@@ -174,32 +168,6 @@ namespace DVLD.WinForms.Cntrols.People
             dtpDateOfBirth.MaxDate = DateTime.Now.AddYears(-16);
         }
 
-        private void _ConfigureForShowDetails()
-        {
-            _Mode = enMode.ShowDetails;
-
-            _LoadPersonData(_Person.PersonID);
-
-            txtFirstName.Enabled = false;
-            txtSecondName.Enabled = false;
-            txtThirdName.Enabled = false;
-            txtLastName.Enabled = false;
-            txtNationalNo.Enabled = false;
-            txtPhoneNumber.Enabled = false;
-            txtEmail.Enabled = false;
-            txtAddress.Enabled = false;
-
-            dtpDateOfBirth.Enabled = false;
-            rbMale.Enabled = false;
-            rbFemale.Enabled = false;
-            cbCountry.Enabled = false;
-
-            linkSetImage.Visible = false;
-            btnSave.Visible = false;
-
-            usrHeader.Title = "Person Details";
-        }
-
         private void _FillPersonData()
         {
             // Name
@@ -246,7 +214,7 @@ namespace DVLD.WinForms.Cntrols.People
             if (_Person.Save())
             {
                 MessageBox.Show("Person Saved Saccessfuly", "Saccessfuly", MessageBoxButtons.OK);
-                _Mode = enMode.Update;
+                _Mode = clsPerson.enMode.Update;
                 usrHeader.Title = "Edit Person Info";
                 LoadInfo(_Person.PersonID, _Mode);
             }
@@ -261,7 +229,7 @@ namespace DVLD.WinForms.Cntrols.People
             if (_Person.Save())
             {
                 MessageBox.Show("Person Updated Saccessfuly");
-                _Mode = enMode.Update;
+                _Mode = clsPerson.enMode.Update;
                 LoadInfo(_Person.PersonID, _Mode);
             }
             else
@@ -294,10 +262,10 @@ namespace DVLD.WinForms.Cntrols.People
 
             switch (_Mode)
             {
-                case enMode.AddNew:
+                case clsPerson.enMode.AddNew:
                     _AddNewPerson();
                     break;
-                case enMode.Update:
+                case clsPerson.enMode.Update:
                     _UpdatePerson();
                     break;
             }

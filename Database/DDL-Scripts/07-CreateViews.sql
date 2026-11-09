@@ -22,3 +22,20 @@ INNER JOIN tblCountries C ON P.CountryID = C.CountryID
 GO
 
 -- SELECT * FROM vwPeople
+
+CREATE VIEW vwUsers
+AS
+	SELECT
+		 U.UserID AS 'User ID', 
+		 P.PersonID AS 'Person ID',
+			P.FirstName + ' ' +
+			P.SecondName + ' ' + 
+			P.ThirdName + ' ' +
+			P.LastName AS 'Full Name',
+		 U.UserName AS 'User Name',
+		 U.IsActive AS 'Is Active'
+	FROM tblUsers U
+	INNER JOIN tblPeople P ON U.PersonID = P.PersonID
+GO
+
+-- SELECT * FROM vwUsers;
